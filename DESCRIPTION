@@ -7,7 +7,21 @@ Depends: R (>= 3.3.2)
 Imports: DiagrammeR,
          DiagrammeRsvg,
          rsvg,
-         knitr
+         knitr,
+         dplyr,
+         htmlwidgets,
+         igraph,
+         influenceR,
+         magrittr,
+         RColorBrewer,
+         rstudioapi,
+         rgexf,
+         scales,
+         stringr,
+         tibble,
+         viridis,
+         visNetwork,
+         V8
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
