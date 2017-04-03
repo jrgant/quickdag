@@ -1,0 +1,7 @@
+[2017-04-02] --
+
+- Initial commit
+
+## Added
+- makeDAG function to save, view, or embed DAGs
+- All initial updates to DESCRIPTION, NAMESPACE, etc.
