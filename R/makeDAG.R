@@ -109,6 +109,12 @@ makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
     file.tmp <- utils::capture.output(rsvg_svg(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
                                                file = handle, ...))
 
+  } else if (filetype == "eps") {
+
+    handle <- paste(dagname, ".eps", sep = "")
+    file.tmp <- utils::capture.output(rsvg_ps(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
+                                               file = handle, ...))
+
   } else if (filetype == "view") {
 
     print(dag_object)
