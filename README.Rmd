@@ -22,7 +22,7 @@ Install the package using the following code:
 # if you don't have a current version of devtools
 install.packages("devtools")
 
-devtools::install_github("jrgant/quickDAG")
+devtools::install_github("jrgant/quickDAG", recursive = T)
 ```
 
 ## What's a DAG?
