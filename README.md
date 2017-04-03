@@ -9,7 +9,7 @@ Install the package using the following code:
 # if you don't have a current version of devtools
 install.packages("devtools")
 
-devtools::install_github("jrgant/quickDAG")
+devtools::install_github("jrgant/quickDAG", recursive = T)
 ```
 
 What's a DAG?
@@ -64,7 +64,7 @@ my_dag <-
 Graph code must be entered in as a string (note the surrounding quotes). Once specified, pass your graph code to the `makeDAG` function:
 
 ``` r
-makeDAG(my_dag, dagname = "dag_file", filetype = "eps", height = 350, width = 500)
+makeDAG(my_dag, dagname = "dag_file", filetype = "png", height = 350, width = 500)
 ```
 
 In this case, we've saved the DAG as a PNG to the working directory. Alternatively, you can specify the desired filepath.
@@ -109,4 +109,4 @@ Filetypes
 
 For scalable images, select PDF, EPS, or SVG format in the `filetype` option. These will not require the `height` and `width` parameters the way that PNG does and can be zoomed to your heart's content.
 
-The `makeDAG` function defaults to PDF.
+The `makeDAG` function defaults to PDF. Journals will typically request EPS files for publication.
