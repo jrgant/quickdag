@@ -63,6 +63,8 @@
 #'
 #' @export makeDAG
 #' @import rsvg
+#' @import DiagrammeR
+#' @import DiagrammeRsvg
 
 
 makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
