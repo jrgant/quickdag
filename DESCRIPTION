@@ -57,7 +57,8 @@ Imports: dplyr,
          xtable,
          codetools,
          iterators,
-         parallel
+         parallel,
+         brew
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
