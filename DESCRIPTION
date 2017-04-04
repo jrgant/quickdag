@@ -6,9 +6,7 @@ Description: This package allows the user the save directed acyclic graphs (DAGs
 Depends: R (>= 3.3.2)
 Imports: DiagrammeR,
          DiagrammeRsvg,
-         rsvg,
-         knitr,
-         pacman
+         rsvg
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
