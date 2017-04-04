@@ -1,12 +1,13 @@
 [2017-04-03] --
 
 ## Added
-
 - README.Rmd
 - Option to output DAG as EPS file
 
+## Changed
+- Tried to implement temporary workaround for install_github dependency problem
 
-//
+
 
 [2017-04-02] --
 

@@ -66,7 +66,6 @@
 #' @import DiagrammeR
 #' @import DiagrammeRsvg
 
-
 makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
                     text.nodes = NULL, box.nodes = NULL,
                     solid.edges = NULL, dashed.edges = NULL,
