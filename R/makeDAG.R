@@ -65,6 +65,7 @@
 #' @import rsvg
 #' @import DiagrammeR
 #' @import DiagrammeRsvg
+#' @import knitr
 
 
 makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",

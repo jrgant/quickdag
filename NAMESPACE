@@ -3,4 +3,5 @@
 export(makeDAG)
 import(DiagrammeR)
 import(DiagrammeRsvg)
+import(knitr)
 import(rsvg)
