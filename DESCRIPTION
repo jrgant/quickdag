@@ -59,6 +59,7 @@ Imports: dplyr,
          iterators,
          parallel,
          brew
+         parallel
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
