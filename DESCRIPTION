@@ -57,8 +57,12 @@ Imports: dplyr,
          xtable,
          codetools,
          iterators,
+<<<<<<< HEAD
          parallel,
          brew
+=======
+         parallel
+>>>>>>> af7a6965a55b75d041542d7ff7f762df52d06b75
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
