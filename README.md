@@ -6,10 +6,10 @@ quickDAG
 Install the package using the following code:
 
 ``` r
-# if you don't have a current version of devtools
-install.packages("devtools")
+install.packages(c("DiagrammeR" "DiagrammeRsvg", "rsvg", "devtools", "knitr"))
 
-devtools::install_github("jrgant/quickDAG", recursive = T)
+library(devtools)
+devtools::install_github("jrgant/quickDAG")
 ```
 
 What's a DAG?
