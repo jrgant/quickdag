@@ -119,3 +119,8 @@ References
 -   Hernán MA, Hernández-Díaz S, Robins JM. A structural approach to selection bias. Epidemiology. 2004;15(5):615-625.
 
 -   Hernán MA, Hernández-Díaz S, Werler MM, Mitchell AA. Causal knowledge as a prerequisite for confounding evaluation: an application to birth defects epidemiology. Am J Epidemiol. 2002;155(2):176-184.
+
+Credits
+-------
+
+The heavy lifting here is done by Rich Iannone's [Diagrammer](https://github.com/rich-iannone/DiagrammeR) and functions adapted from users HJAllen and puterleat on a DiagrammeR [issues thread](https://github.com/rich-iannone/DiagrammeR/issues/133).
