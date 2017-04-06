@@ -124,7 +124,7 @@ makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
 
   } else {
 
-    stop("Filetype not supported. Select one of: pdf, png, svg, view.")
+    stop("Filetype not supported. Select one of: pdf, png, svg, eps, view.")
 
   }
 
