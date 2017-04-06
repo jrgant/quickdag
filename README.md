@@ -34,9 +34,8 @@ Because this package uses DiagrammeR, it is currently limited to producing `digr
 Graph code:
 
 ``` r
-my_dag <- 
+my_dag <- paste("
 
-"
     # graph direction
     graph[rankdir = LR]
     
@@ -58,7 +57,8 @@ my_dag <-
     edge[arrowsize = .5, style = dashed]
     U -> S
     U -> C
-"
+    
+    ")
 ```
 
 Graph code must be entered in as a string (note the surrounding quotes). Once specified, pass your graph code to the `makeDAG` function:
