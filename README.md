@@ -6,7 +6,7 @@ quickDAG
 Install the package using the following code:
 
 ``` r
-install.packages(c("DiagrammeR" "DiagrammeRsvg", "rsvg", "devtools", "knitr"))
+install.packages(c("DiagrammeR", "DiagrammeRsvg", "rsvg", "devtools", "knitr"))
 
 library(devtools)
 devtools::install_github("jrgant/quickDAG")
