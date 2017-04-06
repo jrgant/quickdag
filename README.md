@@ -110,3 +110,12 @@ Filetypes
 For scalable images, select PDF, EPS, or SVG format in the `filetype` option. These will not require the `height` and `width` parameters the way that PNG does and can be zoomed to your heart's content.
 
 The `makeDAG` function defaults to PDF. Journals will typically request EPS files for publication.
+
+References
+----------
+
+-   Cole SR, Platt RW, Schisterman EF, et al. Illustrating bias due to conditioning on a collider. Int J Epidemiol. 2010;39(2):417-420.
+
+-   Hernán MA, Hernández-Díaz S, Robins JM. A structural approach to selection bias. Epidemiology. 2004;15(5):615-625.
+
+-   Hernán MA, Hernández-Díaz S, Werler MM, Mitchell AA. Causal knowledge as a prerequisite for confounding evaluation: an application to birth defects epidemiology. Am J Epidemiol. 2002;155(2):176-184.
