@@ -70,7 +70,7 @@
 
 makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
                     text.nodes = NULL, box.nodes = NULL,
-                    solid.edges = NULL, dashed.edges = NULL,
+                    solid.edges = NULL, dashed.edges = NULL, footnotes = NULL,
                     direction = "LR", embed = FALSE, ...) {
 
   # make dag visible to function
@@ -88,7 +88,7 @@ makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
   } else {
 
     dag_object <- DiagrammeR::grViz(
-      paste("digraph{ graph[rankdir = ", direction, "]", graphcode, "}")
+      paste("digraph{ graph[rankdir = ", direction, "]", graphcode, "}", footnotes)
     )
 
   }

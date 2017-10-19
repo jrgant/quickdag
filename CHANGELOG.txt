@@ -1,3 +1,9 @@
+[2017-10-19] --
+
+## Added
+
+- Option to include footnotes when writing full graph code
+
 [2017-04-03] --
 
 ## Added
