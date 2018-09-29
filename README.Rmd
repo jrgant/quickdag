@@ -127,6 +127,8 @@ The `makeDAG` function defaults to PDF. Journals will typically request EPS file
 
 ## References
 
++ Hernán MA, Robins JM. Causal Inference. Boca Raton: Chapman & Hall/CRC; 2018 (forthcoming). [https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/)
+
 + Cole SR, Platt RW, Schisterman EF, et al. Illustrating bias due to conditioning on a collider. Int J Epidemiol. 2010;39(2):417-420.
 
 + Hernán MA, Hernández-Díaz S, Robins JM. A structural approach to selection bias. Epidemiology. 2004;15(5):615-625.
