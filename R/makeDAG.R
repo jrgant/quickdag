@@ -73,6 +73,8 @@ makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
                     solid.edges = NULL, dashed.edges = NULL, footnotes = NULL,
                     direction = "LR", embed = FALSE, ...) {
 
+  message("makeDAG() will be deprecated in an upcoming version.")
+
   # make dag visible to function
   if (is.null(graphcode)) {
 
