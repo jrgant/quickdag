@@ -16,11 +16,10 @@ pacman::p_load(quickDAG)
 
 # quickDAG
 
-Install the package using the following code:
+Install the package and its dependencies using the following code:
 
 ```{R, eval = F}
-install.packages(c("DiagrammeR", "DiagrammeRsvg", "rsvg", "devtools", "knitr"))
-
+# install.packages("devtools")
 library(devtools)
 devtools::install_github("jrgant/quickDAG")
 ```
