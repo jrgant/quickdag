@@ -5,8 +5,8 @@
 #'
 #' @param edgelist A vector of edge relationships. Must be strictly organized (see example for format).
 #' @param node.labs A character vector containing label names. Defaults to \code{NULL}.
-#' @param node.aes.opts A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list.
-#' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list.
+#' @param node.aes.opts A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.
+#' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.
 #' @param checks A logical switch indicating whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
 #'
 #' @note
@@ -27,6 +27,16 @@
 #' # make a DAG object and render the graph
 #' g.obj <- qd_dag(edges)
 #' render_graph(g.obj)
+#'
+#' # Pass labels and aesthetic options for nodes or edges
+#' g.obj2 <- qd_dag(edges,
+#'                  node.labs = c("Alcohol", "BP", "CVD"),
+#'                  node.aes.opts = list(shape = "plaintext",
+#'                                       fillcolor = "none",
+#'                                       color = "black"),
+#'                  edge.aes.opts = list(arrowsize = 0.5,
+#'                                       color = "gray"))
+#' render_graph(g.obj2)
 #'
 #' @export qd_dag
 #' @import DiagrammeR

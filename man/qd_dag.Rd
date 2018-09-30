@@ -8,13 +8,13 @@ qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
   edge.aes.opts = list(), checks = TRUE)
 }
 \arguments{
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see example).}
+\item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
 
 \item{node.labs}{A character vector containing label names. Defaults to \code{NULL}.}
 
-\item{node.aes.opts}{A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list.}
+\item{node.aes.opts}{A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.}
 
-\item{edge.aes.opts}{A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list.}
+\item{edge.aes.opts}{A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.}
 
 \item{checks}{A logical switch indicating whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
 }
@@ -32,13 +32,22 @@ Packages used: DiagrammeR, stringr, purrr
 \examples{
 # Provide a list of edges, with nodes specified as letters.
 # Do not list a node as a parent more than once.
-# Function cannot currently accept the form: "A -> B -> C", and user must
-# enter spaces between all entities.
+# Each line should contain a single edge character '->'.
 edges <- c("A -> { B C }",
            "B -> C")
 
 # make a DAG object and render the graph
 g.obj <- qd_dag(edges)
 render_graph(g.obj)
+
+# Pass labels and aesthetic options for nodes or edges
+g.obj2 <- qd_dag(edges,
+                 node.labs = c("Alcohol", "BP", "CVD"),
+                 node.aes.opts = list(shape = "plaintext",
+                                      fillcolor = "none",
+                                      color = "black"),
+                 edge.aes.opts = list(arrowsize = 0.5,
+                                      color = "gray"))
+render_graph(g.obj2)
 
 }
