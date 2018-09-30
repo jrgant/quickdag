@@ -5,11 +5,6 @@ qd_dag <- function(edgelist, id.type = "alpha", node.labs = NULL,
                    node.aes.opts = list(), edge.aes.opts = list(),
                    checks = TRUE) {
 
-  require(DiagrammeR)
-  require(stringr)
-  require(purrr)
-  require(dplyr)
-
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
   nodes <- sort(unique(unlist(str_extract_all(edges, pattern = "[:alnum:]"))))
@@ -34,9 +29,7 @@ qd_dag <- function(edgelist, id.type = "alpha", node.labs = NULL,
     if (!is.null(node.labs)) {
       ndf$label <- sort(node.labs)
     }
-    ndf <- ndf %>%
-      mutate(alpha.id = nodes) %>%
-      select(id, alpha.id, everything())
+    ndf$alpha.id <- nodes
   }
 
 
@@ -69,12 +62,14 @@ qd_dag <- function(edgelist, id.type = "alpha", node.labs = NULL,
 
     sep.length <- 73
 
+    # preamble
     message(rep("-", sep.length))
     message("Make sure everything is matched up properly!")
     message(paste("To stop printing dataframes to the console,",
                   "set 'checks' option to FALSE."))
     message(rep("-", sep.length), "\n")
 
+    # dataframes
     dots <- paste(rep(".", sep.length / 3), collapse = "")
     cat(dots, "NODE DATAFRAME", dots, "\n\n")
     graph %>% get_node_df() %>% print()
@@ -96,9 +91,6 @@ qd_dag <- function(edgelist, id.type = "alpha", node.labs = NULL,
 #  saves the image to a given location in the specified format.
 #  Preserves the ability to send arguments directly to render_graph().
 qd_save <- function(graph, filename = NULL, filetype = "pdf", ...) {
-
-  require(DiagrammeRsvg)
-  require(rsvg)
 
   # File Format Match Table -----------------------------------------------
   fmt.opts <- c("png" = "rsvg_png",
@@ -132,14 +124,21 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", ...) {
   # File Save -------------------------------------------------------------
   file.fmt <- match.arg(filetype, names(fmt.opts))
   raw.img <- charToRaw(export_svg(rendered.graph))
+
+  fname <- paste(filename, file.fmt, sep = ".")
   out <- capture.output(
     do.call(fmt.opts[[file.fmt]],
-            list(raw.img, file = paste(filename, file.fmt, sep = ".")))
+            list(raw.img, file = fname))
   )
   return(out)
 }
 
 
+# Calls qd_save and embeds image in RMarkdown document
+qd_embed <- function(...) {
+  qd_save(...)
+  knitr::include_graphics(fname)
+}
 
 
 
