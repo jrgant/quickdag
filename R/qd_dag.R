@@ -3,7 +3,7 @@
 #' @description
 #' Provide simple syntax specifying paths between nodes to generate a graph object.
 #'
-#' @param edgelist A vector of edge relationships. Must be strictly organized (see example).
+#' @param edgelist A vector of edge relationships. Must be strictly organized (see example for format).
 #' @param node.labs A character vector containing label names. Defaults to \code{NULL}.
 #' @param node.aes.opts A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list.
 #' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list.
@@ -20,8 +20,7 @@
 #' @examples
 #' # Provide a list of edges, with nodes specified as letters.
 #' # Do not list a node as a parent more than once.
-#' # Function cannot currently accept the form: "A -> B -> C", and user must
-#' # enter spaces between all entities.
+#' # Each line should contain a single edge character '->'.
 #' edges <- c("A -> { B C }",
 #'            "B -> C")
 #'
