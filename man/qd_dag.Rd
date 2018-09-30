@@ -2,10 +2,10 @@
 % Please edit documentation in R/qd_dag.R
 \name{qd_dag}
 \alias{qd_dag}
-\title{Make, view, and embed beautiful diagrams.}
+\title{Generate a graph object}
 \usage{
-qd_dag(edgelist, id.type = "alpha", node.labs = NULL,
-  node.aes.opts = list(), edge.aes.opts = list(), checks = TRUE)
+qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
+  edge.aes.opts = list(), checks = TRUE)
 }
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example).}
@@ -19,12 +19,12 @@ qd_dag(edgelist, id.type = "alpha", node.labs = NULL,
 \item{checks}{A logical switch indicating whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
 }
 \description{
-Save directed acyclic graphs (DAGs) generated in DiagrammeR and export them to pdf, png, eps, or svg format. This package is designed to make specification and production of DAGs and other diagrams as quick and painless as possible.
+Provide simple syntax specifying paths between nodes to generate a graph object.
 }
 \note{
-Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id, which may not always be the case.}
+Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
 
-Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}!
+Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
 
 
 Packages used: DiagrammeR, stringr, purrr
@@ -32,9 +32,10 @@ Packages used: DiagrammeR, stringr, purrr
 \examples{
 # Provide a list of edges, with nodes specified as letters.
 # Do not list a node as a parent more than once.
-# Function cannot current accept the form: "A -> B -> C".
+# Function cannot currently accept the form: "A -> B -> C", and user must
+# enter spaces between all entities.
 edges <- c("A -> { B C }",
-           "B -> D")
+           "B -> C")
 
 # make a DAG object and render the graph
 g.obj <- qd_dag(edges)

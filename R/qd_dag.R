@@ -1,6 +1,7 @@
-#' Make, view, and embed beautiful diagrams.
+#' Generate a graph object
 #'
-#' Save directed acyclic graphs (DAGs) generated in DiagrammeR and export them to pdf, png, eps, or svg format. This package is designed to make specification and production of DAGs and other diagrams as quick and painless as possible.
+#' @description
+#' Provide simple syntax specifying paths between nodes to generate a graph object.
 #'
 #' @param edgelist A vector of edge relationships. Must be strictly organized (see example).
 #' @param node.labs A character vector containing label names. Defaults to \code{NULL}.
@@ -9,7 +10,7 @@
 #' @param checks A logical switch indicating whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
 #'
 #' @note
-#' Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id, which may not always be the case.}
+#' Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
 #'
 #' Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
 #'
@@ -19,9 +20,10 @@
 #' @examples
 #' # Provide a list of edges, with nodes specified as letters.
 #' # Do not list a node as a parent more than once.
-#' # Function cannot currently accept the form: "A -> B -> C".
+#' # Function cannot currently accept the form: "A -> B -> C", and user must
+#' # enter spaces between all entities.
 #' edges <- c("A -> { B C }",
-#'            "B -> D")
+#'            "B -> C")
 #'
 #' # make a DAG object and render the graph
 #' g.obj <- qd_dag(edges)
@@ -29,13 +31,11 @@
 #'
 #' @export qd_dag
 #' @import DiagrammeR
-#' @import stringr
-#' @import purrr
+#' @importFrom  stringr str_extract_all
+#' @importFrom purrr map2
 
 
-# This function takes simple input, requiring only a vector of node-edge
-#  relationships to produce a minimal graph object. Other inputs provide
-#  additional functional and graphical features.
+
 qd_dag <- function(edgelist, node.labs = NULL,
                    node.aes.opts = list(), edge.aes.opts = list(),
                    checks = TRUE) {
@@ -46,7 +46,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ## specify nodes with direct descendants (out = list)
   pa.nodes <- str_extract_all(edgelist, pattern = "^.{1}")
   ## specify nodes with direct ancestors (out = list)
-  ch.nodes <- str_extract_all(edgelist, pattern = "(?<=\\>.{1,1000})[:alnum:]")
+  ch.nodes <- str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]")
 
 
   # Create Node Dataframe -------------------------------------------------
