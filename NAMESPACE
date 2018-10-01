@@ -2,9 +2,12 @@
 
 export(makeDAG)
 export(qd_dag)
+export(qd_embed)
+export(qd_save)
 import(DiagrammeR)
 import(DiagrammeRsvg)
 import(knitr)
 import(rsvg)
 importFrom(purrr,map2)
 importFrom(stringr,str_extract_all)
+importFrom(utils,capture.output)
