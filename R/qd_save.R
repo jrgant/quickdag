@@ -11,7 +11,6 @@
 #' @describeIn qd_save
 #'
 #' @import rsvg
-#' @importFrom utils capture.output
 #' @import DiagrammeRsvg
 #' @export qd_save
 
