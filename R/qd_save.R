@@ -70,5 +70,5 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = F, ...) {
 
 qd_embed <- function(...) {
   qd_save(..., embed = T)
-  knitr::include_graphics(fname)
+  knitr::include_graphics(fname) # fname from qdsave()
 }
