@@ -7,7 +7,8 @@
 #' @param node.labs A character vector containing label names. Defaults to \code{NULL}.
 #' @param node.aes.opts A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.
 #' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.
-#' @param checks A logical switch indicating whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
+#' @param verbose Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
+#' @param check.dag Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.
 #'
 #' @note
 #' Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
@@ -47,7 +48,7 @@
 
 qd_dag <- function(edgelist, node.labs = NULL,
                    node.aes.opts = list(), edge.aes.opts = list(),
-                   checks = TRUE) {
+                   verbose = TRUE, check.dag = TRUE) {
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
@@ -98,17 +99,30 @@ qd_dag <- function(edgelist, node.labs = NULL,
   graph <- create_graph(nodes_df = ndf,
                         edges_df = edf)
 
-  ## if user wants checks, print the node and edges dataframes to console
+
+# Checks ------------------------------------------------------------------
+
+  ## check to see if graph is a DAG
+  if (check.dag) {
+    if (!is_graph_dag(graph)) {
+      warning("Your graph appears to break some of the rules of ",
+              "directed acylic graphs. ",
+              "To turn off this warning, set 'check.dag' option to FALSE. \n\n")
+    } else {
+      message("\n\nCHECKED: The diagram is a DAG. \n")
+    }
+  }
+
+  ## print the node and edges dataframes to console (optional)
   ## defaults to TRUE
-  if (checks) {
+  if (verbose) {
 
     sep.length <- 73
 
     # preamble
     message(rep("-", sep.length))
-    message("Make sure everything is matched up properly!")
-    message(paste("To stop printing dataframes to the console,",
-                  "set 'checks' option to FALSE."))
+    message("Make sure everything is matched up properly! \n",
+            "To stop printing data to the console, set 'verbose' to FALSE.")
     message(rep("-", sep.length), "\n")
 
     # dataframes

@@ -5,7 +5,7 @@
 \title{Generate a graph object}
 \usage{
 qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
-  edge.aes.opts = list(), checks = TRUE)
+  edge.aes.opts = list(), verbose = TRUE, check.dag = TRUE)
 }
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
@@ -16,7 +16,9 @@ qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
 
 \item{edge.aes.opts}{A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.}
 
-\item{checks}{A logical switch indicating whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
+\item{verbose}{Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
+
+\item{check.dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
 }
 \description{
 Provide simple syntax specifying paths between nodes to generate a graph object.
