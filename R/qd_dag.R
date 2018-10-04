@@ -41,7 +41,7 @@
 #'
 #' @export qd_dag
 #' @import DiagrammeR
-#' @importFrom  stringr str_extract_all
+#' @import stringr
 #' @importFrom purrr map2
 
 
@@ -72,7 +72,23 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   ## apply node labels if present
   if (!is.null(node.labs)) {
-    ndf$label <- sort(node.labs)
+
+    # alpha label prefix
+    alpha.prefix <- "^[A-Z]{1}"
+    alpha.period <- paste0(alpha.prefix, "\\.")
+
+    # // label finding
+    # if all node.labs conform to the format "A.label", extract and save "label"
+    # to node dataframe; else save full string to node dataframe
+    # paste0() includes the period
+    if (!0 %in% grepl(alpha.period, node.labs)) {
+      ndf$label[match(ndf$alpha.id, str_extract(node.labs, alpha.prefix))] <-
+        str_replace(string = node.labs,
+                    pattern = alpha.period,
+                    replacement = "")
+    } else {
+      ndf$label <- sort(node.labs)
+    }
   }
 
 
