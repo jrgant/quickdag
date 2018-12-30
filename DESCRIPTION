@@ -4,7 +4,7 @@ Version: 0.2.0
 Authors@R: person("Jason", "Gantenberg", email = "jason_gantenberg@brown.edu", role = c("aut", "cre"))
 Description: This package allows the user the save directed acyclic graphs (DAGs) generated in DiagrammeR and export them to pdf, png, or svg format. Users may optionally choose to view the DAG without saving or to embed it in an RMarkdown document. 
 Depends: R (>= 3.5.1), DiagrammeR
-Imports: DiagrammeRsvg, rsvg, knitr, dagitty, stringr, purrr
+Imports: DiagrammeRsvg, rsvg, knitr, dagitty, stringr, purrr, dplyr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
