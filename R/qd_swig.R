@@ -33,13 +33,13 @@ qd_swig <- function(graph.obj, fixed.nodes) {
 
   rel.df <- dplyr::bind_rows(rel.l)
 
-
   # create label insert based on child's fixed parents
   unq.ch <- unique(rel.df$ch.id)
   slug.l <- lapply(unq.ch, FUN = function(x) {
-    ch.id <- x
-    lab.slug <- with(rel.df, paste(tolower(pt.alpha[ch.id == x]), collapse = ","))
-    df <- dplyr::data_frame(ch.id, lab.slug)
+    curr.ch <- x
+    lab.slug <- with(rel.df,
+                     paste(tolower(pt.alpha[ch.id == x]), collapse = ","))
+    df <- dplyr::data_frame(ch.id = curr.ch, lab.slug)
   })
 
   slug.df <- dplyr::bind_rows(slug.l)
@@ -50,11 +50,12 @@ qd_swig <- function(graph.obj, fixed.nodes) {
     get_node_df() %>%
     dplyr::mutate(
       label = ifelse(id %in% slug.df$ch.id,
-                     paste0(alpha.id, "@^{", slug.df$lab.slug[match(id, slug.df$ch.id)], "}"),
+                     paste0(alpha.id, "@^{<i>", na.omit(slug.df$lab.slug[match(id, slug.df$ch.id)]), "</i>}"),
                      label),
       label = ifelse(id %in% rel.df$pt.id,
                      paste(label, "|", tolower(alpha.id)),
-                     label))
+                     label),
+      fixed = ifelse(id %in% rel.df$pt.id, TRUE, FALSE))
 
   return(graph.obj)
 
