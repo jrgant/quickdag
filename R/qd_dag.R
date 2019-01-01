@@ -9,12 +9,14 @@
 #' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.
 #' @param verbose Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
 #' @param check.dag Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.
+#' @param theme Choose theme for plot output. Defaults to "base". Setting theme to NULL will use DiagrammeR's NULL attribute theme.
+#' @param ... Pass optional \code{conditioned} argument to qd_themes().
 #'
 #' @note
 #' Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
 #'
+#' @details
 #' Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
-#'
 #'
 #' Packages used: DiagrammeR, stringr, purrr
 #'
@@ -48,7 +50,7 @@
 
 qd_dag <- function(edgelist, node.labs = NULL,
                    node.aes.opts = list(), edge.aes.opts = list(),
-                   verbose = TRUE, check.dag = TRUE) {
+                   verbose = TRUE, check.dag = TRUE, theme = "base", ...) {
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
@@ -113,10 +115,10 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   # Output Graph Object -----------------------------------------------------
   graph <- create_graph(nodes_df = ndf,
-                        edges_df = edf)
+                        edges_df = edf,
+                        attr_theme = NULL)
 
-
-# Checks ------------------------------------------------------------------
+  # Checks ------------------------------------------------------------------
 
   ## check to see if graph is a DAG
   if (check.dag) {
@@ -152,5 +154,19 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   ## returns DiagrammeR's graph object to store node and edge dataframes
   ## and attributes
+  if (!is.null(theme)) {
+    if (length(node.aes.opts) > 0 | length(edge.aes.opts) > 0) {
+      message("Node and/or edge aesthetics are currently being applied ",
+              "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
+              "\n",
+              "Using both methods to set aesthetics may result in unexpected ",
+              "results.")
+    } else {
+      themed_graph <- graph %>%
+        qd_themes(theme == theme, ...)
+      return(themed_graph)
+    }
+
+  }
   return(graph)
 }

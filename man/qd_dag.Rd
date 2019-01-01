@@ -5,7 +5,8 @@
 \title{Generate a graph object}
 \usage{
 qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
-  edge.aes.opts = list(), verbose = TRUE, check.dag = TRUE)
+  edge.aes.opts = list(), verbose = TRUE, check.dag = TRUE,
+  theme = "base", ...)
 }
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
@@ -19,17 +20,21 @@ qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
 \item{verbose}{Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
 
 \item{check.dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
+
+\item{theme}{Choose theme for plot output. Defaults to "base". Setting theme to NULL will use DiagrammeR's NULL attribute theme.}
+
+\item{...}{Pass optional \code{conditioned} argument to qd_themes().}
 }
 \description{
 Provide simple syntax specifying paths between nodes to generate a graph object.
 }
-\note{
-Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
-
+\details{
 Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
 
-
 Packages used: DiagrammeR, stringr, purrr
+}
+\note{
+Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
 }
 \examples{
 # Provide a list of edges, with nodes specified as letters.
