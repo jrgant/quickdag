@@ -4,12 +4,14 @@
 \alias{qd_swig}
 \title{Generate a single word intervention graph (SWIG) template}
 \usage{
-qd_swig(graph.obj, fixed.nodes)
+qd_swig(graph.obj, fixed.nodes, fixed.sep = "vlin")
 }
 \arguments{
 \item{graph.obj}{A DAG object created by \code{qd_dag()}.}
 
-\item{fixed.nodes}{A vector containing the nodes to be intervened upon.
+\item{fixed.nodes}{A vector containing the nodes to be intervened upon.}
+
+\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts()} for available options.
 
 Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
 

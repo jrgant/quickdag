@@ -5,11 +5,15 @@
 #'
 #' @param graph.obj A DAG object created by \code{qd_dag()}.
 #' @param fixed.nodes A vector containing the nodes to be intervened upon.
+#' @param fixed.sep A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts()} for available options.
 #'
 #' Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
 #'
 #'
 #' Packages used: DiagrammeR, stringr, purrr
+#'
+#'
+#'
 #'
 #' @examples
 #' # Provide a DAG object and a list of nodes to be fixed
@@ -21,7 +25,7 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr mutate
 
-qd_swig <- function(graph.obj, fixed.nodes) {
+qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 
   # identify relations between parents and children
   rel.l <- lapply(fixed.nodes, FUN = function(x) {
@@ -44,16 +48,19 @@ qd_swig <- function(graph.obj, fixed.nodes) {
 
   slug.df <- dplyr::bind_rows(slug.l)
 
+  # separators for fixed nodes
+  sep.opts <- sep_opts()
+
   # update child label in node_df
   graph.obj$nodes_df <-
     graph.obj %>%
     get_node_df() %>%
     dplyr::mutate(
       label = ifelse(id %in% slug.df$ch.id,
-                     paste0(alpha.id, "@^{<i>", na.omit(slug.df$lab.slug[match(id, slug.df$ch.id)]), "</i>}"),
+                     paste0(alpha.id, "@^{<i>", slug.df$lab.slug[match(id, slug.df$ch.id)], "</i>}"),
                      label),
       label = ifelse(id %in% rel.df$pt.id,
-                     paste(label, "|", tolower(alpha.id)),
+                     paste(label, sep.opts[fixed.sep], tolower(alpha.id)),
                      label),
       fixed = ifelse(id %in% rel.df$pt.id, TRUE, FALSE))
 
