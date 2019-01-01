@@ -24,6 +24,8 @@ makeDAG(graphcode = NULL, dagname = NULL, filetype = "pdf",
 
 \item{dashed.edges}{A string specifying paths containing unmeasured covariates.}
 
+\item{footnotes}{Add a footnote to the bottom of the graph.}
+
 \item{direction}{Specify the direction of diagram flow. Defaults to \code{"LR"}, for left-right.}
 
 \item{embed}{For use within R chunks in RMarkdown only. You will probably want to have the \code{echo} chunk option set to \code{FALSE}, unless you want to display the R code itself. The \code{embed} defaults to \code{TRUE}.}

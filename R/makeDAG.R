@@ -11,6 +11,7 @@
 #' @param direction Specify the direction of diagram flow. Defaults to \code{"LR"}, for left-right.
 #' @param filetype Output file format. Select from \code{pdf}, \code{png}, \code{svg}, or \code{view}. Setting the option to \code{view} will not save a file but will generate the diagram in your viewer. Defaults to \code{pdf}.
 #' @param embed For use within R chunks in RMarkdown only. You will probably want to have the \code{echo} chunk option set to \code{FALSE}, unless you want to display the R code itself. The \code{embed} defaults to \code{TRUE}.
+#' @param footnotes Add a footnote to the bottom of the graph.
 #' @param ... Pass arguments to interior functions for PNG or SVG files. For instance, specify \code{height} and \code{width} arguments.
 #'
 #' @note
