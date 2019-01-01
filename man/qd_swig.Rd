@@ -23,6 +23,11 @@ Provide simple syntax specifying paths between nodes to generate a graph object.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
-qd_swig(dag, c("A", "L")) \%>\% render_graph()
+edges <- c("A -> Y",
+           "L -> { A Y }")
+
+qd_dag(edges) \%>\%
+   qd_swig(fixed.nodes = "A") \%>\%
+   render_graph()
 
 }
