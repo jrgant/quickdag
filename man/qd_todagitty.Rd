@@ -5,7 +5,7 @@
 \title{Identify variables for adjustment}
 \usage{
 qd_todagitty(edgelist, diagram_type = "dag", showplot = FALSE,
-  send.global = FALSE, dagitty.obj.name = NULL, ...)
+  send.global = FALSE, dagitty.obj.name = NULL, exposure, outcome, ...)
 }
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
@@ -18,11 +18,11 @@ qd_todagitty(edgelist, diagram_type = "dag", showplot = FALSE,
 
 \item{dagitty.obj.name}{Character specifying the name of the dagitty object. Only used and required if \code{send.global = TRUE}.}
 
-\item{...}{Pass arguments to \code{adjustmentSets()}. See dagitty documentation for options.}
-
 \item{exposure}{Character. Specify exposure of interest. (Required)}
 
 \item{outcome}{Character. Specifiy outcome of interest. (Required)}
+
+\item{...}{Pass arguments to \code{adjustmentSets()}. See dagitty documentation for options.}
 }
 \description{
 Format an edgelist and send it to dagitty to identify variable adjustment sets.
@@ -37,6 +37,6 @@ edges <- c("A -> { B C D }",
 
 # must pass exposure and outcome arguments to dagitty::adjustmentSets()
 qd_todagitty(edges, exposure = "A", outcome = "C")
-#' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
+qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
 
 }

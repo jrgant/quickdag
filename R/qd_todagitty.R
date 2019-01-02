@@ -22,7 +22,7 @@
 #'
 #' # must pass exposure and outcome arguments to dagitty::adjustmentSets()
 #' qd_todagitty(edges, exposure = "A", outcome = "C")
-#' #' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
+#' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
 #'
 #' @importFrom dagitty dagitty
 #' @importFrom dagitty adjustmentSets
@@ -31,6 +31,7 @@
 
 qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                          send.global = FALSE, dagitty.obj.name = NULL,
+                         exposure, outcome,
                          ...) {
 
   dagitty.obj <- dagitty::dagitty(paste(diagram_type, "{",
@@ -52,6 +53,7 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
   }
 
   ## use dagitty's algorithm to identify adjustment sets
-  sets <- dagitty::adjustmentSets(dagitty.obj, ...)
+  sets <- dagitty::adjustmentSets(dagitty.obj, exposure = exposure,
+                                  outcome = outcome, ...)
   return(sets)
 }
