@@ -7,6 +7,7 @@
 #' @param conditioned A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to "square".
 #' @param theme A character string indicating the theme to use. Defaults to "base". Set to \code{NULL} to use GraphViz defaults.
 #' @param font A character vector indicating the font family to use for node labels. Defaults to "serif".
+#' @param ... Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}
 #'
 #' @import DiagrammeR
 #' @importFrom dplyr data_frame
