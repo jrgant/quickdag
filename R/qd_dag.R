@@ -27,7 +27,7 @@
 #' edges <- c("A -> { B C }",
 #'            "B -> C")
 #'
-#' # make a DAG object and render the graph
+#' # make a DAG object and render the graph using the default theme
 #' g.obj <- qd_dag(edges)
 #' render_graph(g.obj)
 #'
@@ -38,8 +38,10 @@
 #'                                       fillcolor = "none",
 #'                                       color = "black"),
 #'                  edge.aes.opts = list(arrowsize = 0.5,
-#'                                       color = "gray"))
+#'                                       color = "gray"),
+#'                  theme = NULL)
 #' render_graph(g.obj2)
+#'
 #'
 #' @export qd_dag
 #' @import DiagrammeR
@@ -156,11 +158,11 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ## and attributes
   if (!is.null(theme)) {
     if (length(node.aes.opts) > 0 | length(edge.aes.opts) > 0) {
-      message("Node and/or edge aesthetics are currently being applied ",
-              "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
-              "\n",
-              "Using both methods to set aesthetics may result in unexpected ",
-              "results.")
+      warning(
+        "Node and/or edge aesthetics are currently being applied ",
+        "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
+        "Using both methods to set aesthetics may produce unexpected results."
+        )
     } else {
       themed_graph <- graph %>%
         qd_themes(theme == theme, ...)

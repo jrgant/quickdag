@@ -43,7 +43,7 @@ Leaving the \code{checks} option selected may be advisable to ensure labels and 
 edges <- c("A -> { B C }",
            "B -> C")
 
-# make a DAG object and render the graph
+# make a DAG object and render the graph using the default theme
 g.obj <- qd_dag(edges)
 render_graph(g.obj)
 
@@ -54,7 +54,9 @@ g.obj2 <- qd_dag(edges,
                                       fillcolor = "none",
                                       color = "black"),
                  edge.aes.opts = list(arrowsize = 0.5,
-                                      color = "gray"))
+                                      color = "gray"),
+                 theme = NULL)
 render_graph(g.obj2)
+
 
 }
