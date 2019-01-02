@@ -1,7 +1,7 @@
 #' View options for fixed node separator characters
 #'
 #' @description
-#' Provide simple syntax specifying paths between nodes to generate a graph object.
+#' Preview character options for use as the fixed node separator in SWIGs.
 #'
 #' @param table Logical to show or hide HTML table display of available characters. Defaults to \code{FALSE}.
 #'
