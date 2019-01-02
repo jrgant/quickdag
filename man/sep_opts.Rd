@@ -10,5 +10,5 @@ sep_opts(table = FALSE)
 \item{table}{Logical to show or hide HTML table display of available characters. Defaults to \code{FALSE}.}
 }
 \description{
-Provide simple syntax specifying paths between nodes to generate a graph object.
+Preview character options for use as the fixed node separator in SWIGs.
 }
