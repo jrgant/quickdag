@@ -27,40 +27,7 @@
 #' @examples
 #' # Using your own graph code
 #'
-#' dag <-
-#'
-#'      "graph[rankdir = LR]
-#'
-#'      node[shape = plaintext]
-#'      Alcohol Smoking Cancer
-#'
-#'      node[shape = square]
-#'      SES
-#'
-#'      edge[penwidth = .5, arrowsize = .5]
-#'      SES -> Alcohol -> Cancer
-#'      SES -> Smoking -> Cancer
-#'      SES -> Cancer"
-#'
-#' makeDAG(dag, "mydag", filetype = "pdf")
-#'
-#' # Using the built-in defaults
-#'
-#' ## nodes
-#' uncontrolled <- "Smoking Cancer Alcohol U"
-#' controlled <- "SES"
-#'
-#' ## edges
-#' measured <- "Smoking -> Alcohol -> Cancer
-#'              SES -> Smoking -> Cancer
-#'              SES -> Cancer"
-#'
-#' unmeasured <- "U -> Smoking
-#'                U -> Cancer"
-#'
-#' makeDAG(dagname = "smk_ca", filetype = "pdf",
-#' text.nodes = uncontrolled, box.nodes = controlled,
-#' solid.edges = measured, dashed.edges = unmeasured)
+#' # Examples have been removed, as makeDAG() is now deprecated.
 #'
 #' @export makeDAG
 #' @import rsvg
