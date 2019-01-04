@@ -26,9 +26,8 @@
 #'
 #' @export qd_swig
 #' @import DiagrammeR
-#' @importFrom dplyr data_frame
-#' @importFrom dplyr bind_rows
-#' @importFrom dplyr mutate
+#' @importFrom dplyr data_frame bind_rows mutate if_else
+
 
 qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 
@@ -37,10 +36,10 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
     pt.id <- get_node_ids(graph.obj, conditions = alpha.id == x)
     ch.id <- get_successors(graph.obj, node = pt.id)
 
-    df <- dplyr::data_frame(pt.id, pt.alpha = x, ch.id)
+    df <- data_frame(pt.id, pt.alpha = x, ch.id)
   })
 
-  rel.df <- dplyr::bind_rows(rel.l)
+  rel.df <- bind_rows(rel.l)
 
   # create label insert based on child's fixed parents
   unq.ch <- unique(rel.df$ch.id)
@@ -48,26 +47,31 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
     curr.ch <- x
     lab.slug <- with(rel.df,
                      paste(tolower(pt.alpha[ch.id == x]), collapse = ","))
-    df <- dplyr::data_frame(ch.id = curr.ch, lab.slug)
+    df <- data_frame(ch.id = curr.ch, lab.slug)
   })
 
-  slug.df <- dplyr::bind_rows(slug.l)
+  slug.df <- bind_rows(slug.l)
 
   # separators for fixed nodes
   sep.opts <- sep_opts()
+  sep.choice <- sep.opts[fixed.sep]
+  if (!fixed.sep %in% names(sep.opts)) sep.choice <- fixed.sep
 
   # update child label in node_df
   graph.obj$nodes_df <-
     graph.obj %>%
     get_node_df() %>%
-    dplyr::mutate(
-      label = ifelse(id %in% slug.df$ch.id,
-                     paste0(alpha.id, "@^{<i>", slug.df$lab.slug[match(id, slug.df$ch.id)], "</i>}"),
+    mutate(
+      label = if_else(id %in% slug.df$ch.id,
+                     paste0(alpha.id, "@^{<i>",
+                            slug.df$lab.slug[match(id, slug.df$ch.id)], "</i>}"),
                      label),
-      label = ifelse(id %in% rel.df$pt.id,
-                     paste(label, sep.opts[fixed.sep], tolower(alpha.id)),
+      label = if_else(id %in% rel.df$pt.id,
+                     paste0(label, sep.choice, "<i>",
+                            tolower(alpha.id), "</i>",
+                            "@_{ }"), # kludge to force DOT TO render italics
                      label),
-      fixed = ifelse(id %in% rel.df$pt.id, TRUE, FALSE))
+      fixed = if_else(id %in% rel.df$pt.id, TRUE, FALSE))
 
   return(graph.obj)
 
