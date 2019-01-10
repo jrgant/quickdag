@@ -7,13 +7,6 @@
 #' @param fixed.nodes A vector containing the nodes to be intervened upon.
 #' @param fixed.sep A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts()} for available options.
 #'
-#' Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
-#'
-#'
-#' Packages used: DiagrammeR, stringr, purrr
-#'
-#'
-#'
 #'
 #' @examples
 #' # Provide a DAG object and a list of nodes to be fixed
@@ -79,6 +72,55 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 
 
 
+
+#' Find the ancestors of a given node
+#'
+#'
+#' @param graph.obj A quickDAG (DiagrammeR) graph object.
+#' @param node.alpha The alphabetical ID of the node for which to gather the ancestors.
+#'
+#' @note
+#' The \code{get_ancestors} function returns the numeric node IDs corresponding to the alphabetical ID provided in
+#' \code{node.alpha}. It reformats the graph and passes it to \code{dagitty} for this purpose.
+#'
+#' @examples
+#'
+#' ## Not run:
+#' dag <- qd_dag(c("A -> Y",
+#'                 "X -> A",
+#'                 "L -> { X A Y }"))
+#'
+#' get_ancestors(dag, "A")
+#'
+#' @export get_ancestors
+#' @rdname qd_swig
+#' @importFrom magrittr %>%
+#' @importFrom dagitty ancestors dagitty
+
+
+
+get_ancestors <- function(graph.obj, node.alpha = NULL) {
+
+  if (is.null(node.alpha)) {
+    messaging::emit_error("Provide a the alphabet ID")
+  }
+
+  curr.numid <- with(graph.obj$nodes_df, id[alpha.id %in% node.alpha])
+  #return(curr.numid)
+
+  dagedges <- with(graph.obj$edges_df, paste(from, "->", to))
+  dagspec  <- paste("dag {",
+                        paste(dagittyedges, collapse = " ; "),
+                        "}")
+
+  dagittydag   <- dagitty(dagittyspec)
+  ancestors    <- ancestors(x = dagittydag,
+                            v = curr.numid)
+
+  # "By convention", dagitty returns the node of interest when returning
+  #  ancestors. Drop curr.numid to leave it out for qd_swig().
+  return(as.numeric(ancestors)[-curr.numid])
+}
 
 
 

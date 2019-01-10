@@ -2,24 +2,30 @@
 % Please edit documentation in R/qd_swig.R
 \name{qd_swig}
 \alias{qd_swig}
+\alias{get_ancestors}
 \title{Generate a single word intervention graph (SWIG) template}
 \usage{
 qd_swig(graph.obj, fixed.nodes, fixed.sep = "vlin")
+
+get_ancestors(graph.obj, node.alpha = NULL)
 }
 \arguments{
 \item{graph.obj}{A DAG object created by \code{qd_dag()}.}
 
 \item{fixed.nodes}{A vector containing the nodes to be intervened upon.}
 
-\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts()} for available options.
+\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts()} for available options.}
 
-Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
+\item{node.alpha}{The alphabetical ID of the node for which to gather the ancestors.}
 
-
-Packages used: DiagrammeR, stringr, purrr}
+\item{graph.obj}{A quickDAG (DiagrammeR) graph object.}
 }
 \description{
 Provide simple syntax specifying paths between nodes to generate a graph object.
+}
+\note{
+The \code{get_ancestors} function returns the numeric node IDs corresponding to the alphabetical ID provided in
+\code{node.alpha}. It reformats the graph and passes it to \code{dagitty} for this purpose.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
@@ -29,5 +35,13 @@ edges <- c("A -> Y",
 qd_dag(edges) \%>\%
    qd_swig(fixed.nodes = "A") \%>\%
    render_graph()
+
+
+## Not run:
+dag <- qd_dag(c("A -> Y",
+                "X -> A",
+                "L -> { X A Y }"))
+
+get_ancestors(dag, "A")
 
 }
