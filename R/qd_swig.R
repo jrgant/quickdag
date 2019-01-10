@@ -75,7 +75,6 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 
 #' Find the ancestors of a given node
 #'
-#'
 #' @param graph.obj A quickDAG (DiagrammeR) graph object.
 #' @param node.alpha The alphabetical ID of the node for which to gather the ancestors.
 #'
