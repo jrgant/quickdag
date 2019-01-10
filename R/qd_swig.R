@@ -95,13 +95,14 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 #' @rdname qd_swig
 #' @importFrom magrittr %>%
 #' @importFrom dagitty ancestors dagitty
+#' @importFrom messaging emit_error
 
 
 
 get_ancestors <- function(graph.obj, node.alpha = NULL) {
 
   if (is.null(node.alpha)) {
-    messaging::emit_error("Provide a the alphabet ID")
+    emit_error("Provide a the alphabet ID")
   }
 
   curr.numid <- with(graph.obj$nodes_df, id[alpha.id %in% node.alpha])
