@@ -62,7 +62,7 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
       label = if_else(id %in% rel.df$pt.id,
                      paste0(label, sep.choice, "<i>",
                             tolower(alpha.id), "</i>",
-                            "@_{ }"), # kludge to force DOT TO render italics
+                            "@_{ }"), # kludge to force DOT to render italics
                      label),
       fixed = if_else(id %in% rel.df$pt.id, TRUE, FALSE))
 
