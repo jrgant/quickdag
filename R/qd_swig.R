@@ -111,7 +111,7 @@ get_ancestors <- function(graph.obj, node.alpha = NULL) {
                         paste(dag.edges, collapse = " ; "),
                         "}")
 
-  dagitty.dag   <- dagitty(dagitty.spec)
+  dagitty.dag   <- dagitty(dag.spec)
   ancestors    <- ancestors(x = dagitty.dag,
                             v = curr.numid)
 
