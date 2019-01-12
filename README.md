@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+![](https://img.shields.io/badge/status-in--development-orange.svg)
+
 # quickDAG
 
 Install the package and its dependencies using the following code:

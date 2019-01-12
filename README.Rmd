@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 pacman::p_load(quickDAG)
 ```
 
+![](https://img.shields.io/badge/status-in--development-orange.svg)
+
 # quickDAG
 
 Install the package and its dependencies using the following code:
