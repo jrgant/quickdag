@@ -71,8 +71,6 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 }
 
 
-
-
 #' Find the ancestors of a given node
 #'
 #' @param graph.obj A quickDAG (DiagrammeR) graph object.
@@ -108,13 +106,13 @@ get_ancestors <- function(graph.obj, node.alpha = NULL) {
   curr.numid <- with(graph.obj$nodes_df, id[alpha.id %in% node.alpha])
   #return(curr.numid)
 
-  dagedges <- with(graph.obj$edges_df, paste(from, "->", to))
-  dagspec  <- paste("dag {",
-                        paste(dagittyedges, collapse = " ; "),
+  dag.edges <- with(graph.obj$edges_df, paste(from, "->", to))
+  dag.spec  <- paste("dag {",
+                        paste(dag.edges, collapse = " ; "),
                         "}")
 
-  dagittydag   <- dagitty(dagittyspec)
-  ancestors    <- ancestors(x = dagittydag,
+  dagitty.dag   <- dagitty(dagitty.spec)
+  ancestors    <- ancestors(x = dagitty.dag,
                             v = curr.numid)
 
   # "By convention", dagitty returns the node of interest when returning
