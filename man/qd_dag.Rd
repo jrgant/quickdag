@@ -11,7 +11,7 @@ qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
 
-\item{node.labs}{A character vector containing label names. Defaults to \code{NULL}.}
+\item{node.labs}{A named character vector containing label names. Defaults to \code{NULL}.}
 
 \item{node.aes.opts}{A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.}
 
@@ -49,7 +49,9 @@ render_graph(g.obj)
 
 # Pass labels and aesthetic options for nodes or edges
 g.obj2 <- qd_dag(edges,
-                 node.labs = c("Alcohol", "BP", "CVD"),
+                 node.labs = c("A" = "Alcohol",
+                               "B" = "BP",
+                               "C" = "CVD"),
                  node.aes.opts = list(shape = "plaintext",
                                       fillcolor = "none",
                                       color = "black"),

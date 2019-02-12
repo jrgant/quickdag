@@ -4,7 +4,7 @@
 #' Provide simple syntax specifying paths between nodes to generate a graph object.
 #'
 #' @param edgelist A vector of edge relationships. Must be strictly organized (see example for format).
-#' @param node.labs A character vector containing label names. Defaults to \code{NULL}.
+#' @param node.labs A named character vector containing label names. Defaults to \code{NULL}.
 #' @param node.aes.opts A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.
 #' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.
 #' @param verbose Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
@@ -33,7 +33,9 @@
 #'
 #' # Pass labels and aesthetic options for nodes or edges
 #' g.obj2 <- qd_dag(edges,
-#'                  node.labs = c("Alcohol", "BP", "CVD"),
+#'                  node.labs = c("A" = "Alcohol",
+#'                                "B" = "BP",
+#'                                "C" = "CVD"),
 #'                  node.aes.opts = list(shape = "plaintext",
 #'                                       fillcolor = "none",
 #'                                       color = "black"),
@@ -77,22 +79,8 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ## apply node labels if present
   if (!is.null(node.labs)) {
 
-    # alpha label prefix
-    alpha.prefix <- "^[A-Z]{1}"
-    alpha.period <- paste0(alpha.prefix, "\\.")
-
-    # // label finding
-    # if all node.labs conform to the format "A.label", extract and save "label"
-    # to node dataframe; else save full string to node dataframe
-    # paste0() includes the period
-    if (!0 %in% grepl(alpha.period, node.labs)) {
-      ndf$label[match(ndf$alpha.id, str_extract(node.labs, alpha.prefix))] <-
-        str_replace(string = node.labs,
-                    pattern = alpha.period,
-                    replacement = "")
-    } else {
-      ndf$label <- sort(node.labs)
-    }
+    ndf <- ndf %>%
+      mutate(label = unname(node.labs[alpha.id]))
   }
 
 
