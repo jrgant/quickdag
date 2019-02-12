@@ -1,4 +1,4 @@
-Package: quickDAG
+Package: quickdag
 Title: Make Beautiful Directed Acyclic Graphs
 Version: 0.2.0
 Authors@R: person("Jason", "Gantenberg", email = c("jason.gantenberg@gmail.com", "jason_gantenberg@brown.edu"), role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8144-4273"))
