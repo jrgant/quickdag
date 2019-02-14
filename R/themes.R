@@ -1,4 +1,4 @@
-#' Plot themes
+#' Diagram themes
 #'
 #' @description
 #' Apply various pre-fabricated themes to diagrams.
