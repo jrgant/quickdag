@@ -19,7 +19,8 @@
 #'
 #' @export qd_swig
 #' @import DiagrammeR
-#' @importFrom dplyr data_frame bind_rows mutate if_else
+#' @import purrr
+#' @importFrom dplyr bind_rows mutate if_else
 
 qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
   # graph.obj = graph
@@ -32,7 +33,8 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
       .x = set_names(ndf$alpha.id, ndf$alpha.id),
       .f = function(x) {
         curr.id  <- with(ndf, id[alpha.id == x])
-        # each path will include current node id
+        # each path will include current node id by default
+        # map() set up to drop the destination node
         ancestors <-
           get_paths(graph.obj, to = curr.id) %>%
           map(~ .x[.x != curr.id])
@@ -61,54 +63,3 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
     )
   graph.obj
 }
-
-#' Find the ancestors of a given node
-#'
-#' @param graph.obj A quickDAG (DiagrammeR) graph object.
-#' @param node.alpha The alphabetical ID of the node for which to gather the ancestors.
-#'
-#' @note
-#' The \code{get_ancestors} function returns the numeric node IDs corresponding to the alphabetical ID provided in
-#' \code{node.alpha}. It reformats the graph and passes it to \code{dagitty} for this purpose.
-#'
-#' @examples
-#'
-#' ## Not run:
-#' dag <- qd_dag(c("A -> Y",
-#'                 "X -> A",
-#'                 "L -> { X A Y }"))
-#'
-#' get_ancestors(dag, "A")
-#'
-#' @export get_ancestors
-#' @rdname qd_swig
-#' @importFrom magrittr %>%
-#' @importFrom dagitty ancestors dagitty
-#' @importFrom messaging emit_error
-
-get_ancestors <- function(graph.obj, node.alpha = NULL) {
-
-  if (is.null(node.alpha)) {
-    emit_error("Provide a the alphabet ID")
-  }
-
-  curr.numid <- with(graph.obj$nodes_df, id[alpha.id %in% node.alpha])
-  #return(curr.numid)
-
-  dag.edges <- with(graph.obj$edges_df, paste(from, "->", to))
-  dag.spec  <- paste("dag {",
-                        paste(dag.edges, collapse = " ; "),
-                        "}")
-
-  dagitty.dag   <- dagitty(dag.spec)
-  ancestors     <- ancestors(x = dagitty.dag,
-                             v = curr.numid)
-  ancestors.num <- as.numeric(ancestors)
-
-  # "By convention", dagitty returns the node of interest when returning
-  #  ancestors. Drop curr.numid to leave it out for qd_swig().
-  return(ancestors.num[ancestors.num != curr.numid])
-}
-
-
-
