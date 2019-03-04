@@ -21,55 +21,46 @@
 #' @import DiagrammeR
 #' @importFrom dplyr data_frame bind_rows mutate if_else
 
-
 qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
+  # graph.obj = graph
+  # fixed = alpha IDs for fixed nodes
+  ndf <- get_node_df(graph.obj)
+  ndf$fixed <- with(ndf, ifelse(alpha.id %in% fixed.nodes, TRUE, FALSE))
 
-  # identify relations between parents and children
-  rel.l <- lapply(fixed.nodes, FUN = function(x) {
-    pt.id <- get_node_ids(graph.obj, conditions = alpha.id == x)
-    ch.id <- get_successors(graph.obj, node = pt.id)
+  fx.pathlist <-
+    map(
+      .x = set_names(ndf$alpha.id, ndf$alpha.id),
+      .f = function(x) {
+        curr.id  <- with(ndf, id[alpha.id == x])
+        # each path will include current node id
+        ancestors <-
+          get_paths(graph.obj, to = curr.id) %>%
+          map(~ .x[.x != curr.id])
 
-    df <- data_frame(pt.id, pt.alpha = x, ch.id)
-  })
 
-  rel.df <- bind_rows(rel.l)
+        fx.nodes <-
+          ancestors %>%
+          purrr::map(function(x) {
+            detect(x, function(y) y %in% with(ndf, id[fixed]), .dir = "backward")
+          })
+        unique(unlist(fx.nodes))
+      })
 
-  # create label insert based on child's fixed parents
-  unq.ch <- unique(rel.df$ch.id)
-  slug.l <- lapply(unq.ch, FUN = function(x) {
-    curr.ch <- x
-    lab.slug <- with(rel.df,
-                     paste(tolower(pt.alpha[ch.id == x]), collapse = ","))
-    df <- data_frame(ch.id = curr.ch, lab.slug)
-  })
+  fx.ancestors <- discard(fx.pathlist, function(x) is.null(x))
 
-  slug.df <- bind_rows(slug.l)
+  lab <-
+    fx.ancestors %>%
+    map_chr(~ with(ndf, paste0(tolower(alpha.id[id %in% .x]), collapse = ",")))
 
-  # separators for fixed nodes
-  sep.opts <- sep_opts()
-  sep.choice <- sep.opts[fixed.sep]
-  if (!fixed.sep %in% names(sep.opts)) sep.choice <- fixed.sep
-
-  # update child label in node_df
   graph.obj$nodes_df <-
-    graph.obj %>%
-    get_node_df() %>%
+    ndf %>%
     mutate(
-      label = if_else(id %in% slug.df$ch.id,
-                     paste0(alpha.id, "@^{<i>",
-                            slug.df$lab.slug[match(id, slug.df$ch.id)], "</i>}"),
-                     label),
-      label = if_else(id %in% rel.df$pt.id,
-                     paste0(label, sep.choice, "<i>",
-                            tolower(alpha.id), "</i>",
-                            "@_{ }"), # kludge to force DOT to render italics
-                     label),
-      fixed = if_else(id %in% rel.df$pt.id, TRUE, FALSE))
-
-  return(graph.obj)
-
+      label = paste0(alpha.id,
+                     if_else(alpha.id %in% names(lab), paste0("@^{<i>", lab[alpha.id], "</i>}"), ""),
+                     if_else(fixed, paste0("&nbsp;", sep_opts()[fixed.sep], "<i>", tolower(alpha.id), "</i> @_{ }"), ""))
+    )
+  graph.obj
 }
-
 
 #' Find the ancestors of a given node
 #'
@@ -95,8 +86,6 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
 #' @importFrom dagitty ancestors dagitty
 #' @importFrom messaging emit_error
 
-
-
 get_ancestors <- function(graph.obj, node.alpha = NULL) {
 
   if (is.null(node.alpha)) {
@@ -112,12 +101,13 @@ get_ancestors <- function(graph.obj, node.alpha = NULL) {
                         "}")
 
   dagitty.dag   <- dagitty(dag.spec)
-  ancestors    <- ancestors(x = dagitty.dag,
-                            v = curr.numid)
+  ancestors     <- ancestors(x = dagitty.dag,
+                             v = curr.numid)
+  ancestors.num <- as.numeric(ancestors)
 
   # "By convention", dagitty returns the node of interest when returning
   #  ancestors. Drop curr.numid to leave it out for qd_swig().
-  return(as.numeric(ancestors)[-curr.numid])
+  return(ancestors.num[ancestors.num != curr.numid])
 }
 
 
