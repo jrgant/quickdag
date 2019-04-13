@@ -55,11 +55,12 @@ qd_swig <- function(graph.obj, fixed.nodes, fixed.sep = "vlin") {
     map_chr(~ with(ndf, paste0(tolower(alpha.id[id %in% .x]), collapse = ",")))
 
   graph.obj$nodes_df <-
-    ndf %>%
-    mutate(
-      label = paste0(alpha.id,
-                     if_else(alpha.id %in% names(lab), paste0("@^{<i>", lab[alpha.id], "</i>}"), ""),
-                     if_else(fixed, paste0("&nbsp;", sep_opts()[fixed.sep], "<i>", tolower(alpha.id), "</i> @_{ }"), ""))
+    ndf %>% mutate(
+      label = paste0(
+        alpha.id,
+        if_else(alpha.id %in% names(lab), paste0("@^{<i>", lab[alpha.id], "</i>}"), ""),
+        if_else(fixed, paste0("&nbsp;", sep_opts()[fixed.sep], "<i>", tolower(alpha.id), "</i> @_{ }"), "")
+      )
     )
   graph.obj
 }

@@ -3,7 +3,7 @@
 \name{qd_themes}
 \alias{qd_themes}
 \alias{theme_base}
-\title{Plot themes}
+\title{Diagram themes}
 \usage{
 qd_themes(graph.obj, theme = "base", ...)
 
