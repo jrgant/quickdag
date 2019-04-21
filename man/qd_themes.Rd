@@ -3,11 +3,20 @@
 \name{qd_themes}
 \alias{qd_themes}
 \alias{theme_base}
+\alias{theme_circles}
+\alias{theme_pearl}
+\alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
-qd_themes(graph.obj, theme = "base", ...)
+qd_themes(graph.obj, theme, ...)
 
-theme_base(graph.obj, conditioned = NULL, font = "serif")
+theme_base(graph.obj, font = "serif", ...)
+
+theme_circles(graph.obj, subtheme = "circle", font = "serif", ...)
+
+theme_pearl(graph.obj, font = "serif", ...)
+
+get_conditioned_nodes(graph.obj, conditioned)
 }
 \arguments{
 \item{graph.obj}{A DAG object created by \code{qd_dag()}.}
@@ -16,9 +25,9 @@ theme_base(graph.obj, conditioned = NULL, font = "serif")
 
 \item{...}{Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}}
 
-\item{conditioned}{A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to "square".}
-
 \item{font}{A character vector indicating the font family to use for node labels. Defaults to "serif".}
+
+\item{conditioned}{A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to "square".}
 }
 \description{
 Apply various pre-fabricated themes to diagrams.

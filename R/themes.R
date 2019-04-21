@@ -10,6 +10,7 @@
 #' @param ... Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}
 #'
 #' @import DiagrammeR
+#' @import messaging
 #' @importFrom dplyr data_frame
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr mutate
@@ -17,35 +18,108 @@
 
 #' @rdname qd_themes
 #' @export qd_themes
+#'
 # wrapper for theme selection
-qd_themes <- function(graph.obj,
-                      theme = "base",
-                      ...) {
+qd_themes <- function(graph.obj, theme, ...) {
 
-  select.theme <- c("base" = "theme_base")
-  do.call(select.theme[theme], args = list(graph.obj = graph.obj, ...))
+  select.theme <- c(
+    "base" = "theme_base",
+    "circles" = "theme_circles",
+    "pearl" = "theme_pearl"
+    )
+
+  do.call(select.theme[theme],
+          args = list(graph.obj = graph.obj, ...))
 }
+
+
+
 
 #' @rdname qd_themes
 #' @export theme_base
-# base theme (default)
-theme_base <- function(graph.obj, conditioned = NULL, font = "serif") {
-  graph_attrs <- data_frame(attr = c("rankdir", "layout"),
-                            value = c("LR", "dot"),
-                            attr_type = "graph")
 
-  node_attrs <- data_frame(attr = c("shape", "penwidth", "fontname",
-                                    "width", "height"),
-                           value = c("plaintext", "0.5", font,
-                                     "0", "0"),
-                           attr_type = "node")
+theme_base <- function(graph.obj, font = "serif", ...) {
 
-  edge_attrs <- data_frame(attr = c("arrowsize", "penwidth"),
-                           value = c("0.4", "0.5"),
-                           attr_type = "edge")
+  graph_attrs <- data_frame(
+    attr = c("rankdir", "layout"),
+    value = c("LR", "dot"),
+    attr_type = "graph"
+    )
 
-  graph.obj$global_attrs = bind_rows(graph_attrs, node_attrs, edge_attrs)
+  node_attrs  <- data_frame(
+    attr  = c("shape", "penwidth", "fontname", "width", "height"),
+    value = c("plaintext", "0.5", font, "0", "0"),
+    attr_type = "node"
+    )
 
+  edge_attrs  <- data_frame(
+    attr = c("arrowsize", "penwidth"),
+    value = c("0.4", "0.5"),
+    attr_type = "edge"
+    )
+
+  graph.obj$global_attrs <- bind_rows(graph_attrs, node_attrs, edge_attrs)
+
+
+  graph.obj <- graph.obj %>% get_conditioned_nodes(...)
+  graph.obj
+}
+
+
+
+
+#' @rdname qd_themes
+#' @export theme_circles
+
+theme_circles <- function(graph.obj,
+                          font = "serif", ...) {
+
+  # set base theme
+  graph.obj <- graph.obj %>% theme_base()
+
+  # tweak base theme
+  graph.obj <- graph.obj %>%
+    add_global_graph_attrs("shape", "circle", "node")
+
+  graph.obj <- graph.obj %>% get_conditioned_nodes(...)
+  graph.obj
+}
+
+
+
+
+#' @rdname qd_themes
+#' @export theme_pearl
+
+theme_pearl <- function(graph.obj, font = "serif", ...) {
+
+  # set base theme
+  graph.obj <- graph.obj %>% theme_base()
+
+  # tweak base theme
+  graph.obj <- graph.obj %>%
+    # node attribute tweaks
+    add_global_graph_attrs("shape", "point", "node") %>%
+    add_global_graph_attrs("width", 0.2, "node") %>%
+    add_global_graph_attrs("height", 0.2, "node") %>%
+    # edge attribute tweaks
+    add_global_graph_attrs("penwidth", 0.2, "edge") %>%
+    add_global_graph_attrs("arrowsize", 0.2, "edge")
+
+  if (exists("conditioned")) {
+    emit_message("This theme does not allow for conditioned nodes.")
+  }
+
+  graph.obj
+}
+
+
+
+
+#' @rdname qd_themes
+#' @export get_conditioned_nodes
+
+get_conditioned_nodes <- function(graph.obj, conditioned = NULL) {
   if (!is.null(conditioned)) {
 
     default.shape <- with(graph.obj$global_attrs, value[attr == "shape"])
@@ -57,19 +131,16 @@ theme_base <- function(graph.obj, conditioned = NULL, font = "serif") {
 
     graph.obj <- graph.obj %>%
       # add default columns to node_df based on global_attrs
-      set_node_attrs(node_attr = "shape", values = default.shape) %>%
-      set_node_attrs(node_attr = "width", values = default.minwd) %>%
-      set_node_attrs(node_attr = "height", values = default.minht) %>%
+      set_node_attrs("shape",  default.shape) %>%
+      set_node_attrs("width",  default.minwd) %>%
+      set_node_attrs("height", default.minht) %>%
       # select conditioned nodes and update node aesthetics
       select_nodes_by_id(cd.nodes) %>%
-      set_node_attrs_ws(node_attr = "shape",
-                        value = "square") %>%
-      set_node_attrs_ws(node_attr = "width",
-                        value = "0") %>%
-      set_node_attrs_ws(node_attr = "height",
-                        value = "0") %>%
+      set_node_attrs_ws("shape",  "square") %>%
+      set_node_attrs_ws("width",  "0") %>%
+      set_node_attrs_ws("height", "0") %>%
       clear_selection()
   }
 
-  return(graph.obj)
+  graph.obj
 }

@@ -152,11 +152,12 @@ qd_dag <- function(edgelist, node.labs = NULL,
         "Using both methods to set aesthetics may produce unexpected results."
         )
     } else {
-      themed_graph <- graph %>%
-        qd_themes(theme == theme, ...)
+      themed_graph <- graph %>% qd_themes(theme = theme, ...)
       return(themed_graph)
     }
 
+  } else {
+    return(graph)
   }
-  return(graph)
+
 }
