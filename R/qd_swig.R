@@ -80,7 +80,7 @@ qd_swig <- function(graph.obj,
     ndf %>%
     mutate(label = case_when(
 
-      .$alpha.id %in% names(lab) & !fixed
+      .$alpha.id %in% names(lab)
       ~ paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
 
       .$fixed & is.null(custom.labels)
