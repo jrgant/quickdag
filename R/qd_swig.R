@@ -84,11 +84,17 @@ qd_swig <- function(graph.obj,
       ~ paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
 
       .$fixed & is.null(custom.labels)
-      ~ paste0(.$alpha.id, " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
+      ~ paste0(if_else(.$alpha.id %in% names(lab),
+                       paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
+                       .$alpha.id),
+               " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
                tolower(.$alpha.id), "</i> @_{ }"),
 
       .$fixed & !is.null(custom.labels)
-      ~ paste0(.$alpha.id, " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
+      ~ paste0(if_else(.$alpha.id %in% names(lab),
+                       paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
+                       .$alpha.id),
+               " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
                tolower(.$alpha.id), "=", custom.labels[.$alpha.id], "</i>@_{ }"),
 
       TRUE ~ .$alpha.id
