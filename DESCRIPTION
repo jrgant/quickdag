@@ -4,7 +4,7 @@ Version: 0.2.0
 Authors@R: person("Jason", "Gantenberg", email = c("jason.gantenberg@gmail.com", "jason_gantenberg@brown.edu"), role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8144-4273"))
 Description: This package allows the user the save directed acyclic graphs (DAGs) generated in DiagrammeR and export them to pdf, png, or svg format. Users may optionally choose to view the DAG without saving or to embed it in an RMarkdown document. In addition, quickDAG allows the user easily to reformat DAGs as single-world intervention graph (SWIG) templates. 
 Depends: R (>= 3.5), DiagrammeR
-Imports: DiagrammeRsvg, rsvg, knitr, dagitty, stringr, purrr, dplyr, htmlTable
+Imports: DiagrammeRsvg, rsvg, knitr, dagitty, stringr, purrr, dplyr, htmlTable, messaging
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

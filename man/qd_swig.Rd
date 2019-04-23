@@ -2,27 +2,38 @@
 % Please edit documentation in R/qd_swig.R
 \name{qd_swig}
 \alias{qd_swig}
-\title{Generate a single word intervention graph (SWIG) template}
+\title{Generate a single-world intervention graph (SWIG)}
 \usage{
-qd_swig(graph.obj, fixed.nodes, fixed.sep = "vlin")
+qd_swig(graph.obj, fixed.nodes, custom.labels = NULL,
+  fixed.sep = "vlin", sep.point.size = 15)
 }
 \arguments{
 \item{graph.obj}{A DAG object created by \code{qd_dag()}.}
 
 \item{fixed.nodes}{A vector containing the nodes to be intervened upon.}
 
-\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts()} for available options.}
+\item{custom.labels}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).}
+
+\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(T)} for available options.}
+
+\item{sep.point.size}{A numerical value specifying the point size for fixed node separators.}
 }
 \description{
-Provide simple syntax specifying paths between nodes to generate a graph object.
+Take a DAG graph object and, in the simplest case, create a single-world intervention template corresponding
+to a world in which the fixed nodes are set to a given value. Alternatively, tell qd_swig which values fixed nodes
+will be set to.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
 edges <- c("A -> Y",
            "L -> { A Y }")
 
-qd_dag(edges) \%>\%
-   qd_swig(fixed.nodes = "A") \%>\%
-   render_graph()
+dag  <- qd_dag(edges)
+
+swig <- dag \%>\%
+        qd_swig(fixed.nodes = "A",
+                custom.labels = c("A" = "1"))
+
+swig \%>\% render_graph()
 
 }
