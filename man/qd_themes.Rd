@@ -4,7 +4,7 @@
 \alias{qd_themes}
 \alias{theme_base}
 \alias{theme_circles}
-\alias{theme_pearl}
+\alias{theme_dots}
 \alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
@@ -12,11 +12,11 @@ qd_themes(graph.obj, theme, ...)
 
 theme_base(graph.obj, font = "serif", ...)
 
-theme_circles(graph.obj, subtheme = "circle", font = "serif", ...)
+theme_circles(graph.obj, font = "serif", ...)
 
-theme_pearl(graph.obj, font = "serif", ...)
+theme_dots(graph.obj, font = "serif", ...)
 
-get_conditioned_nodes(graph.obj, conditioned)
+get_conditioned_nodes(graph.obj, conditioned = NULL)
 }
 \arguments{
 \item{graph.obj}{A DAG object created by \code{qd_dag()}.}

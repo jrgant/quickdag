@@ -89,9 +89,9 @@ theme_circles <- function(graph.obj,
 
 
 #' @rdname qd_themes
-#' @export theme_pearl
+#' @export theme_dots
 
-theme_pearl <- function(graph.obj, font = "serif", ...) {
+theme_dots <- function(graph.obj, font = "serif", ...) {
 
   # set base theme
   graph.obj <- graph.obj %>% theme_base()
