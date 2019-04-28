@@ -49,6 +49,7 @@
 #' @import DiagrammeR
 #' @import stringr
 #' @importFrom purrr map2
+#' @importFrom dplyr if_else
 
 
 
@@ -58,11 +59,11 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
-  nodes <- sort(unique(unlist(str_extract_all(edgelist, pattern = "[:alnum:]"))))
+  nodes <- sort(unique(unlist(str_extract_all(edgelist, pattern = "[:alnum:]+"))))
   ## specify nodes with direct descendants (out = list)
-  pa.nodes <- str_extract_all(edgelist, pattern = "^.{1}")
+  pa.nodes <- str_extract_all(edgelist, pattern = "^[:alnum:]+(?=\\s)")
   ## specify nodes with direct ancestors (out = list)
-  ch.nodes <- str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]")
+  ch.nodes <- str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]+")
 
 
   # Create Node Dataframe -------------------------------------------------
@@ -78,10 +79,22 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   ## apply node labels if present
   if (!is.null(node.labs)) {
-
     ndf <- ndf %>%
-      mutate(label = unname(node.labs[alpha.id]))
+      mutate(
+        label = if_else(alpha.id %in% names(node.labs),
+                        unname(node.labs[alpha.id]),
+                        label)
+      )
   }
+
+  ## check for and format special labels
+  ndf <- ndf %>%
+    mutate(
+      special.label = if_else(str_detect(alpha.id, "^[:alpha:]{1}[0-9]+"),
+                              paste0(str_match(alpha.id, "^[:alpha:]{1}"), "@_{", str_match(alpha.id, "[0-9]+"), "}"),
+                              NA_character_)) %>%
+    mutate(label = if_else(!is.na(special.label), special.label, label))
+
 
 
   # Create Edge Dataframe -------------------------------------------------
