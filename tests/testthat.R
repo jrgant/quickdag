@@ -1,4 +1,4 @@
 library(testthat)
-library(quickDAG)
+library(quickdag)
 
-test_check("quickDAG")
+test_check("quickdag")
