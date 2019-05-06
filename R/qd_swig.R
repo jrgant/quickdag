@@ -7,7 +7,7 @@
 #'
 #' @param graph.obj A DAG object created by \code{qd_dag()}.
 #' @param fixed.nodes A vector containing the nodes to be intervened upon.
-#' @param custom.labels A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).
+#' @param custom.values A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).
 #' @param fixed.sep A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(T)} for available options.
 #' @param sep.point.size A numerical value specifying the point size for fixed node separators.
 #'
@@ -20,7 +20,7 @@
 #'
 #' swig <- dag %>%
 #'         qd_swig(fixed.nodes = "A",
-#'                 custom.labels = c("A" = "1"))
+#'                 custom.values = c("A" = "1"))
 #'
 #' swig %>% render_graph()
 #'
@@ -31,7 +31,7 @@
 
 qd_swig <- function(graph.obj,
                     fixed.nodes,
-                    custom.labels = NULL,
+                    custom.values = NULL,
                     fixed.sep = "vlin",
                     sep.point.size = 15) {
   # graph.obj = graph
@@ -61,43 +61,44 @@ qd_swig <- function(graph.obj,
 
   fx.ancestors <- discard(fx.pathlist, function(x) is.null(x))
 
-  if (is.null(custom.labels)) {
+
+  # create labels for those in custom values
+  if (is.null(custom.values)) {
     lab <-
       fx.ancestors %>%
-      map_chr(~ with(ndf, paste0(tolower(alpha.id[id %in% .x]), collapse = ",")))
+      map_chr(~ with(ndf, paste0(tolower(label[id %in% .x]), collapse = ",")))
   } else {
     lab <-
       fx.ancestors %>%
-      map_chr(~ with(ndf, paste0(tolower(alpha.id[id %in% .x]), "=",
-                              custom.labels[alpha.id[id %in% .x]],
+      map_chr(~ with(ndf, paste0(tolower(label[id %in% .x]), "=",
+                              custom.values[alpha.id[id %in% .x]],
                               collapse = ",")
                      ))
   }
 
-
   # apply labels
   graph.obj$nodes_df <-
-    ndf %>%
-    mutate(label = case_when(
+   ndf %>%
+   mutate(label = case_when(
 
-      .$alpha.id %in% names(lab)
-      ~ paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
+       .$fixed & is.null(custom.values)
+       ~ paste0(if_else(.$alpha.id %in% names(lab),
+                        paste0(.$label, "@^{<i>", lab[.$alpha.id], "</i>}"),
+                        .$alpha.id),
+                " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
+                tolower(.$alpha.id), "</i> @_{ }"),
 
-      .$fixed & is.null(custom.labels)
-      ~ paste0(if_else(.$alpha.id %in% names(lab),
-                       paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
-                       .$alpha.id),
-               " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
-               tolower(.$alpha.id), "</i> @_{ }"),
+       .$fixed & !is.null(custom.values)
+       ~ paste0(if_else(.$alpha.id %in% names(lab),
+                        paste0(.$label, "@^{<i>", lab[.$alpha.id], "</i>}"),
+                        .$alpha.id),
+                " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
+                tolower(.$alpha.id), "=", custom.values[.$alpha.id], "</i>@_{ }"),
 
-      .$fixed & !is.null(custom.labels)
-      ~ paste0(if_else(.$alpha.id %in% names(lab),
-                       paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
-                       .$alpha.id),
-               " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
-               tolower(.$alpha.id), "=", custom.labels[.$alpha.id], "</i>@_{ }"),
+       .$alpha.id %in% names(lab)
+       ~ paste0(.$alpha.id, "@^{<i>", lab[.$alpha.id], "</i>}"),
 
-      TRUE ~ .$alpha.id
-    ))
+       TRUE ~ .$alpha.id
+     ))
   graph.obj
 }

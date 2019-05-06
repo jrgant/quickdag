@@ -4,7 +4,7 @@
 \alias{qd_swig}
 \title{Generate a single-world intervention graph (SWIG)}
 \usage{
-qd_swig(graph.obj, fixed.nodes, custom.labels = NULL,
+qd_swig(graph.obj, fixed.nodes, custom.values = NULL,
   fixed.sep = "vlin", sep.point.size = 15)
 }
 \arguments{
@@ -12,7 +12,7 @@ qd_swig(graph.obj, fixed.nodes, custom.labels = NULL,
 
 \item{fixed.nodes}{A vector containing the nodes to be intervened upon.}
 
-\item{custom.labels}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).}
+\item{custom.values}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).}
 
 \item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(T)} for available options.}
 
@@ -32,7 +32,7 @@ dag  <- qd_dag(edges)
 
 swig <- dag \%>\%
         qd_swig(fixed.nodes = "A",
-                custom.labels = c("A" = "1"))
+                custom.values = c("A" = "1"))
 
 swig \%>\% render_graph()
 
