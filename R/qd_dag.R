@@ -90,10 +90,9 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ## check for and format special labels
   ndf <- ndf %>%
     mutate(
-      special.label = if_else(str_detect(alpha.id, "^[:alpha:]{1}[0-9]+"),
-                              paste0(str_match(alpha.id, "^[:alpha:]{1}"), "@_{", str_match(alpha.id, "[0-9]+"), "}"),
-                              NA_character_)) %>%
-    mutate(label = if_else(!is.na(special.label), special.label, label))
+      label = if_else(str_detect(alpha.id, "^[:alpha:]{1}[0-9]+"),
+                      paste0(str_match(alpha.id, "^[:alpha:]{1}"), "@_{", str_match(alpha.id, "[0-9]+"), "}"),
+                      label))
 
 
 
