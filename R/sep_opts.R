@@ -6,7 +6,7 @@
 #' @param table Logical to show or hide HTML table display of available characters. Defaults to \code{FALSE}.
 #'
 #' @export sep_opts
-#' @importFrom dplyr data_frame
+#' @importFrom tibble tibble
 #' @importFrom htmlTable htmlTable
 
 sep_opts <- function(table = FALSE) {
@@ -20,8 +20,8 @@ sep_opts <- function(table = FALSE) {
                 "bracks" = "][",
                 "rangle" = "&#10217;")
   if (table) {
-    char.tab <- data_frame(separator = names(sep.opts),
-                           result = unname(sep.opts))
+    char.tab <- tibble(separator = names(sep.opts),
+                       result = unname(sep.opts))
     print(
       htmlTable(char.tab,
                 rnames = FALSE,

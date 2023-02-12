@@ -11,7 +11,7 @@
 #'
 #' @import DiagrammeR
 #' @import messaging
-#' @importFrom dplyr data_frame
+#' @importFrom tibble tibble
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr mutate
 
@@ -40,19 +40,19 @@ qd_themes <- function(graph.obj, theme, ...) {
 
 theme_base <- function(graph.obj, font = "serif", ...) {
 
-  graph_attrs <- data_frame(
+  graph_attrs <- tibble(
     attr = c("rankdir", "layout"),
     value = c("LR", "dot"),
     attr_type = "graph"
     )
 
-  node_attrs  <- data_frame(
+  node_attrs  <- tibble(
     attr  = c("shape", "penwidth", "fontname", "width", "height"),
     value = c("plaintext", "0.5", font, "0", "0"),
     attr_type = "node"
     )
 
-  edge_attrs  <- data_frame(
+  edge_attrs  <- tibble(
     attr = c("arrowsize", "penwidth"),
     value = c("0.4", "0.5"),
     attr_type = "edge"
