@@ -22,6 +22,6 @@ Export high-quality, scalable graphics for both print and online.
 }
 \section{Functions}{
 \itemize{
-\item \code{qd_save}: 
-}}
+\item \code{qd_save()}: 
 
+}}

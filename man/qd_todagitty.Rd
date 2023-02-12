@@ -4,8 +4,16 @@
 \alias{qd_todagitty}
 \title{Identify variables for adjustment}
 \usage{
-qd_todagitty(edgelist, diagram_type = "dag", showplot = FALSE,
-  send.global = FALSE, dagitty.obj.name = NULL, exposure, outcome, ...)
+qd_todagitty(
+  edgelist,
+  diagram_type = "dag",
+  showplot = FALSE,
+  send.global = FALSE,
+  dagitty.obj.name = NULL,
+  exposure,
+  outcome,
+  ...
+)
 }
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}

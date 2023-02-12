@@ -4,10 +4,19 @@
 \alias{makeDAG}
 \title{Output, view, or embed DAGs.}
 \usage{
-makeDAG(graphcode = NULL, dagname = NULL, filetype = "pdf",
-  text.nodes = NULL, box.nodes = NULL, solid.edges = NULL,
-  dashed.edges = NULL, footnotes = NULL, direction = "LR",
-  embed = FALSE, ...)
+makeDAG(
+  graphcode = NULL,
+  dagname = NULL,
+  filetype = "pdf",
+  text.nodes = NULL,
+  box.nodes = NULL,
+  solid.edges = NULL,
+  dashed.edges = NULL,
+  footnotes = NULL,
+  direction = "LR",
+  embed = FALSE,
+  ...
+)
 }
 \arguments{
 \item{graphcode}{Partial graphViz code object, which will give you the most control over the appearance of your DAG.}

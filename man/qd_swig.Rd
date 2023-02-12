@@ -4,8 +4,13 @@
 \alias{qd_swig}
 \title{Generate a single-world intervention graph (SWIG)}
 \usage{
-qd_swig(graph.obj, fixed.nodes, custom.values = NULL,
-  fixed.sep = "vlin", sep.point.size = 15)
+qd_swig(
+  graph.obj,
+  fixed.nodes,
+  custom.values = NULL,
+  fixed.sep = "vlin",
+  sep.point.size = 15
+)
 }
 \arguments{
 \item{graph.obj}{A DAG object created by \code{qd_dag()}.}

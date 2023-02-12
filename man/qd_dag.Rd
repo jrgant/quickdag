@@ -4,9 +4,16 @@
 \alias{qd_dag}
 \title{Generate a graph object}
 \usage{
-qd_dag(edgelist, node.labs = NULL, node.aes.opts = list(),
-  edge.aes.opts = list(), verbose = TRUE, check.dag = TRUE,
-  theme = "base", ...)
+qd_dag(
+  edgelist,
+  node.labs = NULL,
+  node.aes.opts = list(),
+  edge.aes.opts = list(),
+  verbose = TRUE,
+  check.dag = TRUE,
+  theme = "base",
+  ...
+)
 }
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
