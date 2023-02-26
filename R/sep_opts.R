@@ -1,16 +1,18 @@
 #' View options for fixed node separator characters
 #'
 #' @description
-#' Preview character options for use as the fixed node separator in SWIGs.
+#' Preview character options for use as the fixed node separator in SWIGs or
+#'   SWITs.
 #'
-#' @param table Logical to show or hide HTML table display of available characters. Defaults to \code{FALSE}.
+#' @param table Logical to show or hide HTML table display of available
+#'   characters. Defaults to \code{FALSE}.
 #'
 #' @export sep_opts
 #' @importFrom tibble tibble
 #' @importFrom htmlTable htmlTable
 
 sep_opts <- function(table = FALSE) {
-  sep.opts <- c("tilde" = "&#8768;",
+  sep_opts <- c("tilde" = "&#8768;",
                 "vsep" = "&#8739;",
                 "vlin" = "&#124;",
                 "vdubs" = "&#8214;",
@@ -20,15 +22,14 @@ sep_opts <- function(table = FALSE) {
                 "bracks" = "][",
                 "rangle" = "&#10217;")
   if (table) {
-    char.tab <- tibble(separator = names(sep.opts),
-                       result = unname(sep.opts))
+    char.tab <- tibble(separator = names(sep_opts),
+                       result = unname(sep_opts))
     print(
-      htmlTable(char.tab,
-                rnames = FALSE,
-                css.table = "font-size: 1.5em; font-family: Arial, sans-serif;",
-                css.cell = "padding: 0.75em 1.5em;")
+      htmlTable::htmlTable(char.tab,
+        rnames = FALSE,
+        css.table = "font-size: 1.5em; font-family: Arial, sans-serif;",
+        css.cell = "padding: 0.75em 1.5em;")
       )
   }
-  return(sep.opts)
+  sep_opts
 }
-

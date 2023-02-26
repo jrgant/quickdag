@@ -8,19 +8,17 @@
 \alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
-qd_themes(graph.obj, theme, ...)
+qd_themes(graph_obj, theme, ...)
 
-theme_base(graph.obj, font = "serif", ...)
+theme_base(graph_obj, font = "serif", ...)
 
-theme_circles(graph.obj, font = "serif", ...)
+theme_circles(graph_obj, font = "serif", ...)
 
-theme_dots(graph.obj, font = "serif", ...)
+theme_dots(graph_obj, font = "serif", ...)
 
-get_conditioned_nodes(graph.obj, conditioned = NULL)
+get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
 \arguments{
-\item{graph.obj}{A DAG object created by \code{qd_dag()}.}
-
 \item{theme}{A character string indicating the theme to use. Defaults to "base". Set to \code{NULL} to use GraphViz defaults.}
 
 \item{...}{Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}}
@@ -28,6 +26,8 @@ get_conditioned_nodes(graph.obj, conditioned = NULL)
 \item{font}{A character vector indicating the font family to use for node labels. Defaults to "serif".}
 
 \item{conditioned}{A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to "square".}
+
+\item{graph.obj}{A DAG object created by \code{qd_dag()}.}
 }
 \description{
 Apply various pre-fabricated themes to diagrams.

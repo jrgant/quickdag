@@ -2,7 +2,7 @@
 % Please edit documentation in R/qd_save.R
 \name{qd_embed}
 \alias{qd_embed}
-\title{Embed diagrams in RMarkdown}
+\title{Embed diagrams in RMarkdown or Quarto documents}
 \usage{
 qd_embed(...)
 }
@@ -10,5 +10,6 @@ qd_embed(...)
 \item{...}{Pass arguments to \code{qd_save()}.}
 }
 \description{
-A wrapper around \code{qd_save()} meant for use within R code chunks in RMarkdown documents.
+A wrapper around \code{qd_save()} meant for use within R code
+  chunks in RMarkdown documents.
 }
