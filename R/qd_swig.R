@@ -22,7 +22,7 @@
 #'         qd_swig(fixed.nodes = "A",
 #'                 custom.values = c("A" = "1"))
 #'
-#' swig %>% render_graph()
+#' swig %>% DiagrammeR::render_graph()
 #'
 #' @export qd_swig
 #' @import DiagrammeR
