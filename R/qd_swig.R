@@ -13,6 +13,7 @@
 #'
 #' @examples
 #' # Provide a DAG object and a list of nodes to be fixed
+#' library(magrittr)
 #' edges <- c("A -> Y",
 #'            "L -> { A Y }")
 #'
