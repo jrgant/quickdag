@@ -41,7 +41,7 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = F, ...) {
 
   ## detect whether 'graph' = graph object or pre-rendered graph
   if (class(graph)[1] == "dgr_graph") {
-    rendered.graph <- render_graph(graph, ...)
+    rendered.graph <- DiagrammeR::render_graph(graph, ...)
   } else if (class(graph)[1] == "grViz") {
     rendered.graph <- graph
   }
