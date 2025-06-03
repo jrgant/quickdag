@@ -52,7 +52,7 @@ edges <- c("A -> { B C }",
 
 # make a DAG object and render the graph using the default theme
 g.obj <- qd_dag(edges)
-render_graph(g.obj)
+DiagrammeR::render_graph(g.obj)
 
 # Pass labels and aesthetic options for nodes or edges
 g.obj2 <- qd_dag(edges,
@@ -65,7 +65,7 @@ g.obj2 <- qd_dag(edges,
                  edge.aes.opts = list(arrowsize = 0.5,
                                       color = "gray"),
                  theme = NULL)
-render_graph(g.obj2)
+DiagrammeR::render_graph(g.obj2)
 
 
 }

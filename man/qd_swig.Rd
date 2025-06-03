@@ -30,6 +30,7 @@ will be set to.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
+library(magrittr)
 edges <- c("A -> Y",
            "L -> { A Y }")
 
@@ -39,6 +40,6 @@ swig <- dag \%>\%
         qd_swig(fixed.nodes = "A",
                 custom.values = c("A" = "1"))
 
-swig \%>\% render_graph()
+swig \%>\% DiagrammeR::render_graph()
 
 }
