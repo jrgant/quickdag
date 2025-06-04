@@ -11,8 +11,6 @@
 #'
 #' @import DiagrammeR
 #' @import messaging
-#' @importFrom dplyr bind_rows
-#' @importFrom dplyr mutate
 
 #' @rdname qd_themes
 #' @export qd_themes
@@ -51,7 +49,7 @@ theme_base <- function(graph.obj, font = "serif", ...) {
     attr_type = "edge"
     )
 
-  graph.obj$global_attrs <- bind_rows(graph_attrs, node_attrs, edge_attrs)
+  graph.obj$global_attrs <- dplyr::bind_rows(graph_attrs, node_attrs, edge_attrs)
 
 
   graph.obj <- graph.obj %>% get_conditioned_nodes(...)
