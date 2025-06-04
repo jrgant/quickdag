@@ -7,8 +7,8 @@
 #'
 #' @param graph.obj A DAG object created by \code{qd_dag()}.
 #' @param fixed.nodes A vector containing the nodes to be intervened upon.
-#' @param custom.values A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).
-#' @param fixed.sep A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(TRUE)} for available options.
+#' @param custom.values A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., \code{c("A" = "1")}).
+#' @param fixed.sep A character string indicating which character to use as a separator in fixed nodes. Defaults to \code{"vlin"}. Run \code{sep_opts(TRUE)} for available options.
 #' @param sep.point.size A numerical value specifying the point size for fixed node separators.
 #'
 #' @examples

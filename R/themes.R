@@ -4,9 +4,9 @@
 #' Apply various pre-fabricated themes to diagrams.
 #'
 #' @param graph.obj A DAG object created by \code{qd_dag()}.
-#' @param conditioned A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to "square".
-#' @param theme A character string indicating the theme to use. Defaults to "base". Set to \code{NULL} to use GraphViz defaults.
-#' @param font A character vector indicating the font family to use for node labels. Defaults to "serif".
+#' @param conditioned A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to \code{"square"}.
+#' @param theme A character string indicating the theme to use. Defaults to \code{"base"}. Set to \code{NULL} to use GraphViz defaults.
+#' @param font A character vector indicating the font family to use for node labels. Defaults to \code{"serif"}.
 #' @param ... Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}
 
 #' @rdname qd_themes

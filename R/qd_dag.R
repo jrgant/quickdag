@@ -9,7 +9,7 @@
 #' @param edge.aes.opts A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.
 #' @param verbose Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.
 #' @param check.dag Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.
-#' @param theme Choose theme for plot output. Defaults to "base". Setting theme to NULL will use DiagrammeR's NULL attribute theme.
+#' @param theme Choose theme for plot output. Defaults to \code{"base"}. Setting theme to \code{NULL} will use DiagrammeR's \code{NULL} attribute theme.
 #' @param ... Pass optional \code{conditioned} argument to qd_themes().
 #'
 #' @note
