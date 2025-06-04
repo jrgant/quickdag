@@ -26,7 +26,6 @@
 #' swig %>% DiagrammeR::render_graph()
 #'
 #' @export qd_swig
-#' @import purrr
 qd_swig <- function(graph.obj,
                     fixed.nodes,
                     custom.values = NULL,
@@ -38,7 +37,7 @@ qd_swig <- function(graph.obj,
   ndf$fixed <- with(ndf, ifelse(alpha.id %in% fixed.nodes, TRUE, FALSE))
 
   fx.pathlist <-
-    map(
+    purrr::map(
       .x = set_names(ndf$alpha.id, ndf$alpha.id),
       .f = function(x) {
         curr.id  <- with(ndf, id[alpha.id == x])
@@ -46,29 +45,29 @@ qd_swig <- function(graph.obj,
         # map() set up to drop the destination node
         ancestors <-
           DiagrammeR::get_paths(graph.obj, to = curr.id) %>%
-          map(~ .x[.x != curr.id])
+          purrr::map(~ .x[.x != curr.id])
 
 
         fx.nodes <-
           ancestors %>%
-          map(function(x) {
-            detect(x, function(y) y %in% with(ndf, id[fixed]), .dir = "backward")
+          purrr::map(function(x) {
+            purrr::detect(x, function(y) y %in% with(ndf, id[fixed]), .dir = "backward")
           })
         unique(unlist(fx.nodes))
       })
 
-  fx.ancestors <- discard(fx.pathlist, function(x) is.null(x))
+  fx.ancestors <- purrr::discard(fx.pathlist, function(x) is.null(x))
 
 
   # create labels for those in custom values
   if (is.null(custom.values)) {
     lab <-
       fx.ancestors %>%
-      map_chr(~ with(ndf, paste0(tolower(label[id %in% .x]), collapse = ",")))
+      purrr::map_chr(~ with(ndf, paste0(tolower(label[id %in% .x]), collapse = ",")))
   } else {
     lab <-
       fx.ancestors %>%
-      map_chr(~ with(ndf, paste0(tolower(label[id %in% .x]), "=",
+      purrr::map_chr(~ with(ndf, paste0(tolower(label[id %in% .x]), "=",
                               custom.values[alpha.id[id %in% .x]],
                               collapse = ",")
                      ))
