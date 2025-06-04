@@ -47,7 +47,6 @@
 #'
 #' @export qd_dag
 #' @import DiagrammeR
-#' @importFrom purrr map2
 #' @importFrom dplyr if_else
 
 
@@ -98,7 +97,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
   # Create Edge Dataframe -------------------------------------------------
   ## loop through pa.nodes and ch.nodes to match parents with children
   ## and create a parent entry for each child
-  nodematches <- map2(.x = pa.nodes, .y = ch.nodes,
+  nodematches <- purrr::map2(.x = pa.nodes, .y = ch.nodes,
                       .f = function(x, y) rep(x, length(y)))
   pa.vec.alpha <- unlist(nodematches)
 
