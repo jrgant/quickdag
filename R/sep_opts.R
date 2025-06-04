@@ -6,7 +6,6 @@
 #' @param table Logical to show or hide HTML table display of available characters. Defaults to \code{FALSE}.
 #'
 #' @export sep_opts
-#' @importFrom htmlTable htmlTable
 sep_opts <- function(table = FALSE) {
   sep.opts <- c("tilde" = "&#8768;",
                 "vsep" = "&#8739;",
@@ -21,7 +20,7 @@ sep_opts <- function(table = FALSE) {
     char.tab <- tibble::tibble(separator = names(sep.opts),
                        result = unname(sep.opts))
     print(
-      htmlTable(char.tab,
+      htmlTable::htmlTable(char.tab,
                 rnames = FALSE,
                 css.table = "font-size: 1.5em; font-family: Arial, sans-serif;",
                 css.cell = "padding: 0.75em 1.5em;")
