@@ -43,13 +43,8 @@
 #'                                       color = "gray"),
 #'                  theme = NULL)
 #' DiagrammeR::render_graph(g.obj2)
-#'
-#'
 #' @export qd_dag
 #' @import DiagrammeR
-
-
-
 qd_dag <- function(edgelist, node.labs = NULL,
                    node.aes.opts = list(), edge.aes.opts = list(),
                    verbose = TRUE, check.dag = TRUE, theme = "base", ...) {

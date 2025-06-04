@@ -66,6 +66,4 @@ g.obj2 <- qd_dag(edges,
                                       color = "gray"),
                  theme = NULL)
 DiagrammeR::render_graph(g.obj2)
-
-
 }
