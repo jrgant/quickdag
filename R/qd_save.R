@@ -10,15 +10,14 @@
 #'
 #' @describeIn qd_save
 #'
-#' @import rsvg
 #' @export qd_save
 qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...) {
 
   # File Format Match Table -----------------------------------------------
-  fmt.opts <- c("png" = "rsvg_png",
-                "eps" = "rsvg_ps",
-                "pdf" = "rsvg_pdf",
-                "svg" = "rsvg_svg")
+  fmt.opts <- c("png" = "rsvg::rsvg_png",
+                "eps" = "rsvg::rsvg_ps",
+                "pdf" = "rsvg::rsvg_pdf",
+                "svg" = "rsvg::rsvg_svg")
 
   # Checks ----------------------------------------------------------------
 
