@@ -15,10 +15,8 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr mutate
 
-
 #' @rdname qd_themes
 #' @export qd_themes
-#'
 # wrapper for theme selection
 qd_themes <- function(graph.obj, theme, ...) {
 
@@ -32,12 +30,8 @@ qd_themes <- function(graph.obj, theme, ...) {
           args = list(graph.obj = graph.obj, ...))
 }
 
-
-
-
 #' @rdname qd_themes
 #' @export theme_base
-
 theme_base <- function(graph.obj, font = "serif", ...) {
 
   graph_attrs <- tibble(
@@ -65,15 +59,10 @@ theme_base <- function(graph.obj, font = "serif", ...) {
   graph.obj
 }
 
-
-
-
 #' @rdname qd_themes
 #' @export theme_circles
-
 theme_circles <- function(graph.obj,
                           font = "serif", ...) {
-
   # set base theme
   graph.obj <- graph.obj %>% theme_base()
 
@@ -85,14 +74,9 @@ theme_circles <- function(graph.obj,
   graph.obj
 }
 
-
-
-
 #' @rdname qd_themes
 #' @export theme_dots
-
 theme_dots <- function(graph.obj, font = "serif", ...) {
-
   # set base theme
   graph.obj <- graph.obj %>% theme_base()
 
@@ -113,12 +97,8 @@ theme_dots <- function(graph.obj, font = "serif", ...) {
   graph.obj
 }
 
-
-
-
 #' @rdname qd_themes
 #' @export get_conditioned_nodes
-
 get_conditioned_nodes <- function(graph.obj, conditioned = NULL) {
   if (!is.null(conditioned)) {
 
@@ -141,6 +121,5 @@ get_conditioned_nodes <- function(graph.obj, conditioned = NULL) {
       set_node_attrs_ws("height", "0") %>%
       clear_selection()
   }
-
   graph.obj
 }
