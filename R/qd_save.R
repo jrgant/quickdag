@@ -13,7 +13,7 @@
 #' @import rsvg
 #' @import DiagrammeRsvg
 #' @export qd_save
-qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = F, ...) {
+qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...) {
 
   # File Format Match Table -----------------------------------------------
   fmt.opts <- c("png" = "rsvg_png",
@@ -67,6 +67,6 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = F, ...) {
 #' @export qd_embed
 
 qd_embed <- function(...) {
-  qd_save(..., embed = T)
+  qd_save(..., embed = TRUE)
   knitr::include_graphics(fname) # fname from qdsave()
 }
