@@ -22,8 +22,6 @@
 #' # must pass exposure and outcome arguments to dagitty::adjustmentSets()
 #' qd_todagitty(edges, exposure = "A", outcome = "C")
 #' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
-#' @importFrom dagitty dagitty
-#' @importFrom dagitty adjustmentSets
 #' @export qd_todagitty
 qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                          send.global = FALSE, dagitty.obj.name = NULL,
