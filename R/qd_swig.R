@@ -26,7 +26,6 @@
 #' swig %>% DiagrammeR::render_graph()
 #'
 #' @export qd_swig
-#' @import DiagrammeR
 #' @import purrr
 #' @importFrom dplyr bind_rows mutate case_when if_else
 qd_swig <- function(graph.obj,
@@ -36,7 +35,7 @@ qd_swig <- function(graph.obj,
                     sep.point.size = 15) {
   # graph.obj = graph
   # fixed = alpha IDs for fixed nodes
-  ndf <- get_node_df(graph.obj)
+  ndf <- DiagrammeR::get_node_df(graph.obj)
   ndf$fixed <- with(ndf, ifelse(alpha.id %in% fixed.nodes, TRUE, FALSE))
 
   fx.pathlist <-
@@ -47,7 +46,7 @@ qd_swig <- function(graph.obj,
         # each path will include current node id by default
         # map() set up to drop the destination node
         ancestors <-
-          get_paths(graph.obj, to = curr.id) %>%
+          DiagrammeR::get_paths(graph.obj, to = curr.id) %>%
           map(~ .x[.x != curr.id])
 
 
