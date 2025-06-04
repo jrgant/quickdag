@@ -47,7 +47,6 @@
 #'
 #' @export qd_dag
 #' @import DiagrammeR
-#' @import stringr
 #' @importFrom purrr map2
 #' @importFrom dplyr if_else
 
@@ -59,11 +58,11 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
-  nodes <- sort(unique(unlist(str_extract_all(edgelist, pattern = "[:alnum:]+"))))
+  nodes <- sort(unique(unlist(stringr::str_extract_all(edgelist, pattern = "[:alnum:]+"))))
   ## specify nodes with direct descendants (out = list)
-  pa.nodes <- str_extract_all(edgelist, pattern = "^[:alnum:]+(?=\\s)")
+  pa.nodes <- stringr::str_extract_all(edgelist, pattern = "^[:alnum:]+(?=\\s)")
   ## specify nodes with direct ancestors (out = list)
-  ch.nodes <- str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]+")
+  ch.nodes <- stringr::str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]+")
 
 
   # Create Node Dataframe -------------------------------------------------
@@ -90,8 +89,8 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ## check for and format special labels
   ndf <- ndf %>%
     mutate(
-      label = if_else(str_detect(alpha.id, "^[:alpha:]{1}[0-9]+"),
-                      paste0(str_match(alpha.id, "^[:alpha:]{1}"), "@_{", str_match(alpha.id, "[0-9]+"), "}"),
+      label = if_else(stringr::str_detect(alpha.id, "^[:alpha:]{1}[0-9]+"),
+                      paste0(stringr::str_match(alpha.id, "^[:alpha:]{1}"), "@_{", stringr::str_match(alpha.id, "[0-9]+"), "}"),
                       label))
 
 
