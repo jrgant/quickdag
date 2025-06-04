@@ -77,7 +77,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ## apply node labels if present
   if (!is.null(node.labs)) {
     ndf <- ndf %>%
-      mutate(
+      dplyr::mutate(
         label = dplyr::if_else(alpha.id %in% names(node.labs),
                         unname(node.labs[alpha.id]),
                         label)
@@ -86,7 +86,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   ## check for and format special labels
   ndf <- ndf %>%
-    mutate(
+    dplyr::mutate(
       label = if_else(stringr::str_detect(alpha.id, "^[:alpha:]{1}[0-9]+"),
                       paste0(stringr::str_match(alpha.id, "^[:alpha:]{1}"), "@_{", stringr::str_match(alpha.id, "[0-9]+"), "}"),
                       label))
