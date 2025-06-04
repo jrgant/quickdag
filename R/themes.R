@@ -10,7 +10,6 @@
 #' @param ... Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}
 #'
 #' @import DiagrammeR
-#' @import messaging
 
 #' @rdname qd_themes
 #' @export qd_themes
@@ -88,7 +87,7 @@ theme_dots <- function(graph.obj, font = "serif", ...) {
     add_global_graph_attrs("arrowsize", 0.2, "edge")
 
   if (exists("conditioned")) {
-    emit_message("This theme does not allow for conditioned nodes.")
+    messaging::emit_message("This theme does not allow for conditioned nodes.")
   }
 
   graph.obj
