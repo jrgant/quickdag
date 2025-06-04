@@ -19,7 +19,7 @@ qd_swig(
 
 \item{custom.values}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).}
 
-\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(T)} for available options.}
+\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(TRUE)} for available options.}
 
 \item{sep.point.size}{A numerical value specifying the point size for fixed node separators.}
 }
