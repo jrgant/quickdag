@@ -13,7 +13,7 @@ qd_save(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...)
 
 \item{filetype}{One of \code{pdf}, \code{eps}, \code{pdf}, \code{svg}. Defaults to \code{pdf}.}
 
-\item{embed}{Defaults to FALSE. Automatically set to TRUE by \code{qd_embed()}.}
+\item{embed}{Defaults to \code{FALSE}. Automatically set to \code{TRUE} by \code{qd_embed()}.}
 
 \item{...}{Pass arguments to \code{render_graph()}, e.g., width and height (pixels) for .png files.}
 }

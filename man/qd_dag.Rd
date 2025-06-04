@@ -28,7 +28,7 @@ qd_dag(
 
 \item{check.dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
 
-\item{theme}{Choose theme for plot output. Defaults to "base". Setting theme to NULL will use DiagrammeR's NULL attribute theme.}
+\item{theme}{Choose theme for plot output. Defaults to \code{"base"}. Setting theme to \code{NULL} will use DiagrammeR's \code{NULL} attribute theme.}
 
 \item{...}{Pass optional \code{conditioned} argument to qd_themes().}
 }
