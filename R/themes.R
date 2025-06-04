@@ -8,8 +8,6 @@
 #' @param theme A character string indicating the theme to use. Defaults to "base". Set to \code{NULL} to use GraphViz defaults.
 #' @param font A character vector indicating the font family to use for node labels. Defaults to "serif".
 #' @param ... Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}
-#'
-#' @import DiagrammeR
 
 #' @rdname qd_themes
 #' @export qd_themes
@@ -79,12 +77,12 @@ theme_dots <- function(graph.obj, font = "serif", ...) {
   # tweak base theme
   graph.obj <- graph.obj %>%
     # node attribute tweaks
-    add_global_graph_attrs("shape", "point", "node") %>%
-    add_global_graph_attrs("width", 0.2, "node") %>%
-    add_global_graph_attrs("height", 0.2, "node") %>%
+    DiagrammeR::add_global_graph_attrs("shape", "point", "node") %>%
+    DiagrammeR::add_global_graph_attrs("width", 0.2, "node") %>%
+    DiagrammeR::add_global_graph_attrs("height", 0.2, "node") %>%
     # edge attribute tweaks
-    add_global_graph_attrs("penwidth", 0.2, "edge") %>%
-    add_global_graph_attrs("arrowsize", 0.2, "edge")
+    DiagrammeR::add_global_graph_attrs("penwidth", 0.2, "edge") %>%
+    DiagrammeR::add_global_graph_attrs("arrowsize", 0.2, "edge")
 
   if (exists("conditioned")) {
     messaging::emit_message("This theme does not allow for conditioned nodes.")
@@ -103,19 +101,19 @@ get_conditioned_nodes <- function(graph.obj, conditioned = NULL) {
     default.minht <- with(graph.obj$global_attrs, value[attr == "height"])
 
     cd.nodes <- graph.obj %>%
-      get_node_ids(conditions = alpha.id %in% conditioned)
+      DiagrammeR::get_node_ids(conditions = alpha.id %in% conditioned)
 
     graph.obj <- graph.obj %>%
       # add default columns to node_df based on global_attrs
-      set_node_attrs("shape",  default.shape) %>%
-      set_node_attrs("width",  default.minwd) %>%
-      set_node_attrs("height", default.minht) %>%
+      DiagrammeR::set_node_attrs("shape",  default.shape) %>%
+      DiagrammeR::set_node_attrs("width",  default.minwd) %>%
+      DiagrammeR::set_node_attrs("height", default.minht) %>%
       # select conditioned nodes and update node aesthetics
-      select_nodes_by_id(cd.nodes) %>%
-      set_node_attrs_ws("shape",  "square") %>%
-      set_node_attrs_ws("width",  "0") %>%
-      set_node_attrs_ws("height", "0") %>%
-      clear_selection()
+      DiagrammeR::select_nodes_by_id(cd.nodes) %>%
+      DiagrammeR::set_node_attrs_ws("shape",  "square") %>%
+      DiagrammeR::set_node_attrs_ws("width",  "0") %>%
+      DiagrammeR::set_node_attrs_ws("height", "0") %>%
+      DiagrammeR::clear_selection()
   }
   graph.obj
 }
