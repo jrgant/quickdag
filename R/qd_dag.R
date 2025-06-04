@@ -44,7 +44,6 @@
 #'                  theme = NULL)
 #' DiagrammeR::render_graph(g.obj2)
 #' @export qd_dag
-#' @import DiagrammeR
 qd_dag <- function(edgelist, node.labs = NULL,
                    node.aes.opts = list(), edge.aes.opts = list(),
                    verbose = TRUE, check.dag = TRUE, theme = "base", ...) {
@@ -66,7 +65,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
   nd.opts.list$label <- nodes
 
   ## create node dataframe with options
-  ndf <- do.call("create_node_df", nd.opts.list)
+  ndf <- do.call(DiagrammeR::create_node_df, nd.opts.list)
   ndf$alpha.id <- nodes
 
   ## apply node labels if present
@@ -105,10 +104,10 @@ qd_dag <- function(edgelist, node.labs = NULL,
   ed.opts.list$to <- ch.vec.num
 
   ## create edge dataframe with options
-  edf <- do.call("create_edge_df", ed.opts.list)
+  edf <- do.call(DiagrammeR::create_edge_df, ed.opts.list)
 
   # Output Graph Object -----------------------------------------------------
-  graph <- create_graph(nodes_df = ndf,
+  graph <- DiagrammeR::create_graph(nodes_df = ndf,
                         edges_df = edf,
                         attr_theme = NULL)
 
@@ -116,7 +115,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
 
   ## check to see if graph is a DAG
   if (check.dag) {
-    if (!is_graph_dag(graph)) {
+    if (!DiagrammeR::is_graph_dag(graph)) {
       warning("Your graph appears to break some of the rules of ",
               "directed acylic graphs. ",
               "To turn off this warning, set 'check.dag' option to FALSE. \n\n")
@@ -140,10 +139,10 @@ qd_dag <- function(edgelist, node.labs = NULL,
     # dataframes
     dots <- paste(rep(".", sep.length / 3), collapse = "")
     cat(dots, "NODE DATAFRAME", dots, "\n\n")
-    graph %>% get_node_df() %>% print()
+    graph %>% DiagrammeR::get_node_df() %>% print()
     cat("\n")
     cat(dots, "EDGE DATAFRAME", dots, "\n\n")
-    graph %>% get_edge_df() %>% print()
+    graph %>% DiagrammeR::get_edge_df() %>% print()
   }
 
   ## returns DiagrammeR's graph object to store node and edge dataframes
