@@ -27,7 +27,6 @@
 #'
 #' @export qd_swig
 #' @import purrr
-#' @importFrom dplyr bind_rows mutate case_when if_else
 qd_swig <- function(graph.obj,
                     fixed.nodes,
                     custom.values = NULL,
@@ -78,17 +77,17 @@ qd_swig <- function(graph.obj,
   # apply labels
   graph.obj$nodes_df <-
    ndf %>%
-   mutate(label = case_when(
+   dplyr::mutate(label = dplyr::case_when(
 
        .$fixed & is.null(custom.values)
-       ~ paste0(if_else(.$alpha.id %in% names(lab),
+       ~ paste0(dplyr::if_else(.$alpha.id %in% names(lab),
                         paste0(.$label, "@^{<i>", lab[.$alpha.id], "</i>}"),
                         .$alpha.id),
                 " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
                 tolower(.$label), "</i> @_{ }"),
 
        .$fixed & !is.null(custom.values)
-       ~ paste0(if_else(.$alpha.id %in% names(lab),
+       ~ paste0(dplyr::if_else(.$alpha.id %in% names(lab),
                         paste0(.$label, "@^{<i>", lab[.$alpha.id], "</i>}"),
                         .$label),
                 " <font point-size=\"", sep.point.size, "\">", sep_opts()[fixed.sep], "</font> <i>",
