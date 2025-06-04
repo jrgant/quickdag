@@ -47,7 +47,6 @@
 #'
 #' @export qd_dag
 #' @import DiagrammeR
-#' @importFrom dplyr if_else
 
 
 
@@ -79,7 +78,7 @@ qd_dag <- function(edgelist, node.labs = NULL,
   if (!is.null(node.labs)) {
     ndf <- ndf %>%
       mutate(
-        label = if_else(alpha.id %in% names(node.labs),
+        label = dplyr::if_else(alpha.id %in% names(node.labs),
                         unname(node.labs[alpha.id]),
                         label)
       )
