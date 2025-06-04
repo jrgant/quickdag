@@ -13,8 +13,6 @@
 #' @import rsvg
 #' @import DiagrammeRsvg
 #' @export qd_save
-
-
 qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = F, ...) {
 
   # File Format Match Table -----------------------------------------------
