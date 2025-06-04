@@ -11,7 +11,6 @@
 #' @describeIn qd_save
 #'
 #' @import rsvg
-#' @import DiagrammeRsvg
 #' @export qd_save
 qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...) {
 
@@ -46,7 +45,7 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...
 
   # File Save -------------------------------------------------------------
   file.fmt <- match.arg(filetype, names(fmt.opts))
-  raw.img <- charToRaw(export_svg(rendered.graph))
+  raw.img <- charToRaw(DiagrammeRsvg::export_svg(rendered.graph))
 
   ## generate filename/path and make visible to qd_embd()
   fname <- paste(filename, file.fmt, sep = ".")
