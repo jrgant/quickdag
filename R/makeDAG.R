@@ -30,12 +30,6 @@
 #' # Examples have been removed, as makeDAG() is now deprecated.
 #'
 #' @export makeDAG
-#' @import rsvg
-#' @import DiagrammeR
-#' @import DiagrammeRsvg
-#' @import knitr
-
-
 makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
                     text.nodes = NULL, box.nodes = NULL,
                     solid.edges = NULL, dashed.edges = NULL, footnotes = NULL,
@@ -67,25 +61,25 @@ makeDAG <- function(graphcode = NULL, dagname = NULL, filetype = "pdf",
   if (filetype == "pdf") {
 
     handle <- paste(dagname, ".pdf", sep = "")
-    file.tmp <- utils::capture.output(rsvg_pdf(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
+    file.tmp <- utils::capture.output(rsvg::rsvg_pdf(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
                                                file = handle))
 
   } else if (filetype == "png") {
 
     handle <- paste(dagname, ".png", sep = "")
-    file.tmp <- utils::capture.output(rsvg_png(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
+    file.tmp <- utils::capture.output(rsvg::rsvg_png(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
                                                file = handle, ...))
 
   } else if (filetype == "svg") {
 
     handle <- paste(dagname, ".svg", sep = "")
-    file.tmp <- utils::capture.output(rsvg_svg(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
+    file.tmp <- utils::capture.output(rsvg::rsvg_svg(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
                                                file = handle, ...))
 
   } else if (filetype == "eps") {
 
     handle <- paste(dagname, ".eps", sep = "")
-    file.tmp <- utils::capture.output(rsvg_ps(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
+    file.tmp <- utils::capture.output(rsvg::rsvg_ps(charToRaw(DiagrammeRsvg::export_svg(dag_object)),
                                                file = handle, ...))
 
   } else if (filetype == "view") {

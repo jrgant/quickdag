@@ -42,9 +42,7 @@ The \code{exposure} and \code{outcome} options map to dagitty functions of the s
 edges <- c("A -> { B C D }",
            "B -> C",
            "E -> { B C }")
-
 # must pass exposure and outcome arguments to dagitty::adjustmentSets()
 qd_todagitty(edges, exposure = "A", outcome = "C")
 qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
-
 }

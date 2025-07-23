@@ -28,7 +28,7 @@ qd_dag(
 
 \item{check.dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
 
-\item{theme}{Choose theme for plot output. Defaults to "base". Setting theme to NULL will use DiagrammeR's NULL attribute theme.}
+\item{theme}{Choose theme for plot output. Defaults to \code{"base"}. Setting theme to \code{NULL} will use DiagrammeR's \code{NULL} attribute theme.}
 
 \item{...}{Pass optional \code{conditioned} argument to qd_themes().}
 }
@@ -52,7 +52,7 @@ edges <- c("A -> { B C }",
 
 # make a DAG object and render the graph using the default theme
 g.obj <- qd_dag(edges)
-render_graph(g.obj)
+DiagrammeR::render_graph(g.obj)
 
 # Pass labels and aesthetic options for nodes or edges
 g.obj2 <- qd_dag(edges,
@@ -65,7 +65,5 @@ g.obj2 <- qd_dag(edges,
                  edge.aes.opts = list(arrowsize = 0.5,
                                       color = "gray"),
                  theme = NULL)
-render_graph(g.obj2)
-
-
+DiagrammeR::render_graph(g.obj2)
 }

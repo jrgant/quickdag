@@ -17,9 +17,9 @@ qd_swig(
 
 \item{fixed.nodes}{A vector containing the nodes to be intervened upon.}
 
-\item{custom.values}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., a = 1).}
+\item{custom.values}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., \code{c("A" = "1")}).}
 
-\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to "vlin". Run \code{sep_opts(T)} for available options.}
+\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to \code{"vlin"}. Run \code{sep_opts(TRUE)} for available options.}
 
 \item{sep.point.size}{A numerical value specifying the point size for fixed node separators.}
 }
@@ -30,6 +30,7 @@ will be set to.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
+library(magrittr)
 edges <- c("A -> Y",
            "L -> { A Y }")
 
@@ -39,6 +40,6 @@ swig <- dag \%>\%
         qd_swig(fixed.nodes = "A",
                 custom.values = c("A" = "1"))
 
-swig \%>\% render_graph()
+swig \%>\% DiagrammeR::render_graph()
 
 }
