@@ -66,7 +66,7 @@ theme_circles <- function(graph_obj,
 
   # tweak base theme
   graph_obj <- graph_obj %>%
-    add_global_graph_attrs("shape", "circle", "node")
+    DiagrammeR::add_global_graph_attrs("shape", "circle", "node")
 
   graph_obj <- graph_obj %>% get_conditioned_nodes(...)
   graph_obj
