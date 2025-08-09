@@ -29,7 +29,7 @@ to `NULL`.}
 [DiagrammeR::edge_aes()]. Defaults to empty list.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console.
-See NOTE below. Defaults to `TRUE`.}
+See Details below. Defaults to `TRUE`.}
 
 \item{check_dag}{Logical. Check whether the graph conforms to the rules of DAGs.
 Defaults to `TRUE`.}
@@ -71,4 +71,5 @@ g.obj2 <- qd_dag(edges,
                                       color = "gray"),
                  theme = NULL)
 DiagrammeR::render_graph(g.obj2)
+
 }

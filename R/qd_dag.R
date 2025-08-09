@@ -12,7 +12,7 @@
 #' @param edge_aes_opts A list feeding aesthetic options for edges to
 #'   [DiagrammeR::edge_aes()]. Defaults to empty list.
 #' @param verbose Indicate whether to print node and edge dataframes to the console.
-#'   See NOTE below. Defaults to `TRUE`.
+#'   See Details below. Defaults to `TRUE`.
 #' @param check_dag Logical. Check whether the graph conforms to the rules of DAGs.
 #'   Defaults to `TRUE`.
 #' @param theme Choose theme for plot output. Defaults to `"base"`. Setting theme to
