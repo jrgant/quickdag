@@ -6,11 +6,11 @@
 \usage{
 qd_dag(
   edgelist,
-  node.labs = NULL,
-  node.aes.opts = list(),
-  edge.aes.opts = list(),
+  node_labs = NULL,
+  node_aes_opts = list(),
+  edge_aes_opts = list(),
   verbose = TRUE,
-  check.dag = TRUE,
+  check_dag = TRUE,
   theme = "base",
   ...
 )
@@ -18,15 +18,15 @@ qd_dag(
 \arguments{
 \item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
 
-\item{node.labs}{A named character vector containing label names. Defaults to \code{NULL}.}
+\item{node_labs}{A named character vector containing label names. Defaults to \code{NULL}.}
 
-\item{node.aes.opts}{A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.}
+\item{node_aes_opts}{A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.}
 
-\item{edge.aes.opts}{A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.}
+\item{edge_aes_opts}{A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
 
-\item{check.dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
+\item{check_dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
 
 \item{theme}{Choose theme for plot output. Defaults to \code{"base"}. Setting theme to \code{NULL} will use DiagrammeR's \code{NULL} attribute theme.}
 

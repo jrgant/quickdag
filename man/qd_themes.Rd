@@ -8,18 +8,18 @@
 \alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
-qd_themes(graph.obj, theme, ...)
+qd_themes(graph_obj, theme, ...)
 
-theme_base(graph.obj, font = "serif", ...)
+theme_base(graph_obj, font = "serif", ...)
 
-theme_circles(graph.obj, font = "serif", ...)
+theme_circles(graph_obj, font = "serif", ...)
 
-theme_dots(graph.obj, font = "serif", ...)
+theme_dots(graph_obj, font = "serif", ...)
 
-get_conditioned_nodes(graph.obj, conditioned = NULL)
+get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
 \arguments{
-\item{graph.obj}{A DAG object created by \code{qd_dag()}.}
+\item{graph_obj}{A DAG object created by \code{qd_dag()}.}
 
 \item{theme}{A character string indicating the theme to use. Defaults to \code{"base"}. Set to \code{NULL} to use GraphViz defaults.}
 

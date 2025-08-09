@@ -14,7 +14,7 @@
 qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...) {
 
   # File Format Match Table -----------------------------------------------
-  fmt.opts <- c("png" = "rsvg::rsvg_png",
+  fmt_opts <- c("png" = "rsvg::rsvg_png",
                 "eps" = "rsvg::rsvg_ps",
                 "pdf" = "rsvg::rsvg_pdf",
                 "svg" = "rsvg::rsvg_svg")
@@ -22,9 +22,9 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...
   # Checks ----------------------------------------------------------------
 
   ## check for valid filetype
-  if (!filetype %in% names(fmt.opts)) {
+  if (!filetype %in% names(fmt_opts)) {
     stop(paste("Filetype not supported. Choose one of:",
-               paste0(names(fmt.opts), collapse = ", ")))
+               paste0(names(fmt_opts), collapse = ", ")))
   }
 
   ## check for filename
@@ -37,13 +37,13 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...
 
   ## detect whether 'graph' = graph object or pre-rendered graph
   if (class(graph)[1] == "dgr_graph") {
-    rendered.graph <- DiagrammeR::render_graph(graph, ...)
+    rendered_graph <- DiagrammeR::render_graph(graph, ...)
   } else if (class(graph)[1] == "grViz") {
     rendered.graph <- graph
   }
 
   # File Save -------------------------------------------------------------
-  file.fmt <- match.arg(filetype, names(fmt.opts))
+  file.fmt <- match.arg(filetype, names(fmt_opts))
   raw.img <- charToRaw(DiagrammeRsvg::export_svg(rendered.graph))
 
   ## generate filename/path and make visible to qd_embd()
@@ -51,7 +51,7 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...
   if (embed) assign("fname", fname, envir = parent.frame())
 
   ## matches and calls rsvg_pdf(), rsvg_ps(), rsvg_eps(), or rsvg_svg
-  out <- do.call(fmt.opts[[file.fmt]], list(raw.img, file = fname))
+  out <- do.call(fmt_opts[[file.fmt]], list(raw.img, file = fname))
   return(out)
 }
 
@@ -63,7 +63,6 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...
 #' @param ... Pass arguments to \code{qd_save()}.
 #'
 #' @export qd_embed
-
 qd_embed <- function(...) {
   qd_save(..., embed = TRUE)
   knitr::include_graphics(fname) # fname from qdsave()

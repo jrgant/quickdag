@@ -8,8 +8,8 @@ qd_todagitty(
   edgelist,
   diagram_type = "dag",
   showplot = FALSE,
-  send.global = FALSE,
-  dagitty.obj.name = NULL,
+  send_global = FALSE,
+  dagitty_obj_name = NULL,
   exposure,
   outcome,
   ...
@@ -22,9 +22,9 @@ qd_todagitty(
 
 \item{showplot}{Logical indicating whether to produce a dagitty plot. Defaults to \code{FALSE}.}
 
-\item{send.global}{Logical indicating whether to make the dagitty object available in the global environment. Defaults to \code{FALSE}.}
+\item{send_global}{Logical indicating whether to make the dagitty object available in the global environment. Defaults to \code{FALSE}.}
 
-\item{dagitty.obj.name}{Character specifying the name of the dagitty object. Only used and required if \code{send.global = TRUE}.}
+\item{dagitty_obj_name}{Character specifying the name of the dagitty object. Only used and required if \code{send.global = TRUE}.}
 
 \item{exposure}{Character. Specify exposure of interest. (Required)}
 

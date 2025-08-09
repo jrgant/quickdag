@@ -5,8 +5,8 @@
 #' @param edgelist A vector of edge relationships. Must be strictly organized (see example for format).
 #' @param diagram_type Character identifying the diagram type. Defaults to \code{"dag"}, but user can specify another graph type (see dagitty documentation).
 #' @param showplot Logical indicating whether to produce a dagitty plot. Defaults to \code{FALSE}.
-#' @param send.global Logical indicating whether to make the dagitty object available in the global environment. Defaults to \code{FALSE}.
-#' @param dagitty.obj.name Character specifying the name of the dagitty object. Only used and required if \code{send.global = TRUE}.
+#' @param send_global Logical indicating whether to make the dagitty object available in the global environment. Defaults to \code{FALSE}.
+#' @param dagitty_obj_name Character specifying the name of the dagitty object. Only used and required if \code{send.global = TRUE}.
 #' @param exposure Character. Specify exposure of interest. (Required)
 #' @param outcome Character. Specifiy outcome of interest. (Required)
 #' @param ... Pass arguments to \code{adjustmentSets()}. See dagitty documentation for options.
@@ -24,7 +24,7 @@
 #' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
 #' @export qd_todagitty
 qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
-                         send.global = FALSE, dagitty.obj.name = NULL,
+                         send_global = FALSE, dagitty_obj_name = NULL,
                          exposure, outcome,
                          ...) {
 
@@ -34,11 +34,11 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                                   layout = TRUE)
 
   # make object available in global environment (defaults to TRUE)
-  if (send.global) {
-    if (is.null(dagitty.obj.name)) {
+  if (send_global) {
+    if (is.null(dagitty_obj_name)) {
       stop("Provide a name for your DAG.")
     }
-    assign(dagitty.obj.name, dagitty.obj, envir = .GlobalEnv)
+    assign(dagitty_obj_name, dagitty.obj, envir = .GlobalEnv)
   }
 
   ## optional to show dagitty plot
