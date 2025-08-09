@@ -22,7 +22,7 @@ qd_themes <- function(graph_obj, theme, ...) {
     "base" = "theme_base",
     "circles" = "theme_circles",
     "pearl" = "theme_pearl"
-    )
+  )
 
   do.call(select_theme[theme],
           args = list(graph_obj = graph_obj, ...))
