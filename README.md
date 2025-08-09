@@ -1,6 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-![](https://img.shields.io/badge/status-in--development-orange.svg)
+![](https://img.shields.io/badge/Status-Developing-orange.svg)
+![](https://img.shields.io/badge/Latest--Release-v0.2.1-green.svg)
 
 Updated overview coming soon…
