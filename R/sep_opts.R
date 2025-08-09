@@ -6,7 +6,7 @@
 #' @param table Logical to show or hide HTML table display of available characters.
 #'   Defaults to `FALSE`.
 #'
-#' @export sep_opts
+#' @export
 sep_opts <- function(table = FALSE) {
   sep_opts <- c("tilde" = "&#8768;",
                 "vsep" = "&#8739;",

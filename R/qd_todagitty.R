@@ -19,10 +19,9 @@
 #'   for options.
 #'
 #' @details
-#'
 #' The `exposure` and `outcome` options map to dagitty functions of the same name.
 #'
-#' @export qd_todagitty
+#' @export
 #' @examples
 #' edges <- c("A -> { B C D }",
 #'            "B -> C",

@@ -12,7 +12,7 @@
 #'
 #' @describeIn qd_save
 #'
-#' @export qd_save
+#' @export
 qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...) {
 
   # File Format Match Table -----------------------------------------------
@@ -65,7 +65,7 @@ qd_save <- function(graph, filename = NULL, filetype = "pdf", embed = FALSE, ...
 #'
 #' @param ... Pass arguments to [qd_save()].
 #'
-#' @export qd_embed
+#' @export
 qd_embed <- function(...) {
   qd_save(..., embed = TRUE)
   knitr::include_graphics(fname) # fname from qdsave()
