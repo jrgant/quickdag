@@ -78,9 +78,11 @@ qd_dag <- function(edgelist, node_labs = NULL,
   if (!is.null(node_labs)) {
     ndf <- ndf %>%
       dplyr::mutate(
-        label = dplyr::if_else(alpha_id %in% names(node_labs),
-                        unname(node_labs[alpha_id]),
-                        label)
+        label = dplyr::if_else(
+          alpha_id %in% names(node_labs),
+          unname(node_labs[alpha_id]),
+          label
+        )
       )
   }
 
@@ -95,8 +97,6 @@ qd_dag <- function(edgelist, node_labs = NULL,
         ), label
       )
     )
-
-
 
   # Create Edge Dataframe -------------------------------------------------
   ## loop through pa.nodes and ch.nodes to match parents with children

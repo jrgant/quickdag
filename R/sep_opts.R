@@ -21,12 +21,13 @@ sep_opts <- function(table = FALSE) {
     char_tab <- tibble::tibble(separator = names(sep.opts),
                                result = unname(sep.opts))
     print(
-      htmlTable::htmlTable(char_tab,
-                           rnames = FALSE,
-                           css.table = "font-size: 1.5em; font-family: Arial, sans-serif;",
-                           css.cell = "padding: 0.75em 1.5em;")
+      htmlTable::htmlTable(
+        char_tab,
+        rnames = FALSE,
+        css.table = "font-size: 1.5em; font-family: Arial, sans-serif;",
+        css.cell = "padding: 0.75em 1.5em;"
       )
+    )
   }
   return(sep_opts)
 }
-
