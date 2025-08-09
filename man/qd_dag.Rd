@@ -61,13 +61,13 @@ DiagrammeR::render_graph(g.obj)
 
 # Pass labels and aesthetic options for nodes or edges
 g.obj2 <- qd_dag(edges,
-                 node.labs = c("A" = "Alcohol",
+                 node_labs = c("A" = "Alcohol",
                                "B" = "BP",
                                "C" = "CVD"),
-                 node.aes.opts = list(shape = "plaintext",
+                 node_aes_opts = list(shape = "plaintext",
                                       fillcolor = "none",
                                       color = "black"),
-                 edge.aes.opts = list(arrowsize = 0.5,
+                 edge_aes_opts = list(arrowsize = 0.5,
                                       color = "gray"),
                  theme = NULL)
 DiagrammeR::render_graph(g.obj2)
