@@ -48,18 +48,20 @@
 #'                                       color = "gray"),
 #'                  theme = NULL)
 #' DiagrammeR::render_graph(g.obj2)
+#'
 qd_dag <- function(edgelist, node_labs = NULL,
                    node_aes_opts = list(), edge_aes_opts = list(),
                    verbose = TRUE, check_dag = TRUE, theme = "base", ...) {
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
-  nodes <- sort(unique(unlist(stringr::str_extract_all(edgelist, pattern = "[:alnum:]+"))))
+  nodes <- sort(unique(unlist(
+    stringr::str_extract_all(edgelist, pattern = "[:alnum:]+")
+  )))
   ## specify nodes with direct descendants (out = list)
   pa_nodes <- stringr::str_extract_all(edgelist, pattern = "^[:alnum:]+(?=\\s)")
   ## specify nodes with direct ancestors (out = list)
   ch_nodes <- stringr::str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]+")
-
 
   # Create Node Dataframe -------------------------------------------------
 
@@ -85,9 +87,14 @@ qd_dag <- function(edgelist, node_labs = NULL,
   ## check for and format special labels
   ndf <- ndf %>%
     dplyr::mutate(
-      label = dplyr::if_else(stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
-                      paste0(stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{", stringr::str_match(alpha_id, "[0-9]+"), "}"),
-                      label))
+      label = dplyr::if_else(
+        stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
+        paste0(
+          stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{",
+          stringr::str_match(alpha_id, "[0-9]+"), "}"
+        ), label
+      )
+    )
 
 
 
@@ -157,7 +164,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
         "Node and/or edge aesthetics are currently being applied ",
         "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
         "Using both methods to set aesthetics may produce unexpected results."
-        )
+      )
     } else {
       themed_graph <- graph %>% qd_themes(theme = theme, ...)
       return(themed_graph)
