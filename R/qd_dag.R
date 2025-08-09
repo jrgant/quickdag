@@ -125,7 +125,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
   # Checks ------------------------------------------------------------------
 
   ## check to see if graph is a DAG
-  if (check_dag) {
+  if (check_dag == TRUE) {
     if (!DiagrammeR::is_graph_dag(graph)) {
       warning("Your graph appears to break some of the rules of ",
               "directed acylic graphs. ",
@@ -137,7 +137,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
 
   ## print the node and edges dataframes to console (optional)
   ## defaults to TRUE
-  if (verbose) {
+  if (verbose == TRUE) {
 
     sep_length <- 73
 
@@ -159,7 +159,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
   ## returns DiagrammeR's graph object to store node and edge dataframes
   ## and attributes
   if (!is.null(theme)) {
-    if (length(node_aes_opts) > 0 | length(edge_aes_opts) > 0) {
+    if (length(node_aes_opts) > 0 || length(edge_aes_opts) > 0) {
       warning(
         "Node and/or edge aesthetics are currently being applied ",
         "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",

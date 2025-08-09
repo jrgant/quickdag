@@ -17,7 +17,7 @@ sep_opts <- function(table = FALSE) {
                 "soldub" = "&#11005;",
                 "bracks" = "][",
                 "rangle" = "&#10217;")
-  if (table) {
+  if (table == TRUE) {
     char_tab <- tibble::tibble(separator = names(sep.opts),
                                result = unname(sep.opts))
     print(

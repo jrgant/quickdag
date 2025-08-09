@@ -41,7 +41,7 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                                   layout = TRUE)
 
   # make object available in global environment (defaults to TRUE)
-  if (send_global) {
+  if (send_global == TRUE) {
     if (is.null(dagitty_obj_name)) {
       stop("Provide a name for your DAG.")
     }
