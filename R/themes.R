@@ -14,7 +14,7 @@
 #'   or `font`.
 
 #' @rdname qd_themes
-#' @export qd_themes
+#' @export
 # wrapper for theme selection
 qd_themes <- function(graph_obj, theme, ...) {
 
@@ -29,7 +29,7 @@ qd_themes <- function(graph_obj, theme, ...) {
 }
 
 #' @rdname qd_themes
-#' @export theme_base
+#' @export
 theme_base <- function(graph_obj, font = "serif", ...) {
 
   graph_attrs <- tibble::tibble(
@@ -58,7 +58,7 @@ theme_base <- function(graph_obj, font = "serif", ...) {
 }
 
 #' @rdname qd_themes
-#' @export theme_circles
+#' @export
 theme_circles <- function(graph_obj,
                           font = "serif", ...) {
   # set base theme
@@ -73,8 +73,8 @@ theme_circles <- function(graph_obj,
 }
 
 #' @rdname qd_themes
-#' @export theme_dots
-theme_dots <- function(graph_obj, font = "serif", ...) {
+#' @export
+theme_pearl <- function(graph_obj, font = "serif", ...) {
   # set base theme
   graph_obj <- graph_obj %>% theme_base()
 
@@ -96,7 +96,7 @@ theme_dots <- function(graph_obj, font = "serif", ...) {
 }
 
 #' @rdname qd_themes
-#' @export get_conditioned_nodes
+#' @export
 get_conditioned_nodes <- function(graph_obj, conditioned = NULL) {
   if (!is.null(conditioned)) {
 

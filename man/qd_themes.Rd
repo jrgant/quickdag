@@ -4,7 +4,7 @@
 \alias{qd_themes}
 \alias{theme_base}
 \alias{theme_circles}
-\alias{theme_dots}
+\alias{theme_pearl}
 \alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
@@ -14,7 +14,7 @@ theme_base(graph_obj, font = "serif", ...)
 
 theme_circles(graph_obj, font = "serif", ...)
 
-theme_dots(graph_obj, font = "serif", ...)
+theme_pearl(graph_obj, font = "serif", ...)
 
 get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
