@@ -1,16 +1,21 @@
 #' Generate a single-world intervention graph (SWIG)
 #'
 #' @description
-#' Take a DAG graph object and, in the simplest case, create a single-world intervention template corresponding
-#' to a world in which the fixed nodes are set to a given value. Alternatively, tell qd_swig which values fixed nodes
-#' will be set to.
+#' Take a DAG graph object and, in the simplest case, create a single-world intervention
+#' template corresponding to a world in which the fixed nodes are set to a given value.
+#' Alternatively, tell [qd_swig()] which values fixed nodes will be set to.
 #'
-#' @param graph_obj A DAG object created by \code{qd_dag()}.
+#' @param graph_obj A DAG object created by [qd_dag()].
 #' @param fixed_nodes A vector containing the nodes to be intervened upon.
-#' @param custom_values A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., \code{c("A" = "1")}).
-#' @param fixed_sep A character string indicating which character to use as a separator in fixed nodes. Defaults to \code{"vlin"}. Run \code{sep_opts(TRUE)} for available options.
-#' @param sep_point_size A numerical value specifying the point size for fixed node separators.
+#' @param custom_values A named vector containing alternative labels identifying explicit
+#'   values for fixed nodes (e.g., \code{c("A" = "1")}).
+#' @param fixed_sep A character string indicating which character to use as a separator
+#'   in fixed nodes. Defaults to \code{"vlin"}. Run \code{sep_opts(TRUE)} for available
+#'   options.
+#' @param sep_point_size A numerical value specifying the point size for fixed node
+#'   separators.
 #'
+#' @export
 #' @examples
 #' # Provide a DAG object and a list of nodes to be fixed
 #' library(magrittr)
@@ -25,14 +30,12 @@
 #'
 #' swig %>% DiagrammeR::render_graph()
 #'
-#' @export qd_swig
 qd_swig <- function(graph_obj,
                     fixed_nodes,
                     custom_values = NULL,
                     fixed_sep = "vlin",
                     sep_point_size = 15) {
-  # graph.obj = graph
-  # fixed = alpha IDs for fixed nodes
+
   ndf <- DiagrammeR::get_node_df(graph_obj)
   ndf$fixed <- with(ndf, ifelse(alpha_id %in% fixed_nodes, TRUE, FALSE))
 

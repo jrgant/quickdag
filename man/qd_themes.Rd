@@ -19,15 +19,19 @@ theme_dots(graph_obj, font = "serif", ...)
 get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
 \arguments{
-\item{graph_obj}{A DAG object created by \code{qd_dag()}.}
+\item{graph_obj}{A DAG object created by [qd_dag()].}
 
-\item{theme}{A character string indicating the theme to use. Defaults to \code{"base"}. Set to \code{NULL} to use GraphViz defaults.}
+\item{theme}{A character string indicating the theme to use. Defaults to "base".
+Set to `NULL` to use GraphViz defaults.}
 
-\item{...}{Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}}
+\item{...}{Pass arguments to theme call (e.g., [theme_base()]), such as `conditioned`
+or `font`.}
 
-\item{font}{A character vector indicating the font family to use for node labels. Defaults to \code{"serif"}.}
+\item{font}{A character vector indicating the font family to use for node labels.
+Defaults to "serif".}
 
-\item{conditioned}{A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to \code{"square"}.}
+\item{conditioned}{A character vector indicating which nodes are conditioned upon.
+The shape for these nodes will be set to "square".}
 }
 \description{
 Apply various pre-fabricated themes to diagrams.

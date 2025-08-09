@@ -7,8 +7,9 @@
 qd_embed(...)
 }
 \arguments{
-\item{...}{Pass arguments to \code{qd_save()}.}
+\item{...}{Pass arguments to [qd_save()].}
 }
 \description{
-A wrapper around \code{qd_save()} meant for use within R code chunks in RMarkdown documents.
+A wrapper around [qd_save()] meant for use within R code chunks in
+  RMarkdown documents.
 }

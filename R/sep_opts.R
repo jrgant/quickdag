@@ -3,7 +3,8 @@
 #' @description
 #' Preview character options for use as the fixed node separator in SWIGs.
 #'
-#' @param table Logical to show or hide HTML table display of available characters. Defaults to \code{FALSE}.
+#' @param table Logical to show or hide HTML table display of available characters.
+#'   Defaults to `FALSE`.
 #'
 #' @export sep_opts
 sep_opts <- function(table = FALSE) {
