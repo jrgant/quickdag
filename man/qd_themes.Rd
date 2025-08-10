@@ -2,32 +2,36 @@
 % Please edit documentation in R/themes.R
 \name{qd_themes}
 \alias{qd_themes}
-\alias{theme_base}
-\alias{theme_circles}
-\alias{theme_dots}
+\alias{theme_qd_base}
+\alias{theme_qd_circles}
+\alias{theme_qd_pearl}
 \alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
-qd_themes(graph.obj, theme, ...)
+qd_themes(graph_obj, theme, ...)
 
-theme_base(graph.obj, font = "serif", ...)
+theme_qd_base(graph_obj, font = "serif", ...)
 
-theme_circles(graph.obj, font = "serif", ...)
+theme_qd_circles(graph_obj, font = "serif", ...)
 
-theme_dots(graph.obj, font = "serif", ...)
+theme_qd_pearl(graph_obj, font = "serif", ...)
 
-get_conditioned_nodes(graph.obj, conditioned = NULL)
+get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
 \arguments{
-\item{graph.obj}{A DAG object created by \code{qd_dag()}.}
+\item{graph_obj}{A DAG object created by [qd_dag()].}
 
-\item{theme}{A character string indicating the theme to use. Defaults to \code{"base"}. Set to \code{NULL} to use GraphViz defaults.}
+\item{theme}{A character string indicating the theme to use. Defaults to "base".
+Set to `NULL` to use GraphViz defaults.}
 
-\item{...}{Pass arguments to theme call (e.g., \code{theme_base()}), such as \code{conditioned} or \code{font}}
+\item{...}{Pass arguments to theme call (e.g., [theme_qd_base()]), such as
+`conditioned` or `font`.}
 
-\item{font}{A character vector indicating the font family to use for node labels. Defaults to \code{"serif"}.}
+\item{font}{A character vector indicating the font family to use for node labels.
+Defaults to "serif".}
 
-\item{conditioned}{A character vector indicating which nodes are conditioned upon. The shape for these nodes will be set to \code{"square"}.}
+\item{conditioned}{A character vector indicating which nodes are conditioned upon.
+The shape for these nodes will be set to "square".}
 }
 \description{
 Apply various pre-fabricated themes to diagrams.

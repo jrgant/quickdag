@@ -5,28 +5,32 @@
 \title{Generate a single-world intervention graph (SWIG)}
 \usage{
 qd_swig(
-  graph.obj,
-  fixed.nodes,
-  custom.values = NULL,
-  fixed.sep = "vlin",
-  sep.point.size = 15
+  graph_obj,
+  fixed_nodes,
+  custom_values = NULL,
+  fixed_sep = "vlin",
+  sep_point_size = 15
 )
 }
 \arguments{
-\item{graph.obj}{A DAG object created by \code{qd_dag()}.}
+\item{graph_obj}{A DAG object created by [qd_dag()].}
 
-\item{fixed.nodes}{A vector containing the nodes to be intervened upon.}
+\item{fixed_nodes}{A vector containing the nodes to be intervened upon.}
 
-\item{custom.values}{A named vector containing alternative labels identifying explicit values for fixed nodes (e.g., \code{c("A" = "1")}).}
+\item{custom_values}{A named vector containing alternative labels identifying explicit
+values for fixed nodes (e.g., \code{c("A" = "1")}).}
 
-\item{fixed.sep}{A character string indicating which character to use as a separator in fixed nodes. Defaults to \code{"vlin"}. Run \code{sep_opts(TRUE)} for available options.}
+\item{fixed_sep}{A character string indicating which character to use as a separator
+in fixed nodes. Defaults to \code{"vlin"}. Run \code{sep_opts(TRUE)} for available
+options.}
 
-\item{sep.point.size}{A numerical value specifying the point size for fixed node separators.}
+\item{sep_point_size}{A numerical value specifying the point size for fixed node
+separators.}
 }
 \description{
-Take a DAG graph object and, in the simplest case, create a single-world intervention template corresponding
-to a world in which the fixed nodes are set to a given value. Alternatively, tell qd_swig which values fixed nodes
-will be set to.
+Take a DAG graph object and, in the simplest case, create a single-world intervention
+template corresponding to a world in which the fixed nodes are set to a given value.
+Alternatively, tell [qd_swig()] which values fixed nodes will be set to.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed

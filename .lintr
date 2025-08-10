@@ -1,0 +1,4 @@
+linters: linters_with_defaults(
+    line_length_linter(90L),
+    object_usage_linter = NULL
+    )

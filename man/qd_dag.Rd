@@ -6,42 +6,47 @@
 \usage{
 qd_dag(
   edgelist,
-  node.labs = NULL,
-  node.aes.opts = list(),
-  edge.aes.opts = list(),
+  node_labs = NULL,
+  node_aes_opts = list(),
+  edge_aes_opts = list(),
   verbose = TRUE,
-  check.dag = TRUE,
+  check_dag = TRUE,
   theme = "base",
   ...
 )
 }
 \arguments{
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
+\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
+example for format).}
 
-\item{node.labs}{A named character vector containing label names. Defaults to \code{NULL}.}
+\item{node_labs}{A named character vector containing label names. Defaults
+to `NULL`.}
 
-\item{node.aes.opts}{A list feeding aesthetic options for nodes to \code{DiagrammeR::node_aes()}. Defaults to empty list. See \code{?node_aes} to view available parameters.}
+\item{node_aes_opts}{A list feeding aesthetic options for nodes to
+[DiagrammeR::node_aes()]. Defaults to empty list.}
 
-\item{edge.aes.opts}{A list feeding aesthetic options for edges to \code{DiagrammeR::edge_aes()}. Defaults to empty list. See \code{?edge_aes} to view available parameters.}
+\item{edge_aes_opts}{A list feeding aesthetic options for edges to
+[DiagrammeR::edge_aes()]. Defaults to empty list.}
 
-\item{verbose}{Indicate whether to print node and edge dataframes to the console. See NOTE below. Defaults to \code{TRUE}.}
+\item{verbose}{Indicate whether to print node and edge dataframes to the console.
+See Details below. Defaults to `TRUE`.}
 
-\item{check.dag}{Logical. Check whether the graph conforms to the rules of DAGs. Defaults to \code{TRUE}.}
+\item{check_dag}{Logical. Check whether the graph conforms to the rules of DAGs.
+Defaults to `TRUE`.}
 
-\item{theme}{Choose theme for plot output. Defaults to \code{"base"}. Setting theme to \code{NULL} will use DiagrammeR's \code{NULL} attribute theme.}
+\item{theme}{Choose theme for plot output. Defaults to `"base"`. Setting theme to
+`NULL` will use DiagrammeR's `NULL` attribute theme.}
 
-\item{...}{Pass optional \code{conditioned} argument to qd_themes().}
+\item{...}{Pass optional `conditioned` argument to [qd_themes()].}
 }
 \description{
 Provide simple syntax specifying paths between nodes to generate a graph object.
 }
 \details{
-Suggestions and bug reports welcome at \url{https://github.com/jrgant/quickDAG/issues}.
-
-Packages used: DiagrammeR, stringr, purrr
-}
-\note{
-Leaving the \code{checks} option selected may be advisable to ensure labels and IDs have not been mismatched. By default, \code{qd_dag()} alphabetizes nodes included in \code{edgelist} and does the same for \code{node.labs} under a first assumption that labels will begin with the same letter as their corresponding \code{alpha.id}, which may not always be the case.
+Leaving the `verbose` set to `TRUE` may be advisable to ensure labels and IDs have
+not been mismatched. By default, [qd_dag()] alphabetizes nodes included in `edgelist`
+and does the same for `node_labs` under a first assumption that labels will begin with
+the same letter as their corresponding `alpha_id`, which may not always be the case.
 }
 \examples{
 # Provide a list of edges, with nodes specified as letters.
@@ -56,14 +61,15 @@ DiagrammeR::render_graph(g.obj)
 
 # Pass labels and aesthetic options for nodes or edges
 g.obj2 <- qd_dag(edges,
-                 node.labs = c("A" = "Alcohol",
+                 node_labs = c("A" = "Alcohol",
                                "B" = "BP",
                                "C" = "CVD"),
-                 node.aes.opts = list(shape = "plaintext",
+                 node_aes_opts = list(shape = "plaintext",
                                       fillcolor = "none",
                                       color = "black"),
-                 edge.aes.opts = list(arrowsize = 0.5,
+                 edge_aes_opts = list(arrowsize = 0.5,
                                       color = "gray"),
                  theme = NULL)
 DiagrammeR::render_graph(g.obj2)
+
 }

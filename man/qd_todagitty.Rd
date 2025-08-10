@@ -8,35 +8,41 @@ qd_todagitty(
   edgelist,
   diagram_type = "dag",
   showplot = FALSE,
-  send.global = FALSE,
-  dagitty.obj.name = NULL,
+  send_global = FALSE,
+  dagitty_obj_name = NULL,
   exposure,
   outcome,
   ...
 )
 }
 \arguments{
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see example for format).}
+\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
+example for format).}
 
-\item{diagram_type}{Character identifying the diagram type. Defaults to \code{"dag"}, but user can specify another graph type (see dagitty documentation).}
+\item{diagram_type}{Character identifying the diagram type. Defaults to "dag", but
+user can specify another graph type (see dagitty documentation).}
 
-\item{showplot}{Logical indicating whether to produce a dagitty plot. Defaults to \code{FALSE}.}
+\item{showplot}{Logical indicating whether to produce a dagitty plot. Defaults to
+`FALSE`.}
 
-\item{send.global}{Logical indicating whether to make the dagitty object available in the global environment. Defaults to \code{FALSE}.}
+\item{send_global}{Logical indicating whether to make the dagitty object available
+in the global environment. Defaults to `FALSE`.}
 
-\item{dagitty.obj.name}{Character specifying the name of the dagitty object. Only used and required if \code{send.global = TRUE}.}
+\item{dagitty_obj_name}{Character specifying the name of the dagitty object. Only
+used and required if `send_global = TRUE`.}
 
 \item{exposure}{Character. Specify exposure of interest. (Required)}
 
 \item{outcome}{Character. Specifiy outcome of interest. (Required)}
 
-\item{...}{Pass arguments to \code{adjustmentSets()}. See dagitty documentation for options.}
+\item{...}{Pass arguments to [dagitty::adjustmentSets()]. See dagitty documentation
+for options.}
 }
 \description{
 Format an edgelist and send it to dagitty to identify variable adjustment sets.
 }
-\note{
-The \code{exposure} and \code{outcome} options map to dagitty functions of the same name.
+\details{
+The `exposure` and `outcome` options map to dagitty functions of the same name.
 }
 \examples{
 edges <- c("A -> { B C D }",
