@@ -1,18 +1,18 @@
 Package: quickdag
 Title: Make Beautiful Directed Acyclic Graphs
-Version: 0.2.1
+Version: 1.0.0-alpha
 Authors@R: 
     person("Jason", "Gantenberg", , "jason.gantenberg@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8144-4273"))
 Description: This package allows the user the save directed acyclic graphs
-    (DAGs) generated in DiagrammeR and export them to pdf, png, or svg
+    (DAGs) generated in DiagrammeR and export them to PDF, PNG, SVG, or PS
     format. Users may optionally choose to view the DAG without saving or
-    to embed it in an RMarkdown document. In addition, quickDAG allows the
+    to embed it in a document. In addition, quickdag allows the
     user easily to reformat DAGs as single-world intervention graph (SWIG)
     templates.
 License: MIT + file LICENSE
-URL: https://github.com/jrgant/quickDAG, https://jrgant.github.io/quickdag/
-BugReports: https://github.com/jrgant/quickDAG/issues
+URL: https://jrgant.github.io/quickdag/, https://github.com/jrgant/quickdag
+BugReports: https://github.com/jrgant/quickdag/issues
 Depends: 
     R (>= 3.5)
 Imports: 

@@ -6,13 +6,14 @@
 \alias{quickdag-package}
 \title{quickdag: Make Beautiful Directed Acyclic Graphs}
 \description{
-This package allows the user the save directed acyclic graphs (DAGs) generated in DiagrammeR and export them to pdf, png, or svg format. Users may optionally choose to view the DAG without saving or to embed it in an RMarkdown document. In addition, quickDAG allows the user easily to reformat DAGs as single-world intervention graph (SWIG) templates.
+This package allows the user the save directed acyclic graphs (DAGs) generated in DiagrammeR and export them to PDF, PNG, SVG, or PS format. Users may optionally choose to view the DAG without saving or to embed it in a document. In addition, quickdag allows the user easily to reformat DAGs as single-world intervention graph (SWIG) templates.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jrgant/quickDAG}
-  \item Report bugs at \url{https://github.com/jrgant/quickDAG/issues}
+  \item \url{https://jrgant.github.io/quickdag/}
+  \item \url{https://github.com/jrgant/quickdag}
+  \item Report bugs at \url{https://github.com/jrgant/quickdag/issues}
 }
 
 }
