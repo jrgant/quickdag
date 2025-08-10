@@ -22,6 +22,7 @@ Imports:
     magrittr (>= 2.0.3),
     messaging (>= 0.1.0),
     purrr (>= 1.1.0),
+    rlang (>= 1.1.6),
     stringr (>= 1.5.1),
     tibble (>= 3.3.0)
 Suggests:
