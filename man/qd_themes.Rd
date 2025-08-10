@@ -2,19 +2,19 @@
 % Please edit documentation in R/themes.R
 \name{qd_themes}
 \alias{qd_themes}
-\alias{theme_base}
-\alias{theme_circles}
-\alias{theme_pearl}
+\alias{theme_qd_base}
+\alias{theme_qd_circles}
+\alias{theme_qd_pearl}
 \alias{get_conditioned_nodes}
 \title{Diagram themes}
 \usage{
 qd_themes(graph_obj, theme, ...)
 
-theme_base(graph_obj, font = "serif", ...)
+theme_qd_base(graph_obj, font = "serif", ...)
 
-theme_circles(graph_obj, font = "serif", ...)
+theme_qd_circles(graph_obj, font = "serif", ...)
 
-theme_pearl(graph_obj, font = "serif", ...)
+theme_qd_pearl(graph_obj, font = "serif", ...)
 
 get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
@@ -24,8 +24,8 @@ get_conditioned_nodes(graph_obj, conditioned = NULL)
 \item{theme}{A character string indicating the theme to use. Defaults to "base".
 Set to `NULL` to use GraphViz defaults.}
 
-\item{...}{Pass arguments to theme call (e.g., [theme_base()]), such as `conditioned`
-or `font`.}
+\item{...}{Pass arguments to theme call (e.g., [theme_qd_base()]), such as
+`conditioned` or `font`.}
 
 \item{font}{A character vector indicating the font family to use for node labels.
 Defaults to "serif".}

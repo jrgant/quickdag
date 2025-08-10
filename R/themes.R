@@ -10,8 +10,8 @@
 #'   Set to `NULL` to use GraphViz defaults.
 #' @param font A character vector indicating the font family to use for node labels.
 #'   Defaults to "serif".
-#' @param ... Pass arguments to theme call (e.g., [theme_base()]), such as `conditioned`
-#'   or `font`.
+#' @param ... Pass arguments to theme call (e.g., [theme_qd_base()]), such as
+#'   `conditioned` or `font`.
 
 #' @rdname qd_themes
 #' @export
@@ -19,9 +19,9 @@
 qd_themes <- function(graph_obj, theme, ...) {
 
   select_theme <- c(
-    "base" = "theme_base",
-    "circles" = "theme_circles",
-    "pearl" = "theme_pearl"
+    "base" = "theme_qd_base",
+    "circles" = "theme_qd_circles",
+    "pearl" = "theme_qd_pearl"
   )
 
   do.call(select_theme[theme],
@@ -30,7 +30,7 @@ qd_themes <- function(graph_obj, theme, ...) {
 
 #' @rdname qd_themes
 #' @export
-theme_base <- function(graph_obj, font = "serif", ...) {
+theme_qd_base <- function(graph_obj, font = "serif", ...) {
 
   graph_attrs <- tibble::tibble(
     attr = c("rankdir", "layout"),
@@ -59,10 +59,10 @@ theme_base <- function(graph_obj, font = "serif", ...) {
 
 #' @rdname qd_themes
 #' @export
-theme_circles <- function(graph_obj,
+theme_qd_circles <- function(graph_obj,
                           font = "serif", ...) {
   # set base theme
-  graph_obj <- graph_obj %>% theme_base()
+  graph_obj <- graph_obj %>% theme_qd_base()
 
   # tweak base theme
   graph_obj <- graph_obj %>%
@@ -74,9 +74,9 @@ theme_circles <- function(graph_obj,
 
 #' @rdname qd_themes
 #' @export
-theme_pearl <- function(graph_obj, font = "serif", ...) {
+theme_qd_pearl <- function(graph_obj, font = "serif", ...) {
   # set base theme
-  graph_obj <- graph_obj %>% theme_base()
+  graph_obj <- graph_obj %>% theme_qd_base()
 
   # tweak base theme
   graph_obj <- graph_obj %>%
