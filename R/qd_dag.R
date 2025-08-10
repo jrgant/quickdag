@@ -165,10 +165,10 @@ qd_dag <- function(edgelist, node_labs = NULL,
         "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
         "Using both methods to set aesthetics may produce unexpected results."
       )
-    } else {
-      themed_graph <- graph %>% qd_themes(theme = theme, ...)
-      return(themed_graph)
     }
+
+    themed_graph <- graph %>% qd_themes(theme = theme, ...)
+    return(themed_graph)
 
   } else {
     return(graph)
