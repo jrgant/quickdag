@@ -18,8 +18,8 @@ sep_opts <- function(table = FALSE) {
                 "bracks" = "][",
                 "rangle" = "&#10217;")
   if (table == TRUE) {
-    char_tab <- tibble::tibble(separator = names(sep.opts),
-                               result = unname(sep.opts))
+    char_tab <- tibble::tibble(separator = names(sep_opts),
+                               result = unname(sep_opts))
     print(
       htmlTable::htmlTable(
         char_tab,
