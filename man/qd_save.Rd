@@ -27,12 +27,19 @@ For convenience in computational notebooks like quarto or RMarkdown documents,
 [qd_save()] also allows the user to embed the image via [knitr::include_graphics()].
 }
 \examples{
+# redirect file to temporary directory (example only)
+file <- file.path(tempdir(), "dag.pdf")
+
+# save without embedding
 dag <- qd_dag(c("L -> {A Y}", "A -> Y"))
-qd_save(dag, "dag.pdf")
+qd_save(dag, file)
 
 # embed from code chunk using knitr::include_graphics()
-qd_save(dag, "dag.pdf", embed = TRUE)
+qd_save(dag, file, embed = TRUE)
 
 # `title` passed to DiagrammeR::export_graph()
-qd_save(dag, "dag.pdf", title = "Demo")
+qd_save(dag, file, title = "Demo")
+
+# clean up temporary directory
+file.remove(file)
 }
