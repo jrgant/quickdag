@@ -16,17 +16,19 @@ BugReports: https://github.com/jrgant/quickdag/issues
 Depends: 
     R (>= 3.5)
 Imports: 
-    dagitty,
-    DiagrammeR,
-    DiagrammeRsvg,
-    dplyr,
-    htmlTable,
-    knitr,
-    magrittr,
-    messaging,
-    purrr,
-    rsvg,
-    stringr,
-    tibble
+    dagitty (>= 0.3.4),
+    DiagrammeR (>= 1.0.11),
+    dplyr (>= 1.1.4),
+    magrittr (>= 2.0.3),
+    messaging (>= 0.1.0),
+    purrr (>= 1.1.0),
+    stringr (>= 1.5.1),
+    tibble (>= 3.3.0)
+Suggests:
+    DiagrammeRsvg (>= 0.1),
+    htmlTable (>= 2.4.3),
+    knitr (>= 1.50),
+    rsvg (>= 2.6.2),
+    testthat (>= 3.2.3)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
