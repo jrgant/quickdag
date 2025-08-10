@@ -59,8 +59,7 @@ theme_qd_base <- function(graph_obj, font = "serif", ...) {
 
 #' @rdname qd_themes
 #' @export
-theme_qd_circles <- function(graph_obj,
-                          font = "serif", ...) {
+theme_qd_circles <- function(graph_obj, font = "serif", ...) {
   # set base theme
   graph_obj <- graph_obj %>% theme_qd_base()
 
