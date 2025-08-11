@@ -23,26 +23,26 @@ example for format).}
 user can specify another graph type (see dagitty documentation).}
 
 \item{showplot}{Logical indicating whether to produce a dagitty plot. Defaults to
-`FALSE`.}
+\code{FALSE}.}
 
 \item{send_global}{Logical indicating whether to make the dagitty object available
-in the global environment. Defaults to `FALSE`.}
+in the global environment. Defaults to \code{FALSE}.}
 
 \item{dagitty_obj_name}{Character specifying the name of the dagitty object. Only
-used and required if `send_global = TRUE`.}
+used and required if \code{send_global = TRUE}.}
 
 \item{exposure}{Character. Specify exposure of interest. (Required)}
 
 \item{outcome}{Character. Specifiy outcome of interest. (Required)}
 
-\item{...}{Pass arguments to [dagitty::adjustmentSets()]. See dagitty documentation
+\item{...}{Pass arguments to \code{\link[dagitty:adjustmentSets]{dagitty::adjustmentSets()}}. See dagitty documentation
 for options.}
 }
 \description{
 Format an edgelist and send it to dagitty to identify variable adjustment sets.
 }
 \details{
-The `exposure` and `outcome` options map to dagitty functions of the same name.
+The \code{exposure} and \code{outcome} options map to dagitty functions of the same name.
 }
 \examples{
 edges <- c("A -> { B C D }",

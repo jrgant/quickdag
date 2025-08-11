@@ -8,7 +8,7 @@ sep_opts(table = FALSE)
 }
 \arguments{
 \item{table}{Logical to show or hide HTML table display of available characters.
-Defaults to `FALSE`.}
+Defaults to \code{FALSE}.}
 }
 \description{
 Preview character options for use as the fixed node separator in SWIGs.

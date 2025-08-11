@@ -12,8 +12,8 @@
 #'   [DiagrammeR::export_graph()] for details.
 #' @param ... Pass other arguments to [DiagrammeR::render_graph()].
 #' @param embed Defaults to `FALSE`. Automatically set to `TRUE` by [qd_embed()].
-#' @param kg A list allowing the user to set arguments for [knitr::graphics()] (except for
-#'   `path`).
+#' @param kg A list allowing the user to set arguments for [knitr::include_graphics()]
+#'   (except for `path`).
 #' @rdname qd_save
 #' @export
 #' @examples
@@ -21,7 +21,8 @@
 #' file <- file.path(tempdir(), "dag.pdf")
 #'
 #' # save without embedding
-#' dag <- qd_dag(c("L -> {A Y}", "A -> Y"))
+#' dag <- qd_dag(c("L -> {A Y}", "A -> Y"),
+#'               check_dag = FALSE, verbose = FALSE)
 #' qd_save(dag, file)
 #'
 #' # embed from code chunk using knitr::include_graphics()

@@ -7,31 +7,32 @@
 qd_save(graph, file_name, ..., embed = FALSE, kg = NULL)
 }
 \arguments{
-\item{graph}{A graph object produced by [qd_dag()]}
+\item{graph}{A graph object produced by \code{\link[=qd_dag]{qd_dag()}}}
 
 \item{file_name}{A filename (possibly including a path) to which to save the image.
 File type will be determined by the extension provided (pdf, svg, png, ps). See
-[DiagrammeR::export_graph()] for details.}
+\code{\link[DiagrammeR:export_graph]{DiagrammeR::export_graph()}} for details.}
 
-\item{...}{Pass other arguments to [DiagrammeR::render_graph()].}
+\item{...}{Pass other arguments to \code{\link[DiagrammeR:render_graph]{DiagrammeR::render_graph()}}.}
 
-\item{embed}{Defaults to `FALSE`. Automatically set to `TRUE` by [qd_embed()].}
+\item{embed}{Defaults to \code{FALSE}. Automatically set to \code{TRUE} by \code{\link[=qd_embed]{qd_embed()}}.}
 
-\item{kg}{A list allowing the user to set arguments for [knitr::graphics()] (except for
-`path`).}
+\item{kg}{A list allowing the user to set arguments for \code{\link[knitr:include_graphics]{knitr::include_graphics()}}
+(except for \code{path}).}
 }
 \description{
-[qd_save()] is a light wrapper around [DiagrammeR::export_graph()], which
+\code{\link[=qd_save]{qd_save()}} is a light wrapper around \code{\link[DiagrammeR:export_graph]{DiagrammeR::export_graph()}}, which
 enables exporting high-quality and/or scalable graphics for both print and online.
 For convenience in computational notebooks like quarto or RMarkdown documents,
-[qd_save()] also allows the user to embed the image via [knitr::include_graphics()].
+\code{\link[=qd_save]{qd_save()}} also allows the user to embed the image via \code{\link[knitr:include_graphics]{knitr::include_graphics()}}.
 }
 \examples{
 # redirect file to temporary directory (example only)
 file <- file.path(tempdir(), "dag.pdf")
 
 # save without embedding
-dag <- qd_dag(c("L -> {A Y}", "A -> Y"))
+dag <- qd_dag(c("L -> {A Y}", "A -> Y"),
+              check_dag = FALSE, verbose = FALSE)
 qd_save(dag, file)
 
 # embed from code chunk using knitr::include_graphics()

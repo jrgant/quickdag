@@ -20,33 +20,33 @@ qd_dag(
 example for format).}
 
 \item{node_labs}{A named character vector containing label names. Defaults
-to `NULL`.}
+to \code{NULL}.}
 
 \item{node_aes_opts}{A list feeding aesthetic options for nodes to
-[DiagrammeR::node_aes()]. Defaults to empty list.}
+\code{\link[DiagrammeR:node_aes]{DiagrammeR::node_aes()}}. Defaults to empty list.}
 
 \item{edge_aes_opts}{A list feeding aesthetic options for edges to
-[DiagrammeR::edge_aes()]. Defaults to empty list.}
+\code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}. Defaults to empty list.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console.
-See Details below. Defaults to `TRUE`.}
+See Details below. Defaults to \code{TRUE}.}
 
 \item{check_dag}{Logical. Check whether the graph conforms to the rules of DAGs.
-Defaults to `TRUE`.}
+Defaults to \code{TRUE}.}
 
-\item{theme}{Choose theme for plot output. Defaults to `"base"`. Setting theme to
-`NULL` will use DiagrammeR's `NULL` attribute theme.}
+\item{theme}{Choose theme for plot output. Defaults to \code{"base"}. Setting theme to
+\code{NULL} will use DiagrammeR's \code{NULL} attribute theme.}
 
-\item{...}{Pass optional `conditioned` argument to [qd_themes()].}
+\item{...}{Pass optional \code{conditioned} argument to \code{\link[=qd_themes]{qd_themes()}}.}
 }
 \description{
 Provide simple syntax specifying paths between nodes to generate a graph object.
 }
 \details{
-Leaving the `verbose` set to `TRUE` may be advisable to ensure labels and IDs have
-not been mismatched. By default, [qd_dag()] alphabetizes nodes included in `edgelist`
-and does the same for `node_labs` under a first assumption that labels will begin with
-the same letter as their corresponding `alpha_id`, which may not always be the case.
+Leaving the \code{verbose} set to \code{TRUE} may be advisable to ensure labels and IDs have
+not been mismatched. By default, \code{\link[=qd_dag]{qd_dag()}} alphabetizes nodes included in \code{edgelist}
+and does the same for \code{node_labs} under a first assumption that labels will begin with
+the same letter as their corresponding \code{alpha_id}, which may not always be the case.
 }
 \examples{
 # Provide a list of edges, with nodes specified as letters.
