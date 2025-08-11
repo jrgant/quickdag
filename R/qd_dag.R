@@ -162,7 +162,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
     if (length(node_aes_opts) > 0 || length(edge_aes_opts) > 0) {
       warning(
         "Node and/or edge aesthetics are currently being applied ",
-        "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
+        "via both node_aes_opts or edge_aes_opts AND a diagram theme. ",
         "Using both methods to set aesthetics may produce unexpected results."
       )
     }
