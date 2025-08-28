@@ -14,7 +14,7 @@ License: MIT + file LICENSE
 URL: https://jrgant.github.io/quickdag/, https://github.com/jrgant/quickdag
 BugReports: https://github.com/jrgant/quickdag/issues
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1)
 Imports: 
     dagitty (>= 0.3.4),
     DiagrammeR (>= 1.0.11),
