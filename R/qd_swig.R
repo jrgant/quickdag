@@ -25,8 +25,8 @@
 #' dag  <- qd_dag(edges)
 #'
 #' swig <- dag %>%
-#'         qd_swig(fixed.nodes = "A",
-#'                 custom.values = c("A" = "1"))
+#'         qd_swig(fixed_nodes = "A",
+#'                 custom_values = c("A" = "1"))
 #'
 #' swig %>% DiagrammeR::render_graph()
 #'
