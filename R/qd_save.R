@@ -17,6 +17,7 @@
 #' @rdname qd_save
 #' @export
 #' @examples
+#' \dontrun{
 #' dag <- qd_dag(c("L -> {A Y}", "A -> Y"))
 #' qd_save(dag, "dag.pdf")
 #'
@@ -25,6 +26,7 @@
 #'
 #' # `title` passed to DiagrammeR::export_graph()
 #' qd_save(dag, "dag.pdf", title = "Demo")
+#' }
 qd_save <- function(graph, file_name, ..., embed = FALSE, kg = NULL) {
   DiagrammeR::export_graph(graph = graph, file_name = file_name, ...)
 
