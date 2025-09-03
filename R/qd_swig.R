@@ -48,7 +48,7 @@ qd_swig <- function(graph_obj,
         # map() set up to drop the destination node
         ancestors <-
           DiagrammeR::get_paths(graph_obj, to = curr_id) %>%
-          purrr::map(~ .x[.x != curr.id])
+          purrr::map(~ .x[.x != curr_id])
 
         fx_nodes <- ancestors %>%
           purrr::map(function(x) {
