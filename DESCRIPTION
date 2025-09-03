@@ -25,6 +25,7 @@ Imports:
     magrittr,
     messaging,
     purrr,
+    rlang,
     rsvg,
     stringr,
     tibble
