@@ -27,6 +27,7 @@ For convenience in computational notebooks like quarto or RMarkdown documents,
 [qd_save()] also allows the user to embed the image via [knitr::include_graphics()].
 }
 \examples{
+\dontrun{
 dag <- qd_dag(c("L -> {A Y}", "A -> Y"))
 qd_save(dag, "dag.pdf")
 
@@ -35,4 +36,5 @@ qd_save(dag, "dag.pdf", embed = TRUE)
 
 # `title` passed to DiagrammeR::export_graph()
 qd_save(dag, "dag.pdf", title = "Demo")
+}
 }

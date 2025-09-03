@@ -12,6 +12,7 @@ This package allows the user the save directed acyclic graphs (DAGs) generated i
 Useful links:
 \itemize{
   \item \url{https://github.com/jrgant/quickDAG}
+  \item \url{https://jrgant.github.io/quickdag/}
   \item Report bugs at \url{https://github.com/jrgant/quickDAG/issues}
 }
 
