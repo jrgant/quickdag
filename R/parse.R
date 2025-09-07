@@ -11,8 +11,9 @@ parse_nodes <- function(edgestring) {
 #' @inheritParams parse_nodes
 #' @export
 parse_edges <- function(edgestring) {
-  edge <- data.frame(edge = unlist(stringr::str_extract_all(edgestring, EDGEPAT)))
-  edge_locs <- as.data.frame(stringr::str_locate_all(edgestring, EDGEPAT))
+  edgepat <- "\\<\\-\\>|\\-\\>|\\<\\-"
+  edge <- data.frame(edge = unlist(stringr::str_extract_all(edgestring, edgepat)))
+  edge_locs <- as.data.frame(stringr::str_locate_all(edgestring, edgepat))
   edge_table <- cbind(edge, edge_locs)
 
   edge_table <- edge_table %>%
