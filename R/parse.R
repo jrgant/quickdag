@@ -2,7 +2,7 @@
 #' @param edgestring A string specifying node-edge relationships
 #' @export
 parse_nodes <- function(edgestring) {
-  nodes <- stringr::str_extract_all(edgestring, stringr::boundary("word"))
+  nodes <- unlist(stringr::str_extract_all(edgestring, stringr::boundary("word")))
   nodes
 }
 
