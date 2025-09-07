@@ -55,13 +55,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
-  nodes <- sort(unique(unlist(
-    stringr::str_extract_all(edgelist, pattern = "[:alnum:]+")
-  )))
-  ## specify nodes with direct descendants (out = list)
-  pa_nodes <- stringr::str_extract_all(edgelist, pattern = "^[:alnum:]+(?=\\s)")
-  ## specify nodes with direct ancestors (out = list)
-  ch_nodes <- stringr::str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]+")
+  nodes <- parse_nodes(edgelist)
 
   # Create Node Dataframe -------------------------------------------------
 
@@ -99,6 +93,8 @@ qd_dag <- function(edgelist, node_labs = NULL,
     )
 
   # Create Edge Dataframe -------------------------------------------------
+  edges <- parse_edges(edgelist)
+
   ## loop through pa.nodes and ch.nodes to match parents with children
   ## and create a parent entry for each child
   nodematches <- purrr::map2(.x = pa_nodes, .y = ch_nodes,
