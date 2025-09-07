@@ -4,10 +4,11 @@
 \alias{parse_nodes}
 \title{Parse nodes}
 \usage{
-parse_nodes(edgestring)
+parse_nodes(edgelist)
 }
 \arguments{
-\item{edgestring}{A string specifying node-edge relationships}
+\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
+example for format).}
 }
 \description{
 Parse nodes

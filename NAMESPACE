@@ -2,6 +2,7 @@
 
 export(get_conditioned_nodes)
 export(parse_edges)
+export(parse_edgestring)
 export(parse_nodes)
 export(qd_dag)
 export(qd_save)

@@ -1,16 +1,20 @@
 #' @title Parse nodes
-#' @param edgestring A string specifying node-edge relationships
+#' @inheritParams qd_dag
+#' @rdname node-parsing
 #' @export
-parse_nodes <- function(edgestring) {
-  nodes <- unique(unlist(stringr::str_extract_all(edgestring, stringr::boundary("word"))))
-  nodes
+parse_nodes <- function(edgelist) {
+  nodes <- unlist(lapply(edgelist,
+                         stringr::str_extract_all,
+                         pattern = stringr::boundary("word")))
+  unique(nodes)
 }
 
 
-#' @title Parse edges based on alpha IDs
-#' @inheritParams parse_nodes
+#' @title Parse edges in a graph specification
+#' @param edgestring A single string containing some set of node-edge relationships
+#' @rdname edge-parsing
 #' @export
-parse_edges <- function(edgestring) {
+parse_edgestring <- function(edgestring) {
   edgepat <- "\\<\\-\\>|\\-\\>|\\<\\-"
   edge <- data.frame(edge = unlist(stringr::str_extract_all(edgestring, edgepat)))
   edge_locs <- as.data.frame(stringr::str_locate_all(edgestring, edgepat))
@@ -46,4 +50,12 @@ parse_edges <- function(edgestring) {
   })
 
   Reduce(rbind, edge_mini_dfs)
+}
+
+#' @rdname edge-parsing
+#' @inheritParams qd_dag
+#' @export
+parse_edges <- function(edgelist) {
+  all_edges <- lapply(edgelist, parse_edgestring)
+  Reduce(rbind, all_edges)
 }
