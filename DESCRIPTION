@@ -15,7 +15,7 @@ URL: https://jrgant.github.io/quickdag/, https://github.com/jrgant/quickdag
 BugReports: https://github.com/jrgant/quickdag/issues
 Depends: 
     R (>= 4.1)
-Imports: 
+Imports:
     dagitty (>= 0.3.4),
     DiagrammeR (>= 1.0.11),
     dplyr (>= 1.1.4),
@@ -33,4 +33,4 @@ Suggests:
     testthat (>= 3.2.3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

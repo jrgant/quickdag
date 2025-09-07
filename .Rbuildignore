@@ -8,5 +8,5 @@
 ^pkgdown$
 ^\.github$
 ^LICENSE\.md$
-^.lintr$
+^\.lintr$
 ^Makefile$
