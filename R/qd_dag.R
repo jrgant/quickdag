@@ -51,7 +51,7 @@
 #'
 qd_dag <- function(edgelist, node_labs = NULL,
                    node_aes_opts = list(), edge_aes_opts = list(),
-                   verbose = TRUE, check_dag = TRUE, theme = "base", ...) {
+                   verbose = FALSE, check_dag = TRUE, theme = "base", ...) {
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order

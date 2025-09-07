@@ -9,7 +9,7 @@ qd_dag(
   node_labs = NULL,
   node_aes_opts = list(),
   edge_aes_opts = list(),
-  verbose = TRUE,
+  verbose = FALSE,
   check_dag = TRUE,
   theme = "base",
   ...
