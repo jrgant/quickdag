@@ -18,15 +18,14 @@ Depends:
 Imports: 
     dagitty,
     DiagrammeR,
-    DiagrammeRsvg,
     dplyr,
     htmlTable,
     knitr,
     magrittr,
     messaging,
     purrr,
-    rsvg,
+    rlang,
     stringr,
     tibble
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
