@@ -7,8 +7,7 @@
 parse_nodes(edgelist)
 }
 \arguments{
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
-example for format).}
+\item{edgelist}{A vector of node-edge relationships.}
 }
 \description{
 Parse nodes

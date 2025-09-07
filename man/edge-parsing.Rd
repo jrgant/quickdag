@@ -12,8 +12,7 @@ parse_edges(edgelist)
 \arguments{
 \item{edgestring}{A single string containing some set of node-edge relationships}
 
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
-example for format).}
+\item{edgelist}{A vector of node-edge relationships.}
 }
 \description{
 Parse edges in a graph specification
