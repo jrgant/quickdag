@@ -16,8 +16,7 @@ qd_dag(
 )
 }
 \arguments{
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
-example for format).}
+\item{edgelist}{A vector of node-edge relationships.}
 
 \item{node_labs}{A named character vector containing label names. Defaults
 to \code{NULL}.}
@@ -49,10 +48,8 @@ and does the same for \code{node_labs} under a first assumption that labels will
 the same letter as their corresponding \code{alpha_id}, which may not always be the case.
 }
 \examples{
-# Provide a list of edges, with nodes specified as letters.
-# Do not list a node as a parent more than once.
-# Each line should contain a single edge character '->'.
-edges <- c("A -> { B C }",
+# Provide a list of edges, with nodes specified as letters or single words.
+edges <- c("A -> { B C } <- L",
            "B -> C")
 
 # make a DAG object and render the graph using the default theme
@@ -63,7 +60,8 @@ DiagrammeR::render_graph(g.obj)
 g.obj2 <- qd_dag(edges,
                  node_labs = c("A" = "Alcohol",
                                "B" = "BP",
-                               "C" = "CVD"),
+                               "C" = "CVD",
+                               "L" = "State"),
                  node_aes_opts = list(shape = "plaintext",
                                       fillcolor = "none",
                                       color = "black"),

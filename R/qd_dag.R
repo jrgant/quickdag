@@ -3,8 +3,7 @@
 #' @description
 #' Provide simple syntax specifying paths between nodes to generate a graph object.
 #'
-#' @param edgelist A vector of edge relationships. Must be strictly organized (see
-#'   example for format).
+#' @param edgelist A vector of node-edge relationships.
 #' @param node_labs A named character vector containing label names. Defaults
 #'   to `NULL`.
 #' @param node_aes_opts A list feeding aesthetic options for nodes to
@@ -26,10 +25,8 @@
 #' the same letter as their corresponding `alpha_id`, which may not always be the case.
 #' @export
 #' @examples
-#' # Provide a list of edges, with nodes specified as letters.
-#' # Do not list a node as a parent more than once.
-#' # Each line should contain a single edge character '->'.
-#' edges <- c("A -> { B C }",
+#' # Provide a list of edges, with nodes specified as letters or single words.
+#' edges <- c("A -> { B C } <- L",
 #'            "B -> C")
 #'
 #' # make a DAG object and render the graph using the default theme
@@ -40,7 +37,8 @@
 #' g.obj2 <- qd_dag(edges,
 #'                  node_labs = c("A" = "Alcohol",
 #'                                "B" = "BP",
-#'                                "C" = "CVD"),
+#'                                "C" = "CVD",
+#'                                "L" = "State"),
 #'                  node_aes_opts = list(shape = "plaintext",
 #'                                       fillcolor = "none",
 #'                                       color = "black"),
