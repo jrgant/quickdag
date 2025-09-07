@@ -95,20 +95,16 @@ qd_dag <- function(edgelist, node_labs = NULL,
   # Create Edge Dataframe -------------------------------------------------
   edges <- parse_edges(edgelist)
 
-  ## loop through pa.nodes and ch.nodes to match parents with children
-  ## and create a parent entry for each child
-  nodematches <- purrr::map2(.x = pa_nodes, .y = ch_nodes,
-                             .f = function(x, y) rep(x, length(y)))
-  pa_vec_alpha <- unlist(nodematches)
-
   ## match alphabetical node ID to numeric ID
-  pa_vec_num <- ndf$id[match(pa_vec_alpha, ndf$alpha_id)]
-  ch_vec_num <- ndf$id[match(unlist(ch_nodes), ndf$alpha_id)]
+  pa_vec_num <- ndf$id[match(edges$from_alpha, ndf$alpha_id)]
+  ch_vec_num <- ndf$id[match(edges$to_alpha, ndf$alpha_id)]
 
   ## set up edge dataframe options list
   ed_opts_list <- edge_aes_opts
   ed_opts_list$from <- pa_vec_num
   ed_opts_list$to <- ch_vec_num
+  ed_opts_list$from_alpha <- edges$from_alpha
+  ed_opts_list$to_alpha <- edges$to_alpha
 
   ## create edge dataframe with options
   edf <- do.call(DiagrammeR::create_edge_df, ed_opts_list)
