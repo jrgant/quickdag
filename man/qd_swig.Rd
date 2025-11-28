@@ -34,7 +34,6 @@ Alternatively, tell \code{\link[=qd_swig]{qd_swig()}} which values fixed nodes w
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
-library(magrittr)
 edges <- c("A -> Y",
            "L -> { A Y }")
 
