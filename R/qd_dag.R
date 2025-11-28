@@ -68,7 +68,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
 
   ## apply node labels if present
   if (!is.null(node_labs)) {
-    ndf <- ndf %>%
+    ndf <- ndf |>
       dplyr::mutate(
         label = dplyr::if_else(
           alpha_id %in% names(node_labs),
@@ -79,14 +79,15 @@ qd_dag <- function(edgelist, node_labs = NULL,
   }
 
   ## check for and format special labels
-  ndf <- ndf %>%
+  ndf <- ndf |>
     dplyr::mutate(
       label = dplyr::if_else(
         stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
         paste0(
           stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{",
           stringr::str_match(alpha_id, "[0-9]+"), "}"
-        ), label
+        ),
+        label
       )
     )
 
@@ -140,10 +141,10 @@ qd_dag <- function(edgelist, node_labs = NULL,
     # dataframes
     dots <- paste(rep(".", sep_length / 3), collapse = "")
     cat(dots, "NODE DATAFRAME", dots, "\n\n")
-    graph %>% DiagrammeR::get_node_df() %>% print()
+    graph |> DiagrammeR::get_node_df() |> print()
     cat("\n")
     cat(dots, "EDGE DATAFRAME", dots, "\n\n")
-    graph %>% DiagrammeR::get_edge_df() %>% print()
+    graph |> DiagrammeR::get_edge_df() |> print()
   }
 
   ## returns DiagrammeR's graph object to store node and edge dataframes
@@ -157,7 +158,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
       )
     }
 
-    themed_graph <- graph %>% qd_themes(theme = theme, ...)
+    themed_graph <- graph |> qd_themes(theme = theme, ...)
     return(themed_graph)
 
   } else {

@@ -40,10 +40,10 @@ edges <- c("A -> Y",
 
 dag  <- qd_dag(edges)
 
-swig <- dag \%>\%
+swig <- dag |>
         qd_swig(fixed_nodes = "A",
                 custom_values = c("A" = "1"))
 
-swig \%>\% DiagrammeR::render_graph()
+swig |> DiagrammeR::render_graph()
 
 }

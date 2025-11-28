@@ -20,7 +20,7 @@ parse_edgestring <- function(edgestring) {
   edge_locs <- as.data.frame(stringr::str_locate_all(edgestring, edgepat))
   edge_table <- cbind(edge, edge_locs)
 
-  edge_table <- edge_table %>%
+  edge_table <- edge_table |>
     dplyr::mutate(
       lstart = tidyr::replace_na(dplyr::lag(end) + 1, 1),
       lend = start - 1,
