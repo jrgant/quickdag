@@ -86,16 +86,16 @@ qd_dag <- function(edgelist, node_labs = NULL,
     ndf <- ndf |>
       dplyr::mutate(
         label = dplyr::if_else(
-          stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
+          stringr::str_detect(alpha_id, "^[:alpha:]+[0-9]+"),
           paste0(
-            stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{",
+            stringr::str_match(alpha_id, "^[:alpha:]+"), "@_{",
             stringr::str_match(alpha_id, "[0-9]+"), "}"
           ),
           label
         )
       )
   }
-  
+
   # Create Edge Dataframe -------------------------------------------------
   edges <- parse_edges(edgelist)
 
