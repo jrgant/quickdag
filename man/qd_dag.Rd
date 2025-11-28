@@ -9,50 +9,51 @@ qd_dag(
   node_labs = NULL,
   node_aes_opts = list(),
   edge_aes_opts = list(),
-  verbose = TRUE,
+  format_special = TRUE,
+  verbose = FALSE,
   check_dag = TRUE,
   theme = "base",
   ...
 )
 }
 \arguments{
-\item{edgelist}{A vector of edge relationships. Must be strictly organized (see
-example for format).}
+\item{edgelist}{A vector of node-edge relationships.}
 
 \item{node_labs}{A named character vector containing label names. Defaults
-to `NULL`.}
+to \code{NULL}.}
 
 \item{node_aes_opts}{A list feeding aesthetic options for nodes to
-[DiagrammeR::node_aes()]. Defaults to empty list.}
+\code{\link[DiagrammeR:node_aes]{DiagrammeR::node_aes()}}. Defaults to empty list.}
 
 \item{edge_aes_opts}{A list feeding aesthetic options for edges to
-[DiagrammeR::edge_aes()]. Defaults to empty list.}
+\code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}. Defaults to empty list.}
+
+\item{format_special}{Render numeric elements in an alphanumeric \code{alpha_id} as
+subcripts. Defaults to \code{TRUE}.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console.
-See Details below. Defaults to `TRUE`.}
+See Details below. Defaults to \code{TRUE}.}
 
 \item{check_dag}{Logical. Check whether the graph conforms to the rules of DAGs.
-Defaults to `TRUE`.}
+Defaults to \code{TRUE}.}
 
-\item{theme}{Choose theme for plot output. Defaults to `"base"`. Setting theme to
-`NULL` will use DiagrammeR's `NULL` attribute theme.}
+\item{theme}{Choose theme for plot output. Defaults to \code{"base"}. Setting theme to
+\code{NULL} will use DiagrammeR's \code{NULL} attribute theme.}
 
-\item{...}{Pass optional `conditioned` argument to [qd_themes()].}
+\item{...}{Pass optional \code{conditioned} argument to \code{\link[=qd_themes]{qd_themes()}}.}
 }
 \description{
 Provide simple syntax specifying paths between nodes to generate a graph object.
 }
 \details{
-Leaving the `verbose` set to `TRUE` may be advisable to ensure labels and IDs have
-not been mismatched. By default, [qd_dag()] alphabetizes nodes included in `edgelist`
-and does the same for `node_labs` under a first assumption that labels will begin with
-the same letter as their corresponding `alpha_id`, which may not always be the case.
+Leaving the \code{verbose} set to \code{TRUE} may be advisable to ensure labels and IDs have
+not been mismatched. By default, \code{\link[=qd_dag]{qd_dag()}} alphabetizes nodes included in \code{edgelist}
+and does the same for \code{node_labs} under a first assumption that labels will begin with
+the same letter as their corresponding \code{alpha_id}, which may not always be the case.
 }
 \examples{
-# Provide a list of edges, with nodes specified as letters.
-# Do not list a node as a parent more than once.
-# Each line should contain a single edge character '->'.
-edges <- c("A -> { B C }",
+# Provide a list of edges, with nodes specified as letters or single words.
+edges <- c("A -> { B C } <- L",
            "B -> C")
 
 # make a DAG object and render the graph using the default theme
@@ -63,7 +64,8 @@ DiagrammeR::render_graph(g.obj)
 g.obj2 <- qd_dag(edges,
                  node_labs = c("A" = "Alcohol",
                                "B" = "BP",
-                               "C" = "CVD"),
+                               "C" = "CVD",
+                               "L" = "State"),
                  node_aes_opts = list(shape = "plaintext",
                                       fillcolor = "none",
                                       color = "black"),

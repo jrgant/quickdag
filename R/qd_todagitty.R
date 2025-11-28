@@ -9,10 +9,6 @@
 #'   user can specify another graph type (see dagitty documentation).
 #' @param showplot Logical indicating whether to produce a dagitty plot. Defaults to
 #'   `FALSE`.
-#' @param send_global Logical indicating whether to make the dagitty object available
-#'   in the global environment. Defaults to `FALSE`.
-#' @param dagitty_obj_name Character specifying the name of the dagitty object. Only
-#'   used and required if `send_global = TRUE`.
 #' @param exposure Character. Specify exposure of interest. (Required)
 #' @param outcome Character. Specifiy outcome of interest. (Required)
 #' @param ... Pass arguments to [dagitty::adjustmentSets()]. See dagitty documentation
@@ -30,7 +26,6 @@
 #' qd_todagitty(edges, exposure = "A", outcome = "C")
 #' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
 qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
-                         send_global = FALSE, dagitty_obj_name = NULL,
                          exposure, outcome,
                          ...) {
 
@@ -38,14 +33,6 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                                         paste(edgelist, collapse = "; "),
                                         "}"),
                                   layout = TRUE)
-
-  # make object available in global environment (defaults to TRUE)
-  if (send_global == TRUE) {
-    if (is.null(dagitty_obj_name)) {
-      stop("Provide a name for your DAG.")
-    }
-    assign(dagitty_obj_name, dagitty_obj, envir = .GlobalEnv)
-  }
 
   ## optional to show dagitty plot
   if (showplot) {

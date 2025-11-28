@@ -3,9 +3,11 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^readme\_images$
+^scratch$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^\.github$
-^Makefile$
+^LICENSE\.md$
 ^\.lintr$
+^Makefile$

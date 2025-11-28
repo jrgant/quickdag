@@ -13,7 +13,7 @@ qd_swig(
 )
 }
 \arguments{
-\item{graph_obj}{A DAG object created by [qd_dag()].}
+\item{graph_obj}{A DAG object created by \code{\link[=qd_dag]{qd_dag()}}.}
 
 \item{fixed_nodes}{A vector containing the nodes to be intervened upon.}
 
@@ -30,20 +30,19 @@ separators.}
 \description{
 Take a DAG graph object and, in the simplest case, create a single-world intervention
 template corresponding to a world in which the fixed nodes are set to a given value.
-Alternatively, tell [qd_swig()] which values fixed nodes will be set to.
+Alternatively, tell \code{\link[=qd_swig]{qd_swig()}} which values fixed nodes will be set to.
 }
 \examples{
 # Provide a DAG object and a list of nodes to be fixed
-library(magrittr)
 edges <- c("A -> Y",
            "L -> { A Y }")
 
 dag  <- qd_dag(edges)
 
-swig <- dag \%>\%
+swig <- dag |>
         qd_swig(fixed_nodes = "A",
                 custom_values = c("A" = "1"))
 
-swig \%>\% DiagrammeR::render_graph()
+swig |> DiagrammeR::render_graph()
 
 }

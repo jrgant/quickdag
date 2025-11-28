@@ -19,13 +19,13 @@ theme_qd_pearl(graph_obj, font = "serif", ...)
 get_conditioned_nodes(graph_obj, conditioned = NULL)
 }
 \arguments{
-\item{graph_obj}{A DAG object created by [qd_dag()].}
+\item{graph_obj}{A DAG object created by \code{\link[=qd_dag]{qd_dag()}}.}
 
 \item{theme}{A character string indicating the theme to use. Defaults to "base".
-Set to `NULL` to use GraphViz defaults.}
+Set to \code{NULL} to use GraphViz defaults.}
 
-\item{...}{Pass arguments to theme call (e.g., [theme_qd_base()]), such as
-`conditioned` or `font`.}
+\item{...}{Pass arguments to theme call (e.g., \code{\link[=theme_qd_base]{theme_qd_base()}}), such as
+\code{conditioned} or \code{font}.}
 
 \item{font}{A character vector indicating the font family to use for node labels.
 Defaults to "serif".}

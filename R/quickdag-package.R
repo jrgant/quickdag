@@ -2,6 +2,6 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom magrittr %>%
+#' @importFrom DiagrammeR render_graph export_graph
 ## usethis namespace: end
 NULL

@@ -4,12 +4,23 @@
 \alias{sep_opts}
 \title{View options for fixed node separator characters}
 \usage{
-sep_opts(table = FALSE)
+sep_opts(entity = NULL, table = FALSE)
 }
 \arguments{
-\item{table}{Logical to show or hide HTML table display of available characters.
-Defaults to `FALSE`.}
+\item{entity}{The separator name or an HTML entity of the user's choosing. Defaults
+to \code{NULL}.}
+
+\item{table}{Logical to show or hide HTML table display of built-in characters.
+Defaults to \code{FALSE}.}
 }
 \description{
 Preview character options for use as the fixed node separator in SWIGs.
+}
+\details{
+By default \code{\link[=sep_opts]{sep_opts()}} returns a named vector listing the built-in separators. These
+built-in HTML entities are attached to nicenames for convenience. If the user provides
+the nicename for a built-in entity to the \code{entity} argument, the function will return
+the appropriate HTML code. If the user provides an HTML entity that does not appear in
+the built-in menu, the input will be returned verbatim. Users will typically access
+this latter functionality via \code{\link[=qd_swig]{qd_swig()}}.
 }

@@ -3,14 +3,15 @@
 #' @description
 #' Provide simple syntax specifying paths between nodes to generate a graph object.
 #'
-#' @param edgelist A vector of edge relationships. Must be strictly organized (see
-#'   example for format).
+#' @param edgelist A vector of node-edge relationships.
 #' @param node_labs A named character vector containing label names. Defaults
 #'   to `NULL`.
 #' @param node_aes_opts A list feeding aesthetic options for nodes to
 #'   [DiagrammeR::node_aes()]. Defaults to empty list.
 #' @param edge_aes_opts A list feeding aesthetic options for edges to
 #'   [DiagrammeR::edge_aes()]. Defaults to empty list.
+#' @param format_special Render numeric elements in an alphanumeric `alpha_id` as
+#'   subcripts. Defaults to `TRUE`.
 #' @param verbose Indicate whether to print node and edge dataframes to the console.
 #'   See Details below. Defaults to `TRUE`.
 #' @param check_dag Logical. Check whether the graph conforms to the rules of DAGs.
@@ -26,10 +27,8 @@
 #' the same letter as their corresponding `alpha_id`, which may not always be the case.
 #' @export
 #' @examples
-#' # Provide a list of edges, with nodes specified as letters.
-#' # Do not list a node as a parent more than once.
-#' # Each line should contain a single edge character '->'.
-#' edges <- c("A -> { B C }",
+#' # Provide a list of edges, with nodes specified as letters or single words.
+#' edges <- c("A -> { B C } <- L",
 #'            "B -> C")
 #'
 #' # make a DAG object and render the graph using the default theme
@@ -40,7 +39,8 @@
 #' g.obj2 <- qd_dag(edges,
 #'                  node_labs = c("A" = "Alcohol",
 #'                                "B" = "BP",
-#'                                "C" = "CVD"),
+#'                                "C" = "CVD",
+#'                                "L" = "State"),
 #'                  node_aes_opts = list(shape = "plaintext",
 #'                                       fillcolor = "none",
 #'                                       color = "black"),
@@ -51,17 +51,12 @@
 #'
 qd_dag <- function(edgelist, node_labs = NULL,
                    node_aes_opts = list(), edge_aes_opts = list(),
-                   verbose = TRUE, check_dag = TRUE, theme = "base", ...) {
+                   format_special = TRUE,
+                   verbose = FALSE, check_dag = TRUE, theme = "base", ...) {
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
-  nodes <- sort(unique(unlist(
-    stringr::str_extract_all(edgelist, pattern = "[:alnum:]+")
-  )))
-  ## specify nodes with direct descendants (out = list)
-  pa_nodes <- stringr::str_extract_all(edgelist, pattern = "^[:alnum:]+(?=\\s)")
-  ## specify nodes with direct ancestors (out = list)
-  ch_nodes <- stringr::str_extract_all(edgelist, pattern = "(?<=\\>.{0,1000})[:alnum:]+")
+  nodes <- parse_nodes(edgelist)
 
   # Create Node Dataframe -------------------------------------------------
 
@@ -76,7 +71,7 @@ qd_dag <- function(edgelist, node_labs = NULL,
 
   ## apply node labels if present
   if (!is.null(node_labs)) {
-    ndf <- ndf %>%
+    ndf <- ndf |>
       dplyr::mutate(
         label = dplyr::if_else(
           alpha_id %in% names(node_labs),
@@ -87,32 +82,33 @@ qd_dag <- function(edgelist, node_labs = NULL,
   }
 
   ## check for and format special labels
-  ndf <- ndf %>%
-    dplyr::mutate(
-      label = dplyr::if_else(
-        stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
-        paste0(
-          stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{",
-          stringr::str_match(alpha_id, "[0-9]+"), "}"
-        ), label
+  if (format_special == TRUE) {
+    ndf <- ndf |>
+      dplyr::mutate(
+        label = dplyr::if_else(
+          stringr::str_detect(alpha_id, "^[:alpha:]+[0-9]+"),
+          paste0(
+            stringr::str_match(alpha_id, "^[:alpha:]+"), "@_{",
+            stringr::str_match(alpha_id, "[0-9]+"), "}"
+          ),
+          label
+        )
       )
-    )
+  }
 
   # Create Edge Dataframe -------------------------------------------------
-  ## loop through pa.nodes and ch.nodes to match parents with children
-  ## and create a parent entry for each child
-  nodematches <- purrr::map2(.x = pa_nodes, .y = ch_nodes,
-                             .f = function(x, y) rep(x, length(y)))
-  pa_vec_alpha <- unlist(nodematches)
+  edges <- parse_edges(edgelist)
 
   ## match alphabetical node ID to numeric ID
-  pa_vec_num <- ndf$id[match(pa_vec_alpha, ndf$alpha_id)]
-  ch_vec_num <- ndf$id[match(unlist(ch_nodes), ndf$alpha_id)]
+  pa_vec_num <- ndf$id[match(edges$from_alpha, ndf$alpha_id)]
+  ch_vec_num <- ndf$id[match(edges$to_alpha, ndf$alpha_id)]
 
   ## set up edge dataframe options list
   ed_opts_list <- edge_aes_opts
   ed_opts_list$from <- pa_vec_num
   ed_opts_list$to <- ch_vec_num
+  ed_opts_list$from_alpha <- edges$from_alpha
+  ed_opts_list$to_alpha <- edges$to_alpha
 
   ## create edge dataframe with options
   edf <- do.call(DiagrammeR::create_edge_df, ed_opts_list)
@@ -121,6 +117,9 @@ qd_dag <- function(edgelist, node_labs = NULL,
   graph <- DiagrammeR::create_graph(nodes_df = ndf,
                                     edges_df = edf,
                                     attr_theme = NULL)
+
+  ## include raw edgelist in graph object
+  graph$qd_edgelist <- edgelist
 
   # Checks ------------------------------------------------------------------
 
@@ -150,10 +149,10 @@ qd_dag <- function(edgelist, node_labs = NULL,
     # dataframes
     dots <- paste(rep(".", sep_length / 3), collapse = "")
     cat(dots, "NODE DATAFRAME", dots, "\n\n")
-    graph %>% DiagrammeR::get_node_df() %>% print()
+    graph |> DiagrammeR::get_node_df() |> print()
     cat("\n")
     cat(dots, "EDGE DATAFRAME", dots, "\n\n")
-    graph %>% DiagrammeR::get_edge_df() %>% print()
+    graph |> DiagrammeR::get_edge_df() |> print()
   }
 
   ## returns DiagrammeR's graph object to store node and edge dataframes
@@ -162,16 +161,15 @@ qd_dag <- function(edgelist, node_labs = NULL,
     if (length(node_aes_opts) > 0 || length(edge_aes_opts) > 0) {
       warning(
         "Node and/or edge aesthetics are currently being applied ",
-        "via both node.aes.opts or edge.aes.opts AND a diagram theme. ",
+        "via both node_aes_opts or edge_aes_opts AND a diagram theme. ",
         "Using both methods to set aesthetics may produce unexpected results."
       )
     }
 
-    themed_graph <- graph %>% qd_themes(theme = theme, ...)
-    return(themed_graph)
-
-  } else {
-    return(graph)
+    graph <- graph |> qd_themes(theme = theme, ...)
   }
+
+  class(graph) <- c("quickdag", "dgr_graph")
+  graph
 
 }

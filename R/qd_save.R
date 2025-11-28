@@ -11,22 +11,28 @@
 #'   File type will be determined by the extension provided (pdf, svg, png, ps). See
 #'   [DiagrammeR::export_graph()] for details.
 #' @param ... Pass other arguments to [DiagrammeR::render_graph()].
-#' @param embed Defaults to `FALSE`. Automatically set to `TRUE` by [qd_embed()].
-#' @param kg A list allowing the user to set arguments for [knitr::graphics()] (except for
-#'   `path`).
+#' @param embed Defaults to `FALSE`.
+#' @param kg A list allowing the user to set arguments for [knitr::include_graphics()]
+#'   (except for `path`).
 #' @rdname qd_save
 #' @export
 #' @examples
-#' \dontrun{
-#' dag <- qd_dag(c("L -> {A Y}", "A -> Y"))
-#' qd_save(dag, "dag.pdf")
+#' # redirect file to temporary directory (example only)
+#' file <- file.path(tempdir(), "dag.pdf")
+#'
+#' # save without embedding
+#' dag <- qd_dag(c("L -> {A Y}", "A -> Y"),
+#'               check_dag = FALSE, verbose = FALSE)
+#' qd_save(dag, file)
 #'
 #' # embed from code chunk using knitr::include_graphics()
-#' qd_save(dag, "dag.pdf", embed = TRUE)
+#' qd_save(dag, file, embed = TRUE)
 #'
 #' # `title` passed to DiagrammeR::export_graph()
-#' qd_save(dag, "dag.pdf", title = "Demo")
-#' }
+#' qd_save(dag, file, title = "Demo")
+#'
+#' # clean up temporary directory
+#' file.remove(file)
 qd_save <- function(graph, file_name, ..., embed = FALSE, kg = NULL) {
   DiagrammeR::export_graph(graph = graph, file_name = file_name, ...)
 

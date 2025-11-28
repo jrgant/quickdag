@@ -53,7 +53,7 @@ theme_qd_base <- function(graph_obj, font = "serif", ...) {
   graph_obj$global_attrs <- dplyr::bind_rows(graph_attrs, node_attrs, edge_attrs)
 
 
-  graph_obj <- graph_obj %>% get_conditioned_nodes(...)
+  graph_obj <- graph_obj |> get_conditioned_nodes(...)
   graph_obj
 }
 
@@ -61,13 +61,13 @@ theme_qd_base <- function(graph_obj, font = "serif", ...) {
 #' @export
 theme_qd_circles <- function(graph_obj, font = "serif", ...) {
   # set base theme
-  graph_obj <- graph_obj %>% theme_qd_base()
+  graph_obj <- graph_obj |> theme_qd_base()
 
   # tweak base theme
-  graph_obj <- graph_obj %>%
+  graph_obj <- graph_obj |>
     DiagrammeR::add_global_graph_attrs("shape", "circle", "node")
 
-  graph_obj <- graph_obj %>% get_conditioned_nodes(...)
+  graph_obj <- graph_obj |> get_conditioned_nodes(...)
   graph_obj
 }
 
@@ -75,16 +75,16 @@ theme_qd_circles <- function(graph_obj, font = "serif", ...) {
 #' @export
 theme_qd_pearl <- function(graph_obj, font = "serif", ...) {
   # set base theme
-  graph_obj <- graph_obj %>% theme_qd_base()
+  graph_obj <- graph_obj |> theme_qd_base()
 
   # tweak base theme
-  graph_obj <- graph_obj %>%
+  graph_obj <- graph_obj |>
     # node attribute tweaks
-    DiagrammeR::add_global_graph_attrs("shape", "point", "node") %>%
-    DiagrammeR::add_global_graph_attrs("width", 0.2, "node") %>%
-    DiagrammeR::add_global_graph_attrs("height", 0.2, "node") %>%
+    DiagrammeR::add_global_graph_attrs("shape", "point", "node") |>
+    DiagrammeR::add_global_graph_attrs("width", 0.2, "node") |>
+    DiagrammeR::add_global_graph_attrs("height", 0.2, "node") |>
     # edge attribute tweaks
-    DiagrammeR::add_global_graph_attrs("penwidth", 0.2, "edge") %>%
+    DiagrammeR::add_global_graph_attrs("penwidth", 0.2, "edge") |>
     DiagrammeR::add_global_graph_attrs("arrowsize", 0.2, "edge")
 
   if (exists("conditioned")) {
@@ -103,19 +103,19 @@ get_conditioned_nodes <- function(graph_obj, conditioned = NULL) {
     default_minwd <- with(graph_obj$global_attrs, value[attr == "width"])
     default_minht <- with(graph_obj$global_attrs, value[attr == "height"])
 
-    cd_nodes <- graph_obj %>%
+    cd_nodes <- graph_obj |>
       DiagrammeR::get_node_ids(conditions = alpha_id %in% conditioned)
 
-    graph_obj <- graph_obj %>%
+    graph_obj <- graph_obj |>
       # add default columns to node_df based on global_attrs
-      DiagrammeR::set_node_attrs("shape",  default_shape) %>%
-      DiagrammeR::set_node_attrs("width",  default_minwd) %>%
-      DiagrammeR::set_node_attrs("height", default_minht) %>%
+      DiagrammeR::set_node_attrs("shape",  default_shape) |>
+      DiagrammeR::set_node_attrs("width",  default_minwd) |>
+      DiagrammeR::set_node_attrs("height", default_minht) |>
       # select conditioned nodes and update node aesthetics
-      DiagrammeR::select_nodes_by_id(cd_nodes) %>%
-      DiagrammeR::set_node_attrs_ws("shape",  "square") %>%
-      DiagrammeR::set_node_attrs_ws("width",  "0") %>%
-      DiagrammeR::set_node_attrs_ws("height", "0") %>%
+      DiagrammeR::select_nodes_by_id(cd_nodes) |>
+      DiagrammeR::set_node_attrs_ws("shape",  "square") |>
+      DiagrammeR::set_node_attrs_ws("width",  "0") |>
+      DiagrammeR::set_node_attrs_ws("height", "0") |>
       DiagrammeR::clear_selection()
   }
   graph_obj
