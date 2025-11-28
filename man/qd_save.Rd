@@ -15,7 +15,7 @@ File type will be determined by the extension provided (pdf, svg, png, ps). See
 
 \item{...}{Pass other arguments to \code{\link[DiagrammeR:render_graph]{DiagrammeR::render_graph()}}.}
 
-\item{embed}{Defaults to \code{FALSE}. Automatically set to \code{TRUE} by \code{\link[=qd_embed]{qd_embed()}}.}
+\item{embed}{Defaults to \code{FALSE}.}
 
 \item{kg}{A list allowing the user to set arguments for \code{\link[knitr:include_graphics]{knitr::include_graphics()}}
 (except for \code{path}).}

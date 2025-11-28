@@ -11,7 +11,7 @@
 #'   File type will be determined by the extension provided (pdf, svg, png, ps). See
 #'   [DiagrammeR::export_graph()] for details.
 #' @param ... Pass other arguments to [DiagrammeR::render_graph()].
-#' @param embed Defaults to `FALSE`. Automatically set to `TRUE` by [qd_embed()].
+#' @param embed Defaults to `FALSE`.
 #' @param kg A list allowing the user to set arguments for [knitr::include_graphics()]
 #'   (except for `path`).
 #' @rdname qd_save
