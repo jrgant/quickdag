@@ -118,6 +118,9 @@ qd_dag <- function(edgelist, node_labs = NULL,
                                     edges_df = edf,
                                     attr_theme = NULL)
 
+  ## include raw edgelist in graph object
+  graph$qd_edgelist <- edgelist
+
   # Checks ------------------------------------------------------------------
 
   ## check to see if graph is a DAG
@@ -163,11 +166,10 @@ qd_dag <- function(edgelist, node_labs = NULL,
       )
     }
 
-    themed_graph <- graph |> qd_themes(theme = theme, ...)
-    return(themed_graph)
-
-  } else {
-    return(graph)
+    graph <- graph |> qd_themes(theme = theme, ...)
   }
+
+  class(graph) <- c("quickdag", "dgr_graph")
+  graph
 
 }
