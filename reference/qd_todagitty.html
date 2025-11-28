@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">quickdag</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,7 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jrgant/quickDAG/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jrgant/quickdag/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -28,7 +28,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Identify variables for adjustment</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jrgant/quickDAG/blob/master/R/qd_todagitty.R" class="external-link"><code>R/qd_todagitty.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jrgant/quickdag/blob/master/R/qd_todagitty.R" class="external-link"><code>R/qd_todagitty.R</code></a></small>
       <div class="d-none name"><code>qd_todagitty.Rd</code></div>
     </div>
 
@@ -42,8 +42,6 @@
 <span>  <span class="va">edgelist</span>,</span>
 <span>  diagram_type <span class="op">=</span> <span class="st">"dag"</span>,</span>
 <span>  showplot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  send_global <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  dagitty_obj_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">exposure</span>,</span>
 <span>  <span class="va">outcome</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -66,17 +64,7 @@ user can specify another graph type (see dagitty documentation).</p></dd>
 
 <dt id="arg-showplot">showplot<a class="anchor" aria-label="anchor" href="#arg-showplot"></a></dt>
 <dd><p>Logical indicating whether to produce a dagitty plot. Defaults to
-`FALSE`.</p></dd>
-
-
-<dt id="arg-send-global">send_global<a class="anchor" aria-label="anchor" href="#arg-send-global"></a></dt>
-<dd><p>Logical indicating whether to make the dagitty object available
-in the global environment. Defaults to `FALSE`.</p></dd>
-
-
-<dt id="arg-dagitty-obj-name">dagitty_obj_name<a class="anchor" aria-label="anchor" href="#arg-dagitty-obj-name"></a></dt>
-<dd><p>Character specifying the name of the dagitty object. Only
-used and required if `send_global = TRUE`.</p></dd>
+<code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-exposure">exposure<a class="anchor" aria-label="anchor" href="#arg-exposure"></a></dt>
@@ -88,13 +76,13 @@ used and required if `send_global = TRUE`.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Pass arguments to [dagitty::adjustmentSets()]. See dagitty documentation
+<dd><p>Pass arguments to <code><a href="https://rdrr.io/pkg/dagitty/man/adjustmentSets.html" class="external-link">dagitty::adjustmentSets()</a></code>. See dagitty documentation
 for options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The `exposure` and `outcome` options map to dagitty functions of the same name.</p>
+    <p>The <code>exposure</code> and <code>outcome</code> options map to dagitty functions of the same name.</p>
     </div>
 
     <div class="section level2">
@@ -118,7 +106,7 @@ for options.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

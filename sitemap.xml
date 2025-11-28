@@ -1,8 +1,12 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://jrgant.github.io/quickdag/404.html</loc></url>
+<url><loc>https://jrgant.github.io/quickdag/LICENSE-text.html</loc></url>
+<url><loc>https://jrgant.github.io/quickdag/LICENSE.html</loc></url>
 <url><loc>https://jrgant.github.io/quickdag/authors.html</loc></url>
 <url><loc>https://jrgant.github.io/quickdag/index.html</loc></url>
+<url><loc>https://jrgant.github.io/quickdag/reference/edge-parsing.html</loc></url>
 <url><loc>https://jrgant.github.io/quickdag/reference/index.html</loc></url>
+<url><loc>https://jrgant.github.io/quickdag/reference/node-parsing.html</loc></url>
 <url><loc>https://jrgant.github.io/quickdag/reference/qd_dag.html</loc></url>
 <url><loc>https://jrgant.github.io/quickdag/reference/qd_save.html</loc></url>
 <url><loc>https://jrgant.github.io/quickdag/reference/qd_swig.html</loc></url>
