@@ -10,6 +10,8 @@
 #'   [DiagrammeR::node_aes()]. Defaults to empty list.
 #' @param edge_aes_opts A list feeding aesthetic options for edges to
 #'   [DiagrammeR::edge_aes()]. Defaults to empty list.
+#' @param format_special Render numeric elements in an alphanumeric `alpha_id` as
+#'   subcripts. Defaults to `TRUE`.
 #' @param verbose Indicate whether to print node and edge dataframes to the console.
 #'   See Details below. Defaults to `TRUE`.
 #' @param check_dag Logical. Check whether the graph conforms to the rules of DAGs.
@@ -49,6 +51,7 @@
 #'
 qd_dag <- function(edgelist, node_labs = NULL,
                    node_aes_opts = list(), edge_aes_opts = list(),
+                   format_special = TRUE,
                    verbose = FALSE, check_dag = TRUE, theme = "base", ...) {
 
   # Identify Nodes --------------------------------------------------------
@@ -79,18 +82,20 @@ qd_dag <- function(edgelist, node_labs = NULL,
   }
 
   ## check for and format special labels
-  ndf <- ndf |>
-    dplyr::mutate(
-      label = dplyr::if_else(
-        stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
-        paste0(
-          stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{",
-          stringr::str_match(alpha_id, "[0-9]+"), "}"
-        ),
-        label
+  if (format_special == TRUE) {
+    ndf <- ndf |>
+      dplyr::mutate(
+        label = dplyr::if_else(
+          stringr::str_detect(alpha_id, "^[:alpha:]{1}[0-9]+"),
+          paste0(
+            stringr::str_match(alpha_id, "^[:alpha:]{1}"), "@_{",
+            stringr::str_match(alpha_id, "[0-9]+"), "}"
+          ),
+          label
+        )
       )
-    )
-
+  }
+  
   # Create Edge Dataframe -------------------------------------------------
   edges <- parse_edges(edgelist)
 
