@@ -78,31 +78,31 @@ qd_swig <- function(graph_obj,
   graph_obj$nodes_df <-
     ndf |>
     dplyr::mutate(label = dplyr::case_when(
-      .$fixed & is.null(custom_values)
-      ~ paste0(
-        dplyr::if_else(
-          .$alpha_id %in% names(lab),
-          paste0(.$label, "@^{<i>", lab[.$alpha_id], "</i>}"),
-          .$alpha_id
+      fixed == TRUE & is.null(custom_values) ~
+        paste0(
+          dplyr::if_else(
+            alpha_id %in% names(lab),
+            paste0(label, "@^{<i>", lab[alpha_id], "</i>}"),
+            alpha_id
+          ),
+          " <font point-size=\"", sep_point_size, "\">",
+          sep_opts(fixed_sep), "</font> <i>",
+          tolower(label), "</i> @_{ }"
         ),
-        " <font point-size=\"", sep_point_size, "\">",
-        sep_opts()[fixed_sep], "</font> <i>",
-        tolower(.$label), "</i> @_{ }"
-      ),
 
-      .$fixed & !is.null(custom_values)
-      ~ paste0(
-        dplyr::if_else(
-          .$alpha_id %in% names(lab),
-          paste0(.$label, "@^{<i>", lab[.$alpha_id], "</i>}"),
-          .$label),
-        " <font point-size=\"", sep_point_size, "\">",
-        sep_opts()[fixed_sep], "</font> <i>",
-        tolower(.$label), "=", custom_values[.$alpha_id], "</i>@_{ }"
-      ),
-      .$alpha_id %in% names(lab)
-      ~ paste0(.$alpha_id, "@^{<i>", lab[.$alpha_id], "</i>}"),
-      TRUE ~ .$alpha_id
+      fixed == TRUE & !is.null(custom_values) ~
+        paste0(
+          dplyr::if_else(
+            alpha_id %in% names(lab),
+            paste0(label, "@^{<i>", lab[alpha_id], "</i>}"),
+            label),
+          " <font point-size=\"", sep_point_size, "\">",
+          sep_opts(fixed_sep), "</font> <i>",
+          tolower(label), "=", custom_values[alpha_id], "</i>@_{ }"
+        ),
+      alpha_id %in% names(lab) ~
+        paste0(alpha_id, "@^{<i>", lab[alpha_id], "</i>}"),
+      TRUE ~ alpha_id
     ))
   graph_obj
 }
