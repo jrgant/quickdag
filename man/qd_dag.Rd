@@ -9,7 +9,7 @@ qd_dag(
   node_labs = NULL,
   node_aes_opts = list(),
   edge_aes_opts = list(),
-  format_special = TRUE,
+  format_special = FALSE,
   verbose = FALSE,
   check_dag = TRUE,
   theme = "base",
@@ -29,7 +29,7 @@ to \code{NULL}.}
 \code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}. Defaults to empty list.}
 
 \item{format_special}{Render numeric elements in an alphanumeric \code{alpha_id} as
-subcripts. Defaults to \code{TRUE}.}
+subcripts. Defaults to \code{FALSE}.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console.
 See Details below. Defaults to \code{TRUE}.}

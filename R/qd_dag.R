@@ -11,7 +11,7 @@
 #' @param edge_aes_opts A list feeding aesthetic options for edges to
 #'   [DiagrammeR::edge_aes()]. Defaults to empty list.
 #' @param format_special Render numeric elements in an alphanumeric `alpha_id` as
-#'   subcripts. Defaults to `TRUE`.
+#'   subcripts. Defaults to `FALSE`.
 #' @param verbose Indicate whether to print node and edge dataframes to the console.
 #'   See Details below. Defaults to `TRUE`.
 #' @param check_dag Logical. Check whether the graph conforms to the rules of DAGs.
@@ -51,8 +51,9 @@
 #'
 qd_dag <- function(edgelist, node_labs = NULL,
                    node_aes_opts = list(), edge_aes_opts = list(),
-                   format_special = TRUE,
-                   verbose = FALSE, check_dag = TRUE, theme = "base", ...) {
+                   format_special = FALSE,
+                   verbose = FALSE, check_dag = TRUE,
+                   theme = "base", ...) {
 
   # Identify Nodes --------------------------------------------------------
   ## extract unique nodes, sort in ascending order
