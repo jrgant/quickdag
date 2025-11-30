@@ -24,6 +24,10 @@ qd_themes <- function(graph_obj, theme, ...) {
     "pearl" = "theme_qd_pearl"
   )
 
+  if (!theme %in% names(select_theme)) {
+    stop("`theme` must be one of: ", paste(names(select_theme), collapse = ", "))
+  }
+
   do.call(select_theme[theme],
           args = list(graph_obj = graph_obj, ...))
 }
