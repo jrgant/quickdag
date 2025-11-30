@@ -3,31 +3,38 @@
 #' @description
 #' Format an edgelist and send it to dagitty to identify variable adjustment sets.
 #'
-#' @param edgelist A vector of edge relationships. Must be strictly organized (see
-#'   example for format).
+#' @param edgelist A vector of edge relationships.
 #' @param diagram_type Character identifying the diagram type. Defaults to "dag", but
-#'   user can specify another graph type (see dagitty documentation).
+#'   user can specify another graph type (see [dagitty::adjustmentSets()]).
 #' @param showplot Logical indicating whether to produce a dagitty plot. Defaults to
 #'   `FALSE`.
 #' @param exposure Character. Specify exposure of interest. (Required)
 #' @param outcome Character. Specifiy outcome of interest. (Required)
-#' @param ... Pass arguments to [dagitty::adjustmentSets()]. See dagitty documentation
-#'   for options.
+#' @param ... Pass arguments to [dagitty::adjustmentSets()].
 #'
 #' @details
-#' The `exposure` and `outcome` options map to dagitty functions of the same name.
+#' The `exposure` and `outcome` options map to dagitty parameters of the same name.
 #'
+#' [qd_todagitty()] remains an alias for [qd_adjustment_sets()] to avoid breaking
+#' existing scripts, as it was the original name of this function.
+#'
+#' @rdname qd_adjustment_sets
 #' @export
 #' @examples
+#' # feed an edgelist to qd_adjustment_sets()
 #' edges <- c("A -> { B C D }",
 #'            "B -> C",
-#'            "E -> { B C }")
-#' # must pass exposure and outcome arguments to dagitty::adjustmentSets()
-#' qd_todagitty(edges, exposure = "A", outcome = "C")
-#' qd_todagitty(edges, exposure = "A", outcome = "C", type = "minimal")
-qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
-                         exposure, outcome,
-                         ...) {
+#'            "E -> { B C }",
+#'            "Y <- L -> A")
+#' qd_adjustment_sets(edges, exposure = "A", outcome = "C")
+#' qd_adjustment_sets(edges, exposure = "A", outcome = "C", type = "minimal")
+#'
+#' # if you've already created a qd_dag() object
+#' dag <- qd_dag(edges)
+#' qd_adjustment_sets(dag$qd_edgelist)
+qd_adjustment_sets <- function(edgelist, diagram_type = "dag", showplot = FALSE,
+                               exposure, outcome,
+                               ...) {
 
   dagitty_obj <- dagitty::dagitty(
     paste(diagram_type, "{", paste(edgelist, collapse = "; "), "}"),
@@ -46,3 +53,8 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                                   ...)
   return(sets)
 }
+
+
+#' @rdname qd_adjustment_sets
+#' @export
+qd_todagitty <- qd_adjustment_sets
