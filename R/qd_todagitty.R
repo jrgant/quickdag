@@ -29,10 +29,10 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                          exposure, outcome,
                          ...) {
 
-  dagitty_obj <- dagitty::dagitty(paste(diagram_type, "{",
-                                        paste(edgelist, collapse = "; "),
-                                        "}"),
-                                  layout = TRUE)
+  dagitty_obj <- dagitty::dagitty(
+    paste(diagram_type, "{", paste(edgelist, collapse = "; "), "}"),
+    layout = TRUE
+  )
 
   ## optional to show dagitty plot
   if (showplot) {
@@ -40,7 +40,9 @@ qd_todagitty <- function(edgelist, diagram_type = "dag", showplot = FALSE,
   }
 
   ## use dagitty's algorithm to identify adjustment sets
-  sets <- dagitty::adjustmentSets(dagitty_obj, exposure = exposure,
-                                  outcome = outcome, ...)
+  sets <- dagitty::adjustmentSets(dagitty_obj,
+                                  exposure = exposure,
+                                  outcome = outcome,
+                                  ...)
   return(sets)
 }
