@@ -5,7 +5,7 @@
 #'
 #' @param graph_obj A DAG object created by [qd_dag()].
 #' @param conditioned A character vector indicating which nodes are conditioned upon.
-#'   The shape for these nodes will be set to "square".
+#'   The shape for these nodes will be set to "rectangle".
 #' @param theme A character string indicating the theme to use. Defaults to "base".
 #'   Set to `NULL` to use GraphViz defaults.
 #' @param font A character vector indicating the font family to use for node labels.
@@ -117,7 +117,7 @@ get_conditioned_nodes <- function(graph_obj, conditioned = NULL) {
       DiagrammeR::set_node_attrs("height", default_minht) |>
       # select conditioned nodes and update node aesthetics
       DiagrammeR::select_nodes_by_id(cd_nodes) |>
-      DiagrammeR::set_node_attrs_ws("shape",  "square") |>
+      DiagrammeR::set_node_attrs_ws("shape",  "rectangle") |>
       DiagrammeR::set_node_attrs_ws("width",  "0") |>
       DiagrammeR::set_node_attrs_ws("height", "0") |>
       DiagrammeR::clear_selection()
