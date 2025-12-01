@@ -40,11 +40,11 @@ sep_opts <- function(entity = NULL, table = FALSE) {
     )
   }
 
-  if (entity %in% names(defopts)) {
-    defopts[names(defopts) == entity]
-  } else if (!is.null(entity)) {
-    entity
-  } else {
+  if (is.null(entity)) {
     defopts
+  } else if (entity %in% names(defopts)) {
+    defopts[names(defopts) == entity]
+  } else {
+    entity
   }
 }
