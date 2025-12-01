@@ -32,7 +32,7 @@
 qd_swig <- function(graph_obj,
                     fixed_nodes,
                     custom_values = NULL,
-                    fixed_sep = "vlin",
+                    fixed_sep = getOption("quickdag.fixed_sep"),
                     sep_point_size = 15) {
 
   ndf <- DiagrammeR::get_node_df(graph_obj)

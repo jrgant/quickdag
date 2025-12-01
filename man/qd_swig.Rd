@@ -8,7 +8,7 @@ qd_swig(
   graph_obj,
   fixed_nodes,
   custom_values = NULL,
-  fixed_sep = "vlin",
+  fixed_sep = getOption("quickdag.fixed_sep"),
   sep_point_size = 15
 )
 }

@@ -9,10 +9,10 @@ qd_dag(
   node_labs = NULL,
   node_aes_opts = list(),
   edge_aes_opts = list(),
-  format_special = FALSE,
-  verbose = FALSE,
-  check_dag = TRUE,
-  theme = "base",
+  format_special = getOption("quickdag.format_special"),
+  verbose = getOption("quickdag.verbose"),
+  check_dag = getOption("quickdag.check_dag"),
+  theme = getOption("quickdag.theme"),
   ...
 )
 }

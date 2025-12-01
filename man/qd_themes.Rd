@@ -31,7 +31,7 @@ Set to \code{NULL} to use GraphViz defaults.}
 Defaults to "serif".}
 
 \item{conditioned}{A character vector indicating which nodes are conditioned upon.
-The shape for these nodes will be set to "square".}
+The shape for these nodes will be set to "rectangle".}
 }
 \description{
 Apply various pre-fabricated themes to diagrams.
