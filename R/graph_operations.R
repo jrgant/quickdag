@@ -60,6 +60,8 @@ select_edges_by_node_alpha_id <- function(graph_obj, alpha_ids, set_op = "union"
 #' @export
 qd_select_edges <- select_edges_by_node_alpha_id
 
+#' Retrieves numeric IDs given alphanumeric IDs
+#' @inheritParams qd_set_node_attrs
 get_numids <- function(graph_obj, alpha_ids) {
   graph_obj$nodes_df |>
     dplyr::filter(alpha_id %in% alpha_ids) |>
