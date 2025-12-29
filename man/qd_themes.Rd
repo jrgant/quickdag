@@ -6,6 +6,7 @@
 \alias{theme_qd_circles}
 \alias{theme_qd_pearl}
 \alias{get_conditioned_nodes}
+\alias{cleanup_existing_theme}
 \title{Diagram themes}
 \usage{
 qd_themes(graph_obj, theme, ...)
@@ -23,6 +24,8 @@ theme_qd_pearl(
 )
 
 get_conditioned_nodes(graph_obj, conditioned = NULL)
+
+cleanup_existing_theme(graph_obj)
 }
 \arguments{
 \item{graph_obj}{A DAG object created by \code{\link[=qd_dag]{qd_dag()}}.}

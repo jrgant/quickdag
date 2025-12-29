@@ -28,6 +28,7 @@ qd_themes <- function(graph_obj, theme, ...) {
     stop("`theme` must be one of: ", paste(names(select_theme), collapse = ", "))
   }
 
+  graph_obj <- graph_obj |> cleanup_existing_theme()
   graph_obj$theme <- theme
 
   if ("conditioned" %in% names(match.call())) {
@@ -41,6 +42,8 @@ qd_themes <- function(graph_obj, theme, ...) {
 #' @rdname qd_themes
 #' @export
 theme_qd_base <- function(graph_obj, font = "serif", ...) {
+
+  graph_obj <- graph_obj |> cleanup_existing_theme()
 
   graph_attrs <- tibble::tibble(
     attr = c("rankdir", "layout"),
@@ -147,5 +150,13 @@ get_conditioned_nodes <- function(graph_obj, conditioned = NULL) {
       DiagrammeR::set_node_attrs_ws("height", "0") |>
       DiagrammeR::clear_selection()
   }
+
+#' @rdname qd_themes
+#' @export
+cleanup_existing_theme <- function(graph_obj) {
+  graph_obj$nodes_df <- graph_obj$nodes_df[, c("id", "type", "label", "alpha_id")]
+  ## Used for the side effect of returning an empty global_attrs table in the
+  ## appropriate format
+  graph_obj$global_attrs <- qd_dag("A", theme = NULL, check_dag = FALSE)$global_attrs
   graph_obj
 }
