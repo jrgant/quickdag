@@ -67,12 +67,14 @@ theme_qd_base <- function(graph_obj, font = "serif", ...) {
 
 
   graph_obj <- graph_obj |> get_conditioned_nodes(...)
+  graph_obj$theme <- "base"
   graph_obj
 }
 
 #' @rdname qd_themes
 #' @export
 theme_qd_circles <- function(graph_obj, font = "serif", ...) {
+
   # set base theme
   graph_obj <- graph_obj |> theme_qd_base()
 
@@ -81,7 +83,7 @@ theme_qd_circles <- function(graph_obj, font = "serif", ...) {
     DiagrammeR::add_global_graph_attrs("shape", "circle", "node")
 
   graph_obj <- graph_obj |> get_conditioned_nodes(...)
-  graph_obj
+  graph_obj$theme <- "circles"
 }
 
 #' @rdname qd_themes
@@ -116,13 +118,14 @@ theme_qd_pearl <- function(graph_obj, font = "serif",
   graph_obj$nodes_df$fontcolor <- "black"
 
   if ("conditioned" %in% names(match.call())) {
-    cdnodes <- match.call()$conditioned
     graph_obj <- graph_obj |> get_conditioned_nodes(...)
+    cd_nodes <- graph_obj$conditioned
     graph_obj$nodes_df$label <- "" # Hide internal node labels
-    graph_obj$nodes_df$width[graph_obj$nodes_df$alpha_id %in% cdnodes] <- pointsize
-    graph_obj$nodes_df$height[graph_obj$nodes_df$alpha_id %in% cdnodes] <- pointsize
+    graph_obj$nodes_df$width[graph_obj$nodes_df$alpha_id %in% cd_nodes] <- pointsize
+    graph_obj$nodes_df$height[graph_obj$nodes_df$alpha_id %in% cd_nodes] <- pointsize
   }
 
+  graph_obj$theme <- "pearl"
   graph_obj
 }
 
@@ -150,6 +153,9 @@ get_conditioned_nodes <- function(graph_obj, conditioned = NULL) {
       DiagrammeR::set_node_attrs_ws("height", "0") |>
       DiagrammeR::clear_selection()
   }
+  graph_obj$conditioned <- conditioned
+  graph_obj
+}
 
 #' @rdname qd_themes
 #' @export
