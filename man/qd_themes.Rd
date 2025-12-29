@@ -9,20 +9,36 @@
 \alias{cleanup_existing_theme}
 \title{Diagram themes}
 \usage{
-qd_themes(graph_obj, theme, ...)
+qd_themes(graph_obj, theme, conditioned = NULL)
 
-theme_qd_base(graph_obj, font = "serif", ...)
+theme_qd_base(
+  graph_obj,
+  linewidths = getOption("quickdag.base_linewidths"),
+  fontname = getOption("quickdag.base_fontname"),
+  fontsize = getOption("quickdag.base_fontsize"),
+  fontcolor = getOption("quickdag.base_fontcolor"),
+  conditioned = NULL
+)
 
-theme_qd_circles(graph_obj, font = "serif", ...)
+theme_qd_circles(
+  graph_obj,
+  linewidths = getOption("quickdag.circles_linewidths"),
+  fontname = getOption("quickdag.circles_fontname"),
+  fontsize = getOption("quickdag.circles_fontsize"),
+  fontcolor = getOption("quickdag.circles_fontcolor"),
+  conditioned = NULL
+)
 
 theme_qd_pearl(
   graph_obj,
-  font = "serif",
   pointsize = getOption("quickdag.pearl_pointsize"),
+  pointcolor = getOption("quickdag.pearl_pointcolor"),
+  pointfill = getOption("quickdag.pearl_pointfill"),
   linewidths = getOption("quickdag.pearl_linewidths"),
+  fontname = getOption("quickdag.pearl_fontname"),
   fontsize = getOption("quickdag.pearl_fontsize"),
   fontcolor = getOption("quickdag.pearl_fontcolor"),
-  ...
+  conditioned = NULL
 )
 
 get_conditioned_nodes(graph_obj, conditioned = NULL)
@@ -35,15 +51,31 @@ cleanup_existing_theme(graph_obj)
 \item{theme}{A character string indicating the theme to use. Defaults to "base".
 Set to \code{NULL} to use GraphViz defaults.}
 
-\item{...}{Pass arguments to theme call (e.g., \code{\link[=theme_qd_base]{theme_qd_base()}}), such as
-\code{conditioned} or \code{font}.}
-
-\item{font}{A character vector indicating the font family to use for node labels.
-Defaults to "serif".}
-
 \item{conditioned}{A character vector indicating which nodes are conditioned upon.
 The shape for these nodes will be set to "rectangle".}
+
+\item{linewidths}{Size (in points) of edges and node outlines. By default, controlled
+by package options specific to each theme, each of which defaults to 0.2.}
+
+\item{fontname}{Font name for text elements of the graph. By default, controlled by
+package options specific to each theme, each of which defaults to "Helvetica". This
+is the default in \code{DiagrammeR}.}
+
+\item{fontsize}{Size of text (in points). By default, controlled by package options
+specific to each theme, each of which defaults to 5.}
+
+\item{fontcolor}{Text color. By default, controlled by package options
+specific to each theme, each of which defaults to "black".}
+
+\item{pointsize}{Size of "point" shape (in points). Applies to "pearl" theme only and
+defaults to 0.02.}
+
+\item{pointcolor}{Border color for the "point" shape. Applies to "pearl" theme only
+and defaults to "black".}
+
+\item{pointfill}{Fill color for the "point" shape. Applies to "pearl" theme only
+and defaults to "black".}
 }
 \description{
-Apply various pre-fabricated themes to diagrams.
+Themes and theming utilies.
 }
