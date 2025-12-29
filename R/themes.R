@@ -19,9 +19,9 @@
 qd_themes <- function(graph_obj, theme, ...) {
 
   select_theme <- c(
-    "base" = "theme_qd_base",
+    "base"    = "theme_qd_base",
     "circles" = "theme_qd_circles",
-    "pearl" = "theme_qd_pearl"
+    "pearl"   = "theme_qd_pearl"
   )
 
   if (!theme %in% names(select_theme)) {
