@@ -28,6 +28,12 @@ qd_themes <- function(graph_obj, theme, ...) {
     stop("`theme` must be one of: ", paste(names(select_theme), collapse = ", "))
   }
 
+  graph_obj$theme <- theme
+
+  if ("conditioned" %in% names(match.call())) {
+    graph_obj$conditioned <- match.call()$conditioned
+  }
+
   do.call(select_theme[theme],
           args = list(graph_obj = graph_obj, ...))
 }
