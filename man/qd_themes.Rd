@@ -14,7 +14,13 @@ theme_qd_base(graph_obj, font = "serif", ...)
 
 theme_qd_circles(graph_obj, font = "serif", ...)
 
-theme_qd_pearl(graph_obj, font = "serif", ...)
+theme_qd_pearl(
+  graph_obj,
+  font = "serif",
+  pointsize = 0.02,
+  linewidths = 0.2,
+  ...
+)
 
 get_conditioned_nodes(graph_obj, conditioned = NULL)
 }

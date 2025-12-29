@@ -83,22 +83,41 @@ theme_qd_circles <- function(graph_obj, font = "serif", ...) {
 
 #' @rdname qd_themes
 #' @export
-theme_qd_pearl <- function(graph_obj, font = "serif", ...) {
+theme_qd_pearl <- function(graph_obj, font = "serif",
+                           pointsize = 0.02,
+                           linewidths = 0.2,
+                           ...) {
   # set base theme
   graph_obj <- graph_obj |> theme_qd_base()
 
   # tweak base theme
   graph_obj <- graph_obj |>
     # node attribute tweaks
-    DiagrammeR::add_global_graph_attrs("shape", "point", "node") |>
-    DiagrammeR::add_global_graph_attrs("width", 0.2, "node") |>
-    DiagrammeR::add_global_graph_attrs("height", 0.2, "node") |>
+    DiagrammeR::add_global_graph_attrs("shape",        "point",  "node") |>
+    DiagrammeR::add_global_graph_attrs("style",       "filled",  "node") |>
+    DiagrammeR::add_global_graph_attrs("fixedsize",       TRUE,  "node") |>
+    DiagrammeR::add_global_graph_attrs("width",      pointsize,  "node") |>
+    DiagrammeR::add_global_graph_attrs("height",     pointsize,  "node") |>
+    DiagrammeR::add_global_graph_attrs("fontsize",           5,  "node") |>
     # edge attribute tweaks
-    DiagrammeR::add_global_graph_attrs("penwidth", 0.2, "edge") |>
-    DiagrammeR::add_global_graph_attrs("arrowsize", 0.2, "edge")
+    DiagrammeR::add_global_graph_attrs("penwidth",  linewidths,  "edge") |>
+    DiagrammeR::add_global_graph_attrs("arrowsize", linewidths,  "edge") |>
+    DiagrammeR::add_global_graph_attrs("arrowhead",      "vee",  "edge")
 
-  if (exists("conditioned")) {
-    messaging::emit_message("This theme does not allow for conditioned nodes.")
+  ## Necessary because fillcolor via global attributes appears to be broken
+  ## in DiagrammeR
+  graph_obj$nodes_df$fillcolor <- "black"
+
+  ## Add and style external labels
+  graph_obj$nodes_df$xlabel <- graph_obj$nodes_df$label
+  graph_obj$nodes_df$fontcolor <- "black"
+
+  if ("conditioned" %in% names(match.call())) {
+    cdnodes <- match.call()$conditioned
+    graph_obj <- graph_obj |> get_conditioned_nodes(...)
+    graph_obj$nodes_df$label <- "" # Hide internal node labels
+    graph_obj$nodes_df$width[graph_obj$nodes_df$alpha_id %in% cdnodes] <- pointsize
+    graph_obj$nodes_df$height[graph_obj$nodes_df$alpha_id %in% cdnodes] <- pointsize
   }
 
   graph_obj
