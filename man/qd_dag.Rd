@@ -56,7 +56,7 @@ the same letter as their corresponding \code{alpha_id}, which may not always be 
 edges <- c("A -> { B C } <- L",
            "B -> C")
 
-# make a DAG object and render the graph using the default theme
+# Make a DAG object and render the graph using the default theme
 g.obj <- qd_dag(edges)
 DiagrammeR::render_graph(g.obj)
 
