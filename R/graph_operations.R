@@ -2,8 +2,10 @@
 #'
 #' @param graph_obj A `quickdag` object output by [qd_dag()] or [qd_swig()].
 #' @param alpha_ids A vector of alphanumeric node IDs upon which to operate.
-#' @param ... Pass other arguments to `DiagrammeR` functions:
-#'   [DiagrammeR::set_node_attrs()], [DiagrammeR::set_edge_attrs()].
+#' @param node_attr Passed to [DiagrammeR::set_node_attrs()] argument of the same name.
+#' @param edge_attr Passed to [DiagrammeR::set_edge_attrs()] argument of the same name.
+#' @param values Passed to [DiagrammeR::set_node_attrs()] or
+#'   [DiagrammeR::set_edge_attrs()] argument of the same name.
 #' @param from_alpha A vector of alphanumeric source node IDs.
 #' @param to_alpha A vector of alphanumeric destination node IDs.
 #' @param set_op Passed to the `set_op` argument of [DiagrammeR::select_nodes_by_id()]
@@ -11,15 +13,19 @@
 #'
 #' @rdname graph_operations
 #' @export
-qd_set_node_attrs <- function(graph_obj, alpha_ids, ..., set_op = "union") {
+qd_set_node_attrs <- function(graph_obj, node_attr, values, alpha_ids) {
   numids <- get_numids(graph_obj, alpha_ids)
-  graph_out <- DiagrammeR::set_node_attrs(graph_obj, ..., nodes = numids)
+  graph_out <- DiagrammeR::set_node_attrs(graph_obj,
+                                          node_attr = node_attr,
+                                          values = values,
+                                          nodes = numids)
+  graph_out
 }
 
 #' @rdname graph_operations
 #' @export
-qd_set_edge_attrs <- function(graph_obj, ..., from_alpha = NULL, to_alpha = NULL,
-                              set_op = "union") {
+qd_set_edge_attrs <- function(graph_obj, edge_attr, values,
+                              from_alpha = NULL, to_alpha = NULL) {
   from_numids <- NULL
   to_numids <- NULL
   if (!is.null(from_alpha)) {
@@ -28,8 +34,11 @@ qd_set_edge_attrs <- function(graph_obj, ..., from_alpha = NULL, to_alpha = NULL
   if (!is.null(to_alpha)) {
     to_numids <- get_numids(graph_obj, to_alpha)
   }
-  graph_out <- DiagrammeR::set_edge_attrs(graph_obj, ...,
-                                          from = from_numids, to = to_numids)
+  graph_out <- DiagrammeR::set_edge_attrs(graph_obj,
+                                          edge_attr = edge_attr,
+                                          values = values,
+                                          from = from_numids,
+                                          to = to_numids)
   graph_out
 }
 
