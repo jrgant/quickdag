@@ -89,8 +89,10 @@ theme_qd_circles <- function(graph_obj, font = "serif", ...) {
 #' @rdname qd_themes
 #' @export
 theme_qd_pearl <- function(graph_obj, font = "serif",
-                           pointsize = 0.02,
-                           linewidths = 0.2,
+                           pointsize = getOption("quickdag.pearl_pointsize"),
+                           linewidths = getOption("quickdag.pearl_linewidths"),
+                           fontsize = getOption("quickdag.pearl_fontsize"),
+                           fontcolor = getOption("quickdag.pearl_fontcolor"),
                            ...) {
   # set base theme
   graph_obj <- graph_obj |> theme_qd_base()
@@ -100,29 +102,26 @@ theme_qd_pearl <- function(graph_obj, font = "serif",
     # node attribute tweaks
     DiagrammeR::add_global_graph_attrs("shape",        "point",  "node") |>
     DiagrammeR::add_global_graph_attrs("style",       "filled",  "node") |>
-    DiagrammeR::add_global_graph_attrs("fixedsize",       TRUE,  "node") |>
     DiagrammeR::add_global_graph_attrs("width",      pointsize,  "node") |>
     DiagrammeR::add_global_graph_attrs("height",     pointsize,  "node") |>
-    DiagrammeR::add_global_graph_attrs("fontsize",           5,  "node") |>
+    DiagrammeR::add_global_graph_attrs("fixedsize",       TRUE,  "node") |>
+    DiagrammeR::add_global_graph_attrs("fontsize",    fontsize,  "node") |>
     # edge attribute tweaks
     DiagrammeR::add_global_graph_attrs("penwidth",  linewidths,  "edge") |>
-    DiagrammeR::add_global_graph_attrs("arrowsize", linewidths,  "edge") |>
-    DiagrammeR::add_global_graph_attrs("arrowhead",      "vee",  "edge")
+    DiagrammeR::add_global_graph_attrs("arrowsize", linewidths,  "edge")
 
   ## Necessary because fillcolor via global attributes appears to be broken
   ## in DiagrammeR
   graph_obj$nodes_df$fillcolor <- "black"
 
   ## Add and style external labels
-  graph_obj$nodes_df$xlabel <- graph_obj$nodes_df$label
-  graph_obj$nodes_df$fontcolor <- "black"
+  graph_obj$nodes_df$xlabel    <- graph_obj$nodes_df$label
+  graph_obj$nodes_df$fontcolor <- fontcolor
 
   if ("conditioned" %in% names(match.call())) {
     graph_obj <- graph_obj |> get_conditioned_nodes(...)
     cd_nodes <- graph_obj$conditioned
     graph_obj$nodes_df$label <- "" # Hide internal node labels
-    graph_obj$nodes_df$width[graph_obj$nodes_df$alpha_id %in% cd_nodes] <- pointsize
-    graph_obj$nodes_df$height[graph_obj$nodes_df$alpha_id %in% cd_nodes] <- pointsize
   }
 
   graph_obj$theme <- "pearl"

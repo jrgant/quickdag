@@ -18,8 +18,10 @@ theme_qd_circles(graph_obj, font = "serif", ...)
 theme_qd_pearl(
   graph_obj,
   font = "serif",
-  pointsize = 0.02,
-  linewidths = 0.2,
+  pointsize = getOption("quickdag.pearl_pointsize"),
+  linewidths = getOption("quickdag.pearl_linewidths"),
+  fontsize = getOption("quickdag.pearl_fontsize"),
+  fontcolor = getOption("quickdag.pearl_fontcolor"),
   ...
 )
 
