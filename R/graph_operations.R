@@ -54,6 +54,7 @@ select_edges_by_node_alpha_id <- function(graph_obj, alpha_ids, set_op = "union"
   graph_out <- DiagrammeR::select_edges_by_node_id(graph_obj,
                                                    nodes = numids,
                                                    set_op = set_op)
+  graph_out
 }
 
 #' @rdname graph_operations
