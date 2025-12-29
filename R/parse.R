@@ -1,6 +1,6 @@
 #' @title Parse nodes
 #' @inheritParams qd_dag
-#' @rdname node-parsing
+#' @rdname node_parsing
 #' @export
 parse_nodes <- function(edgelist) {
   nodes <- unlist(lapply(edgelist,
@@ -12,7 +12,7 @@ parse_nodes <- function(edgelist) {
 
 #' @title Parse edges in a graph specification
 #' @param edgestring A single string containing some set of node-edge relationships
-#' @rdname edge-parsing
+#' @rdname edge_parsing
 #' @export
 parse_edgestring <- function(edgestring) {
   edgepat <- "\\<\\-\\>|\\-\\>|\\<\\-"
@@ -52,7 +52,7 @@ parse_edgestring <- function(edgestring) {
   Reduce(rbind, edge_mini_dfs)
 }
 
-#' @rdname edge-parsing
+#' @rdname edge_parsing
 #' @inheritParams qd_dag
 #' @export
 parse_edges <- function(edgelist) {
