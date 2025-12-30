@@ -150,25 +150,23 @@ theme_qd_pearl <- function(graph_obj,
     # node attribute tweaks
     DiagrammeR::add_global_graph_attrs("shape",        "point",  "node") |>
     DiagrammeR::add_global_graph_attrs("style",       "filled",  "node") |>
-    DiagrammeR::add_global_graph_attrs("color",      pointcolor, "node") |>
+    DiagrammeR::add_global_graph_attrs("color",     pointcolor,  "node") |>
     DiagrammeR::add_global_graph_attrs("width",      pointsize,  "node") |>
     DiagrammeR::add_global_graph_attrs("height",     pointsize,  "node") |>
     DiagrammeR::add_global_graph_attrs("fixedsize",       TRUE,  "node") |>
     DiagrammeR::add_global_graph_attrs("fontsize",    fontsize,  "node") |>
     # edge attribute tweaks
-    DiagrammeR::add_global_graph_attrs("penwidth",  linewidths,  "edge") |>
-    DiagrammeR::add_global_graph_attrs("arrowsize", linewidths,  "edge")
-
-  ## Necessary because fillcolor via global attributes appears to be broken
-  ## in DiagrammeR
-  graph_obj$nodes_df$fillcolor <- pointfill
+    DiagrammeR::add_global_graph_attrs("penwidth",    edgepen,  "edge") |>
+    DiagrammeR::add_global_graph_attrs("arrowsize", arrowsize,  "edge")
 
   ## Add and style external labels
-  graph_obj$nodes_df$xlabel    <- graph_obj$nodes_df$label
-  graph_obj$nodes_df$fontcolor <- fontcolor
+  graph_obj <- graph_obj |>
+    DiagrammeR::set_node_attrs("fillcolor", pointfill) |>
+    DiagrammeR::set_node_attrs("xlabel",    graph_obj$nodes_df$label) |>
+    DiagrammeR::set_node_attrs("fontcolor", fontcolor) |>
+    DiagrammeR::set_node_attrs("label",     "") # Nuke internal node labels
 
   graph_obj <- graph_obj |> get_conditioned_nodes(conditioned = conditioned)
-  graph_obj$nodes_df$label <- "" # Hide internal node labels
 
   graph_obj$theme <- "pearl"
   graph_obj
