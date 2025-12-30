@@ -13,7 +13,13 @@ qd_themes(graph_obj, theme, conditioned = NULL)
 
 theme_qd_base(
   graph_obj,
-  linewidths = getOption("quickdag.base_linewidths"),
+  rankdir = getOption("quickdag.base_rankdir"),
+  layout = getOption("quickdag.base_layout"),
+  shape = getOption("quickdag.base_shape"),
+  nodepen = getOption("quickdag.base_nodepen"),
+  nodewidth = getOption("quickdag.base_nodewidth"),
+  nodeheight = getOption("quickdag.base_nodeheight"),
+  edgepen = getOption("quickdag.base_edgepen"),
   fontname = getOption("quickdag.base_fontname"),
   fontsize = getOption("quickdag.base_fontsize"),
   fontcolor = getOption("quickdag.base_fontcolor"),
@@ -22,7 +28,8 @@ theme_qd_base(
 
 theme_qd_circles(
   graph_obj,
-  linewidths = getOption("quickdag.circles_linewidths"),
+  nodepen = getOption("quickdag.circles_nodepen"),
+  edgepen = getOption("quickdag.circles_edgepen"),
   fontname = getOption("quickdag.circles_fontname"),
   fontsize = getOption("quickdag.circles_fontsize"),
   fontcolor = getOption("quickdag.circles_fontcolor"),
@@ -34,7 +41,8 @@ theme_qd_pearl(
   pointsize = getOption("quickdag.pearl_pointsize"),
   pointcolor = getOption("quickdag.pearl_pointcolor"),
   pointfill = getOption("quickdag.pearl_pointfill"),
-  linewidths = getOption("quickdag.pearl_linewidths"),
+  edgepen = getOption("quickdag.pearl_edgepen"),
+  arrowsize = getOption("quickdag.pearl_arrowsize"),
   fontname = getOption("quickdag.pearl_fontname"),
   fontsize = getOption("quickdag.pearl_fontsize"),
   fontcolor = getOption("quickdag.pearl_fontcolor"),
@@ -54,7 +62,27 @@ Set to \code{NULL} to use GraphViz defaults.}
 \item{conditioned}{A character vector indicating which nodes are conditioned upon.
 The shape for these nodes will be set to "rectangle".}
 
-\item{linewidths}{Size (in points) of edges and node outlines. By default, controlled
+\item{rankdir}{Direction of node layout. Defaults to "LR", for left-to-right.}
+
+\item{layout}{Layout engine. Defaults to "dot", which is the only engine explicitly
+used by \link{quickdag}. Other options provided by \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} may or may not work
+well.}
+
+\item{shape}{Standard node shape for a given graph. Defaults for each theme:
+"base" = plaintex, "circles" = circle, "pearl" = point.
+See \href{https://graphviz.org/doc/info/shapes.html}{Graphviz documentation} for other
+options.}
+
+\item{nodepen}{Size (in points) of node outlines. By default, controlled
+by package options specific to each theme, each of which defaults to 0.2.}
+
+\item{nodewidth}{Width (in inches) of nodes. By default, controlled by package options
+specific to each theme. Defaults to 0.}
+
+\item{nodeheight}{Height (in inches) of nodes. By default, controlled by package
+options specific to each theme. Defaults to 0.}
+
+\item{edgepen}{Size (in points) of edges. By default, controlled
 by package options specific to each theme, each of which defaults to 0.2.}
 
 \item{fontname}{Font name for text elements of the graph. By default, controlled by

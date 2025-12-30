@@ -8,7 +8,21 @@
 #'   Set to `NULL` to use GraphViz defaults.
 #' @param conditioned A character vector indicating which nodes are conditioned upon.
 #'   The shape for these nodes will be set to "rectangle".
-#' @param linewidths Size (in points) of edges and node outlines. By default, controlled
+#' @param rankdir Direction of node layout. Defaults to "LR", for left-to-right.
+#' @param layout Layout engine. Defaults to "dot", which is the only engine explicitly
+#'   used by [quickdag]. Other options provided by [DiagrammeR] may or may not work
+#'   well.
+#' @param shape Standard node shape for a given graph. Defaults for each theme:
+#'   "base" = plaintex, "circles" = circle, "pearl" = point.
+#'   See [Graphviz documentation](https://graphviz.org/doc/info/shapes.html) for other
+#'   options.
+#' @param nodepen Size (in points) of node outlines. By default, controlled
+#'   by package options specific to each theme, each of which defaults to 0.2.
+#' @param nodewidth Width (in inches) of nodes. By default, controlled by package options
+#'   specific to each theme. Defaults to 0.
+#' @param nodeheight Height (in inches) of nodes. By default, controlled by package
+#'   options specific to each theme. Defaults to 0.
+#' @param edgepen Size (in points) of edges. By default, controlled
 #'   by package options specific to each theme, each of which defaults to 0.2.
 #' @param fontname Font name for text elements of the graph. By default, controlled by
 #'   package options specific to each theme, each of which defaults to "Helvetica". This
@@ -53,7 +67,13 @@ qd_themes <- function(graph_obj, theme, conditioned = NULL) {
 #' @rdname qd_themes
 #' @export
 theme_qd_base <- function(graph_obj,
-                          linewidths = getOption("quickdag.base_linewidths"),
+                          rankdir    = getOption("quickdag.base_rankdir"),
+                          layout     = getOption("quickdag.base_layout"),
+                          shape      = getOption("quickdag.base_shape"),
+                          nodepen    = getOption("quickdag.base_nodepen"),
+                          nodewidth  = getOption("quickdag.base_nodewidth"),
+                          nodeheight = getOption("quickdag.base_nodeheight"),
+                          edgepen    = getOption("quickdag.base_edgepen"),
                           fontname   = getOption("quickdag.base_fontname"),
                           fontsize   = getOption("quickdag.base_fontsize"),
                           fontcolor  = getOption("quickdag.base_fontcolor"),
@@ -63,19 +83,19 @@ theme_qd_base <- function(graph_obj,
 
   graph_attrs <- tibble::tibble(
     attr = c("rankdir", "layout"),
-    value = c("LR", "dot"),
+    value = c(rankdir, layout),
     attr_type = "graph"
   )
 
   node_attrs  <- tibble::tibble(
     attr  = c("shape", "penwidth", "fontname", "width", "height"),
-    value = c("plaintext", "0.5", fontname, "0", "0"),
+    value = c(shape, nodepen, fontname, "0", "0"),
     attr_type = "node"
   )
 
   edge_attrs  <- tibble::tibble(
-    attr = c("arrowsize", "penwidth"),
-    value = c("0.4", "0.5"),
+    attr = c("arrowsize", "penwidth", "headport", "tailport"),
+    value = c("0.4", "0.5", "_", "_"),
     attr_type = "edge"
   )
 
@@ -90,10 +110,11 @@ theme_qd_base <- function(graph_obj,
 #' @rdname qd_themes
 #' @export
 theme_qd_circles <- function(graph_obj,
-                             linewidths = getOption("quickdag.circles_linewidths"),
-                             fontname   = getOption("quickdag.circles_fontname"),
-                             fontsize   = getOption("quickdag.circles_fontsize"),
-                             fontcolor  = getOption("quickdag.circles_fontcolor"),
+                             nodepen     = getOption("quickdag.circles_nodepen"),
+                             edgepen     = getOption("quickdag.circles_edgepen"),
+                             fontname    = getOption("quickdag.circles_fontname"),
+                             fontsize    = getOption("quickdag.circles_fontsize"),
+                             fontcolor   = getOption("quickdag.circles_fontcolor"),
                              conditioned = NULL) {
 
   # set base theme
@@ -112,13 +133,14 @@ theme_qd_circles <- function(graph_obj,
 #' @rdname qd_themes
 #' @export
 theme_qd_pearl <- function(graph_obj,
-                           pointsize  = getOption("quickdag.pearl_pointsize"),
-                           pointcolor = getOption("quickdag.pearl_pointcolor"),
-                           pointfill  = getOption("quickdag.pearl_pointfill"),
-                           linewidths = getOption("quickdag.pearl_linewidths"),
-                           fontname   = getOption("quickdag.pearl_fontname"),
-                           fontsize   = getOption("quickdag.pearl_fontsize"),
-                           fontcolor  = getOption("quickdag.pearl_fontcolor"),
+                           pointsize   = getOption("quickdag.pearl_pointsize"),
+                           pointcolor  = getOption("quickdag.pearl_pointcolor"),
+                           pointfill   = getOption("quickdag.pearl_pointfill"),
+                           edgepen     = getOption("quickdag.pearl_edgepen"),
+                           arrowsize   = getOption("quickdag.pearl_arrowsize"),
+                           fontname    = getOption("quickdag.pearl_fontname"),
+                           fontsize    = getOption("quickdag.pearl_fontsize"),
+                           fontcolor   = getOption("quickdag.pearl_fontcolor"),
                            conditioned = NULL) {
   # set base theme
   graph_obj <- graph_obj |> theme_qd_base()
