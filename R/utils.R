@@ -6,7 +6,8 @@ utils::globalVariables(c("alpha_id", "label", "start", "end"))
   opts <- list(
     quickdag.check_dag         = TRUE,
     quickdag.embed             = FALSE,
-    quickdag.fixed_sep         = "vlin",
+    quickdag.swig_fixedsep     = "vlin",
+    quickdag.swig_sepsize      = 15,
     quickdag.format_special    = FALSE,
     quickdag.theme             = "base",
     quickdag.verbose           = FALSE,

@@ -32,8 +32,8 @@
 qd_swig <- function(graph_obj,
                     fixed_nodes,
                     custom_values = NULL,
-                    fixed_sep = getOption("quickdag.fixed_sep"),
-                    sep_point_size = 15) {
+                    fixed_sep = getOption("quickdag.swig_fixedsep"),
+                    sep_point_size = getOption("quickdag.swig_sepsize")) {
 
   ndf <- DiagrammeR::get_node_df(graph_obj)
   ndf$fixed <- with(ndf, ifelse(alpha_id %in% fixed_nodes, TRUE, FALSE))

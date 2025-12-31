@@ -8,8 +8,8 @@ qd_swig(
   graph_obj,
   fixed_nodes,
   custom_values = NULL,
-  fixed_sep = getOption("quickdag.fixed_sep"),
-  sep_point_size = 15
+  fixed_sep = getOption("quickdag.swig_fixedsep"),
+  sep_point_size = getOption("quickdag.swig_sepsize")
 )
 }
 \arguments{
