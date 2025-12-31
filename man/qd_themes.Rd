@@ -20,6 +20,7 @@ theme_qd_base(
   nodewidth = getOption("quickdag.base_nodewidth"),
   nodeheight = getOption("quickdag.base_nodeheight"),
   edgepen = getOption("quickdag.base_edgepen"),
+  arrowsize = getOption("quickdag.base_arrowsize"),
   fontname = getOption("quickdag.base_fontname"),
   fontsize = getOption("quickdag.base_fontsize"),
   fontcolor = getOption("quickdag.base_fontcolor"),

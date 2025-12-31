@@ -74,6 +74,7 @@ theme_qd_base <- function(graph_obj,
                           nodewidth  = getOption("quickdag.base_nodewidth"),
                           nodeheight = getOption("quickdag.base_nodeheight"),
                           edgepen    = getOption("quickdag.base_edgepen"),
+                          arrowsize  = getOption("quickdag.base_arrowsize"),
                           fontname   = getOption("quickdag.base_fontname"),
                           fontsize   = getOption("quickdag.base_fontsize"),
                           fontcolor  = getOption("quickdag.base_fontcolor"),
@@ -94,8 +95,8 @@ theme_qd_base <- function(graph_obj,
   )
 
   edge_attrs  <- tibble::tibble(
-    attr = c("arrowsize", "penwidth", "headport", "tailport"),
-    value = c("0.4", "0.5", "_", "_"),
+    attr = c("arrowsize", "penwidth"),
+    value = c(arrowsize, edgepen),
     attr_type = "edge"
   )
 

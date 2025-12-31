@@ -17,7 +17,7 @@ utils::globalVariables(c("alpha_id", "label", "start", "end"))
     quickdag.base_nodewidth = 0,
     quickdag.base_nodeheight = 0,
     quickdag.base_edgepen = 0.5,
-    quickdag.base_linewidths = 0.2,
+    quickdag.base_arrowsize = 0.4,
     quickdag.base_fontname = "Helvetica", # DiagrammeR's default
     quickdag.base_fontsize = 5,
     quickdag.base_fontcolor = "black",
