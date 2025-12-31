@@ -9,9 +9,9 @@
 \alias{qd_select_edges}
 \title{Graph operations}
 \usage{
-qd_set_node_attrs(graph_obj, ..., values, alpha_ids)
+qd_set_node_attrs(graph_obj, ..., alpha_ids)
 
-qd_set_edge_attrs(graph_obj, ..., values, from_alpha = NULL, to_alpha = NULL)
+qd_set_edge_attrs(graph_obj, ..., from_alpha = NULL, to_alpha = NULL)
 
 select_nodes_by_alpha_id(graph_obj, alpha_ids, set_op = "union")
 
@@ -25,9 +25,7 @@ qd_select_edges(graph_obj, alpha_ids, set_op = "union")
 \item{graph_obj}{A \code{quickdag} object output by \code{\link[=qd_dag]{qd_dag()}} or \code{\link[=qd_swig]{qd_swig()}}.}
 
 \item{...}{Passed to \code{\link[DiagrammeR:set_node_attrs]{DiagrammeR::set_node_attrs()}} or \code{\link[DiagrammeR:set_edge_attrs]{DiagrammeR::set_edge_attrs()}}
-argument \code{node_attr} or \code{edge_attr}, respectively.}
-
-\item{values}{Passed to \code{\link[DiagrammeR:set_node_attrs]{DiagrammeR::set_node_attrs()}} or
+argument \code{node_attr} or \code{edge_attr}, respectively.
 \code{\link[DiagrammeR:set_edge_attrs]{DiagrammeR::set_edge_attrs()}} argument of the same name.}
 
 \item{alpha_ids}{A vector of alphanumeric node IDs upon which to operate.}
@@ -38,8 +36,6 @@ argument \code{node_attr} or \code{edge_attr}, respectively.}
 
 \item{set_op}{Passed to the \code{set_op} argument of \code{\link[DiagrammeR:select_nodes_by_id]{DiagrammeR::select_nodes_by_id()}}
 or \code{\link[DiagrammeR:select_edges_by_node_id]{DiagrammeR::select_edges_by_node_id()}}. Defaults to "union".}
-
-\item{edge_attr}{Passed to  argument of the same name.}
 }
 \description{
 Graph operations

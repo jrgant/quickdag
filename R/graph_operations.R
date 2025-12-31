@@ -4,8 +4,6 @@
 #' @param alpha_ids A vector of alphanumeric node IDs upon which to operate.
 #' @param ... Passed to [DiagrammeR::set_node_attrs()] or [DiagrammeR::set_edge_attrs()]
 #'   argument `node_attr` or `edge_attr`, respectively.
-#' @param edge_attr Passed to  argument of the same name.
-#' @param values Passed to [DiagrammeR::set_node_attrs()] or
 #'   [DiagrammeR::set_edge_attrs()] argument of the same name.
 #' @param from_alpha A vector of alphanumeric source node IDs.
 #' @param to_alpha A vector of alphanumeric destination node IDs.
@@ -14,7 +12,7 @@
 #'
 #' @rdname graph_operations
 #' @export
-qd_set_node_attrs <- function(graph_obj, ..., values, alpha_ids) {
+qd_set_node_attrs <- function(graph_obj, ..., alpha_ids) {
   numids <- get_numids(graph_obj, alpha_ids)
   graph_out <- DiagrammeR::set_node_attrs(graph_obj,
                                           ...,
@@ -25,7 +23,7 @@ qd_set_node_attrs <- function(graph_obj, ..., values, alpha_ids) {
 
 #' @rdname graph_operations
 #' @export
-qd_set_edge_attrs <- function(graph_obj, ..., values,
+qd_set_edge_attrs <- function(graph_obj, ...,
                               from_alpha = NULL, to_alpha = NULL) {
   from_numids <- NULL
   to_numids <- NULL
