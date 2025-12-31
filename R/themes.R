@@ -80,29 +80,22 @@ theme_qd_base <- function(graph_obj,
                           fontcolor  = getOption("quickdag.base_fontcolor"),
                           conditioned = NULL) {
 
-  graph_obj <- graph_obj |> cleanup_existing_theme()
-
-  graph_attrs <- tibble::tibble(
-    attr = c("rankdir", "layout"),
-    value = c(rankdir, layout),
-    attr_type = "graph"
-  )
-
-  node_attrs  <- tibble::tibble(
-    attr  = c("shape", "penwidth", "fontname", "width", "height"),
-    value = c(shape, nodepen, fontname, "0", "0"),
-    attr_type = "node"
-  )
-
-  edge_attrs  <- tibble::tibble(
-    attr = c("arrowsize", "penwidth"),
-    value = c(arrowsize, edgepen),
-    attr_type = "edge"
-  )
-
-  graph_obj$global_attrs <- dplyr::bind_rows(graph_attrs, node_attrs, edge_attrs)
-
-  graph_obj <- graph_obj |> get_conditioned_nodes(conditioned = conditioned)
+  graph_obj <- graph_obj |>
+    cleanup_existing_theme() |>
+    DiagrammeR::add_global_graph_attrs("rankdir",   "LR", attr_type = "graph") |>
+    DiagrammeR::add_global_graph_attrs("layout",  layout, attr_type = "graph") |>
+    ## Node aesthetics
+    DiagrammeR::set_node_attrs("shape",     shape)      |>
+    DiagrammeR::set_node_attrs("penwidth",  nodepen)    |>
+    DiagrammeR::set_node_attrs("fontname",  fontname)   |>
+    DiagrammeR::set_node_attrs("width",     nodewidth)  |>
+    DiagrammeR::set_node_attrs("height",    nodeheight) |>
+    DiagrammeR::set_node_attrs("headport",  "_")        |>
+    DiagrammeR::set_node_attrs("tailport",  "_")        |>
+    ## Edge aesthetics
+    DiagrammeR::set_edge_attrs("arrowsize", arrowsize)  |>
+    DiagrammeR::set_edge_attrs("penwidth",  edgepen)    |>
+    get_conditioned_nodes(conditioned = conditioned)
 
   graph_obj$theme <- "base"
   graph_obj
@@ -118,14 +111,11 @@ theme_qd_circles <- function(graph_obj,
                              fontcolor   = getOption("quickdag.circles_fontcolor"),
                              conditioned = NULL) {
 
-  # set base theme
-  graph_obj <- graph_obj |> theme_qd_base()
-
   # tweak base theme
   graph_obj <- graph_obj |>
-    DiagrammeR::add_global_graph_attrs("shape", "circle", "node")
-
-  graph_obj <- graph_obj |> get_conditioned_nodes(conditioned = conditioned)
+    theme_qd_base() |>
+    DiagrammeR::add_global_graph_attrs("shape", "circle", "node") |>
+    get_conditioned_nodes(conditioned = conditioned)
 
   graph_obj$theme <- "circles"
   graph_obj
@@ -143,12 +133,11 @@ theme_qd_pearl <- function(graph_obj,
                            fontsize    = getOption("quickdag.pearl_fontsize"),
                            fontcolor   = getOption("quickdag.pearl_fontcolor"),
                            conditioned = NULL) {
-  # set base theme
-  graph_obj <- graph_obj |> theme_qd_base()
 
-  # tweak base theme
+  # Tweak base theme
   graph_obj <- graph_obj |>
-    # node attribute tweaks
+    theme_qd_base() |>
+    ## Node attribute tweaks
     DiagrammeR::add_global_graph_attrs("shape",        "point",  "node") |>
     DiagrammeR::add_global_graph_attrs("style",       "filled",  "node") |>
     DiagrammeR::add_global_graph_attrs("color",     pointcolor,  "node") |>
@@ -156,18 +145,16 @@ theme_qd_pearl <- function(graph_obj,
     DiagrammeR::add_global_graph_attrs("height",     pointsize,  "node") |>
     DiagrammeR::add_global_graph_attrs("fixedsize",       TRUE,  "node") |>
     DiagrammeR::add_global_graph_attrs("fontsize",    fontsize,  "node") |>
-    # edge attribute tweaks
-    DiagrammeR::add_global_graph_attrs("penwidth",    edgepen,  "edge") |>
-    DiagrammeR::add_global_graph_attrs("arrowsize", arrowsize,  "edge")
-
-  ## Add and style external labels
-  graph_obj <- graph_obj |>
-    DiagrammeR::set_node_attrs("fillcolor", pointfill) |>
-    DiagrammeR::set_node_attrs("xlabel",    graph_obj$nodes_df$label) |>
-    DiagrammeR::set_node_attrs("fontcolor", fontcolor) |>
-    DiagrammeR::set_node_attrs("label",     "") # Nuke internal node labels
-
-  graph_obj <- graph_obj |> get_conditioned_nodes(conditioned = conditioned)
+    ## Edge attribute tweaks
+    DiagrammeR::add_global_graph_attrs("penwidth",     edgepen,  "edge") |>
+    DiagrammeR::add_global_graph_attrs("arrowsize",  arrowsize,  "edge") |>
+    ## Add and style external labels
+    DiagrammeR::set_node_attrs("fillcolor", pointfill)                   |>
+    DiagrammeR::set_node_attrs("xlabel",    graph_obj$nodes_df$label)    |>
+    DiagrammeR::set_node_attrs("fontcolor", fontcolor)                   |>
+    ## Nuke internal node labels
+    DiagrammeR::set_node_attrs("label",     "")                          |>
+    get_conditioned_nodes(conditioned = conditioned)
 
   graph_obj$theme <- "pearl"
   graph_obj
@@ -186,11 +173,11 @@ get_conditioned_nodes <- function(graph_obj, conditioned = NULL) {
       DiagrammeR::get_node_ids(conditions = alpha_id %in% conditioned)
 
     graph_obj <- graph_obj |>
-      # add default columns to node_df based on global_attrs
+      ## Add default columns to node_df based on global_attrs
       DiagrammeR::set_node_attrs("shape",  default_shape) |>
       DiagrammeR::set_node_attrs("width",  default_minwd) |>
       DiagrammeR::set_node_attrs("height", default_minht) |>
-      # select conditioned nodes and update node aesthetics
+      ## Select conditioned nodes and update node aesthetics
       DiagrammeR::select_nodes_by_id(cd_nodes) |>
       DiagrammeR::set_node_attrs_ws("shape",  "rectangle") |>
       DiagrammeR::set_node_attrs_ws("width",  "0") |>
