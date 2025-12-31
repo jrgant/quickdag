@@ -2,8 +2,9 @@
 #'
 #' @param graph_obj A `quickdag` object output by [qd_dag()] or [qd_swig()].
 #' @param alpha_ids A vector of alphanumeric node IDs upon which to operate.
-#' @param node_attr Passed to [DiagrammeR::set_node_attrs()] argument of the same name.
-#' @param edge_attr Passed to [DiagrammeR::set_edge_attrs()] argument of the same name.
+#' @param ... Passed to [DiagrammeR::set_node_attrs()] or [DiagrammeR::set_edge_attrs()]
+#'   argument `node_attr` or `edge_attr`, respectively.
+#' @param edge_attr Passed to  argument of the same name.
 #' @param values Passed to [DiagrammeR::set_node_attrs()] or
 #'   [DiagrammeR::set_edge_attrs()] argument of the same name.
 #' @param from_alpha A vector of alphanumeric source node IDs.
@@ -13,10 +14,10 @@
 #'
 #' @rdname graph_operations
 #' @export
-qd_set_node_attrs <- function(graph_obj, node_attr, values, alpha_ids) {
+qd_set_node_attrs <- function(graph_obj, ..., values, alpha_ids) {
   numids <- get_numids(graph_obj, alpha_ids)
   graph_out <- DiagrammeR::set_node_attrs(graph_obj,
-                                          node_attr = node_attr,
+                                          ...,
                                           values = values,
                                           nodes = numids)
   graph_out
@@ -24,7 +25,7 @@ qd_set_node_attrs <- function(graph_obj, node_attr, values, alpha_ids) {
 
 #' @rdname graph_operations
 #' @export
-qd_set_edge_attrs <- function(graph_obj, edge_attr, values,
+qd_set_edge_attrs <- function(graph_obj, ..., values,
                               from_alpha = NULL, to_alpha = NULL) {
   from_numids <- NULL
   to_numids <- NULL
@@ -35,7 +36,7 @@ qd_set_edge_attrs <- function(graph_obj, edge_attr, values,
     to_numids <- get_numids(graph_obj, to_alpha)
   }
   graph_out <- DiagrammeR::set_edge_attrs(graph_obj,
-                                          edge_attr = edge_attr,
+                                          ...,
                                           values = values,
                                           from = from_numids,
                                           to = to_numids)
