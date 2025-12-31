@@ -29,11 +29,11 @@ theme_qd_base(
 
 theme_qd_circles(
   graph_obj,
-  nodepen = getOption("quickdag.circles_nodepen"),
-  edgepen = getOption("quickdag.circles_edgepen"),
-  fontname = getOption("quickdag.circles_fontname"),
-  fontsize = getOption("quickdag.circles_fontsize"),
-  fontcolor = getOption("quickdag.circles_fontcolor"),
+  nodepen = choose_option("quickdag.circles_nodepen"),
+  edgepen = choose_option("quickdag.circles_edgepen"),
+  fontname = choose_option("quickdag.circles_fontname"),
+  fontsize = choose_option("quickdag.circles_fontsize"),
+  fontcolor = choose_option("quickdag.circles_fontcolor"),
   conditioned = NULL
 )
 
@@ -42,11 +42,11 @@ theme_qd_pearl(
   pointsize = getOption("quickdag.pearl_pointsize"),
   pointcolor = getOption("quickdag.pearl_pointcolor"),
   pointfill = getOption("quickdag.pearl_pointfill"),
-  edgepen = getOption("quickdag.pearl_edgepen"),
-  arrowsize = getOption("quickdag.pearl_arrowsize"),
-  fontname = getOption("quickdag.pearl_fontname"),
-  fontsize = getOption("quickdag.pearl_fontsize"),
-  fontcolor = getOption("quickdag.pearl_fontcolor"),
+  edgepen = choose_option("quickdag.pearl_edgepen"),
+  arrowsize = choose_option("quickdag.pearl_arrowsize"),
+  fontname = choose_option("quickdag.pearl_fontname"),
+  fontsize = choose_option("quickdag.pearl_fontsize"),
+  fontcolor = choose_option("quickdag.pearl_fontcolor"),
   conditioned = NULL
 )
 
