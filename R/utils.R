@@ -17,6 +17,7 @@ utils::globalVariables(c("alpha_id", "label", "start", "end"))
     quickdag.base_nodepen      = 0.5,
     quickdag.base_nodeheight   = 0,
     quickdag.base_edgepen      = 0.5,
+    quickdag.base_arrowhead    = "normal",
     quickdag.base_arrowsize    = 0.4,
     quickdag.base_fontname     = "Helvetica", # DiagrammeR's default
     quickdag.base_fontsize     = 5,
@@ -30,7 +31,8 @@ utils::globalVariables(c("alpha_id", "label", "start", "end"))
     quickdag.pearl_pointcolor  = "black",
     quickdag.pearl_pointfill   = "black",
     quickdag.pearl_edgepen     = NA,
-    quickdag.pearl_arrowsize   = NA,
+    quickdag.pearl_arrowhead   = NA,
+    quickdag.pearl_arrowsize   = 0.2,
     quickdag.pearl_fontname    = NA,
     quickdag.pearl_fontsize    = NA,
     quickdag.pearl_fontcolor   = NA
