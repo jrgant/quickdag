@@ -4,11 +4,23 @@ Updated overview coming soon…
 
 ## All functions
 
-- [`parse_edgestring()`](https://jrgant.github.io/quickdag/reference/edge-parsing.md)
-  [`parse_edges()`](https://jrgant.github.io/quickdag/reference/edge-parsing.md)
+- [`parse_edgestring()`](https://jrgant.github.io/quickdag/reference/edge_parsing.md)
+  [`parse_edges()`](https://jrgant.github.io/quickdag/reference/edge_parsing.md)
   : Parse edges in a graph specification
-- [`parse_nodes()`](https://jrgant.github.io/quickdag/reference/node-parsing.md)
+- [`get_numids()`](https://jrgant.github.io/quickdag/reference/get_numids.md)
+  : Retrieves numeric IDs given alphanumeric IDs
+- [`qd_set_node_attrs()`](https://jrgant.github.io/quickdag/reference/graph_operations.md)
+  [`qd_set_edge_attrs()`](https://jrgant.github.io/quickdag/reference/graph_operations.md)
+  [`select_nodes_by_alpha_id()`](https://jrgant.github.io/quickdag/reference/graph_operations.md)
+  [`qd_select_nodes()`](https://jrgant.github.io/quickdag/reference/graph_operations.md)
+  [`select_edges_by_node_alpha_id()`](https://jrgant.github.io/quickdag/reference/graph_operations.md)
+  [`qd_select_edges()`](https://jrgant.github.io/quickdag/reference/graph_operations.md)
+  : Graph operations
+- [`parse_nodes()`](https://jrgant.github.io/quickdag/reference/node_parsing.md)
   : Parse nodes
+- [`qd_adjustment_sets()`](https://jrgant.github.io/quickdag/reference/qd_adjustment_sets.md)
+  [`qd_todagitty()`](https://jrgant.github.io/quickdag/reference/qd_adjustment_sets.md)
+  : Identify variables for adjustment
 - [`qd_dag()`](https://jrgant.github.io/quickdag/reference/qd_dag.md) :
   Generate a graph object
 - [`qd_save()`](https://jrgant.github.io/quickdag/reference/qd_save.md)
@@ -20,9 +32,8 @@ Updated overview coming soon…
   [`theme_qd_circles()`](https://jrgant.github.io/quickdag/reference/qd_themes.md)
   [`theme_qd_pearl()`](https://jrgant.github.io/quickdag/reference/qd_themes.md)
   [`get_conditioned_nodes()`](https://jrgant.github.io/quickdag/reference/qd_themes.md)
+  [`cleanup_existing_theme()`](https://jrgant.github.io/quickdag/reference/qd_themes.md)
   : Diagram themes
-- [`qd_todagitty()`](https://jrgant.github.io/quickdag/reference/qd_todagitty.md)
-  : Identify variables for adjustment
 - [`sep_opts()`](https://jrgant.github.io/quickdag/reference/sep_opts.md)
   : View options for fixed node separator characters
 

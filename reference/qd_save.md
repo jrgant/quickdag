@@ -11,7 +11,7 @@ image via
 ## Usage
 
 ``` r
-qd_save(graph, file_name, ..., embed = FALSE, kg = NULL)
+qd_save(graph, file_name, ..., embed = getOption("quickdag.embed"), kg = NULL)
 ```
 
 ## Arguments
@@ -57,7 +57,7 @@ qd_save(dag, file)
 
 # embed from code chunk using knitr::include_graphics()
 qd_save(dag, file, embed = TRUE)
-#> [1] "/tmp/RtmpnnzWF3/dag.pdf"
+#> [1] "/tmp/Rtmpphytwc/dag.pdf"
 #> attr(,"class")
 #> [1] "knit_image_paths" "knit_asis"       
 

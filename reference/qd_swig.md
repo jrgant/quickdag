@@ -12,8 +12,8 @@ qd_swig(
   graph_obj,
   fixed_nodes,
   custom_values = NULL,
-  fixed_sep = "vlin",
-  sep_point_size = 15
+  fixed_sep = getOption("quickdag.swig_fixedsep"),
+  sep_point_size = getOption("quickdag.swig_sepsize")
 )
 ```
 
@@ -61,5 +61,5 @@ swig <- dag |>
 
 swig |> DiagrammeR::render_graph()
 
-{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\",\n       layout = \"dot\"]\n\nnode [shape = \"plaintext\",\n      penwidth = \"0.5\",\n      fontname = \"serif\",\n      width = \"0\",\n      height = \"0\"]\n\nedge [arrowsize = \"0.4\",\n     penwidth = \"0.5\"]\n\n  \"1\" [label = <A <font point-size=\"15\">&#124;<\/font> <i>a=1<\/i><FONT POINT-SIZE=\"8\"><SUB> <\/SUB><\/FONT>>, fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = <Y<FONT POINT-SIZE=\"8\"><SUP><i>a=1<\/i><\/SUP><\/FONT>>, fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"L\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"3\"->\"1\" \n  \"3\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}
+{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\",\n       layout = \"dot\"]\n\n\n\n  \"1\" [label = <A <font point-size=\"15\">&#124;<\/font> <i>a=1<\/i><FONT POINT-SIZE=\"8\"><SUB> <\/SUB><\/FONT>>, shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = <Y<FONT POINT-SIZE=\"8\"><SUP><i>a=1<\/i><\/SUP><\/FONT>>, shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"L\", shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n\"3\"->\"1\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n\"3\"->\"2\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}
 ```

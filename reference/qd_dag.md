@@ -11,10 +11,10 @@ qd_dag(
   node_labs = NULL,
   node_aes_opts = list(),
   edge_aes_opts = list(),
-  format_special = TRUE,
-  verbose = FALSE,
-  check_dag = TRUE,
-  theme = "base",
+  format_special = getOption("quickdag.format_special"),
+  verbose = getOption("quickdag.verbose"),
+  check_dag = getOption("quickdag.check_dag"),
+  theme = getOption("quickdag.theme"),
   ...
 )
 ```
@@ -44,7 +44,7 @@ qd_dag(
 - format_special:
 
   Render numeric elements in an alphanumeric `alpha_id` as subcripts.
-  Defaults to `TRUE`.
+  Defaults to `FALSE`.
 
 - verbose:
 
@@ -81,14 +81,14 @@ corresponding `alpha_id`, which may not always be the case.
 edges <- c("A -> { B C } <- L",
            "B -> C")
 
-# make a DAG object and render the graph using the default theme
+# Make a DAG object and render the graph using the default theme
 g.obj <- qd_dag(edges)
 #> 
 #> 
 #> CHECKED: The diagram is a DAG. 
 DiagrammeR::render_graph(g.obj)
 
-{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\",\n       layout = \"dot\"]\n\nnode [shape = \"plaintext\",\n      penwidth = \"0.5\",\n      fontname = \"serif\",\n      width = \"0\",\n      height = \"0\"]\n\nedge [arrowsize = \"0.4\",\n     penwidth = \"0.5\"]\n\n  \"1\" [label = \"A\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"B\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"C\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"L\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n  \"1\"->\"3\" \n  \"4\"->\"2\" \n  \"4\"->\"3\" \n  \"2\"->\"3\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}
+{"x":{"diagram":"digraph {\n\ngraph [rankdir = \"LR\",\n       layout = \"dot\"]\n\n\n\n  \"1\" [label = \"A\", shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"B\", shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"C\", shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"L\", shape = \"plaintext\", penwidth = \"0.5\", fontname = \"Helvetica\", width = \"0\", height = \"0\", fillcolor = \"#FFFFFF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n\"1\"->\"3\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n\"4\"->\"2\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n\"4\"->\"3\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n\"2\"->\"3\" [arrowhead = \"normal\", arrowsize = \"0.4\", penwidth = \"0.5\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}
 # Pass labels and aesthetic options for nodes or edges
 g.obj2 <- qd_dag(edges,
                  node_labs = c("A" = "Alcohol",

@@ -10,13 +10,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/jrgant/quickdag/blob/master/DESCRIPTION)
 
-Gantenberg J (2025). *quickdag: Make Beautiful Directed Acyclic Graphs*.
+Gantenberg J (2026). *quickdag: Make Beautiful Directed Acyclic Graphs*.
 R package version 0.2.1.9000, <https://jrgant.github.io/quickdag/>.
 
     @Manual{,
       title = {quickdag: Make Beautiful Directed Acyclic Graphs},
       author = {Jason Gantenberg},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.2.1.9000},
       url = {https://jrgant.github.io/quickdag/},
     }
