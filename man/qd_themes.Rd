@@ -88,6 +88,10 @@ options specific to each theme. Defaults to 0.}
 \item{edgepen}{Size (in points) of edges. By default, controlled
 by package options specific to each theme, each of which defaults to 0.2.}
 
+\item{arrowhead}{Shape of the arrowhead. See \code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}.}
+
+\item{arrowsize}{Size of the arrowhead. See \code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}.}
+
 \item{fontname}{Font name for text elements of the graph. By default, controlled by
 package options specific to each theme, each of which defaults to "Helvetica". This
 is the default in \code{DiagrammeR}.}

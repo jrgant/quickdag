@@ -16,6 +16,8 @@
 #'   "base" = plaintex, "circles" = circle, "pearl" = point.
 #'   See [Graphviz documentation](https://graphviz.org/doc/info/shapes.html) for other
 #'   options.
+#' @param arrowhead Shape of the arrowhead. See [DiagrammeR::edge_aes()].
+#' @param arrowsize Size of the arrowhead. See [DiagrammeR::edge_aes()].
 #' @param nodepen Size (in points) of node outlines. By default, controlled
 #'   by package options specific to each theme, each of which defaults to 0.2.
 #' @param nodewidth Width (in inches) of nodes. By default, controlled by package options
