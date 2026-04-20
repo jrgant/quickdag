@@ -1,5 +1,5 @@
 # Put some variables in the global environment to avoid R CMD CHECK notes
-utils::globalVariables(c("alpha_id", "label", "start", "end"))
+utils::globalVariables(c("alpha_id", "label", "start", "end", "id"))
 
 # Set global options
 .onLoad <- function(libname, pkgname) {
