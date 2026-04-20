@@ -4,7 +4,7 @@
 \alias{qd_save}
 \title{Save graph objects as images}
 \usage{
-qd_save(graph, file_name, ..., embed = FALSE, kg = NULL)
+qd_save(graph, file_name, ..., embed = getOption("quickdag.embed"), kg = NULL)
 }
 \arguments{
 \item{graph}{A graph object produced by \code{\link[=qd_dag]{qd_dag()}}}

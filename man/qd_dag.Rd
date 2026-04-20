@@ -9,10 +9,10 @@ qd_dag(
   node_labs = NULL,
   node_aes_opts = list(),
   edge_aes_opts = list(),
-  format_special = TRUE,
-  verbose = FALSE,
-  check_dag = TRUE,
-  theme = "base",
+  format_special = getOption("quickdag.format_special"),
+  verbose = getOption("quickdag.verbose"),
+  check_dag = getOption("quickdag.check_dag"),
+  theme = getOption("quickdag.theme"),
   ...
 )
 }
@@ -29,7 +29,7 @@ to \code{NULL}.}
 \code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}. Defaults to empty list.}
 
 \item{format_special}{Render numeric elements in an alphanumeric \code{alpha_id} as
-subcripts. Defaults to \code{TRUE}.}
+subcripts. Defaults to \code{FALSE}.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console.
 See Details below. Defaults to \code{TRUE}.}
@@ -56,7 +56,7 @@ the same letter as their corresponding \code{alpha_id}, which may not always be 
 edges <- c("A -> { B C } <- L",
            "B -> C")
 
-# make a DAG object and render the graph using the default theme
+# Make a DAG object and render the graph using the default theme
 g.obj <- qd_dag(edges)
 DiagrammeR::render_graph(g.obj)
 

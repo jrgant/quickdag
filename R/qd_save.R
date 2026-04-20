@@ -33,7 +33,8 @@
 #'
 #' # clean up temporary directory
 #' file.remove(file)
-qd_save <- function(graph, file_name, ..., embed = FALSE, kg = NULL) {
+qd_save <- function(graph, file_name, ...,
+                    embed = getOption("quickdag.embed"), kg = NULL) {
   DiagrammeR::export_graph(graph = graph, file_name = file_name, ...)
 
   if (embed == TRUE) {
