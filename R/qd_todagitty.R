@@ -31,7 +31,7 @@
 #'
 #' # if you've already created a qd_dag() object
 #' dag <- qd_dag(edges)
-#' qd_adjustment_sets(dag$qd_edgelist)
+#' qd_adjustment_sets(dag$qd_edgelist, exposure = "A", outcome = "Y")
 qd_adjustment_sets <- function(edgelist, diagram_type = "dag", showplot = FALSE,
                                exposure, outcome,
                                ...) {
