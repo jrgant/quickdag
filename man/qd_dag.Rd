@@ -74,4 +74,10 @@ g.obj2 <- qd_dag(edges,
                  theme = NULL)
 DiagrammeR::render_graph(g.obj2)
 
+# Use alphanumeric IDs---for instance, to specify a time-varying DAG
+g.obj3 <- qd_dag(edgelist = c("A1 -> {A2 Y}", "A2 -> Y"),
+                 node_labs = c("A1" = "Exposure (time1)",
+                               "A2" = "Exposure (time2)",
+                               "Y" = "Outcome"))
+DiagrammeR::render_graph(g.obj3)
 }
