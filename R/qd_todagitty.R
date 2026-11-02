@@ -9,7 +9,7 @@
 #' @param showplot Logical indicating whether to produce a dagitty plot. Defaults to
 #'   `FALSE`.
 #' @param exposure Character. Specify exposure of interest. (Required)
-#' @param outcome Character. Specifiy outcome of interest. (Required)
+#' @param outcome Character. Specify outcome of interest. (Required)
 #' @param ... Pass arguments to [dagitty::adjustmentSets()].
 #'
 #' @details

@@ -34,7 +34,7 @@ user can specify another graph type (see \code{\link[dagitty:adjustmentSets]{dag
 
 \item{exposure}{Character. Specify exposure of interest. (Required)}
 
-\item{outcome}{Character. Specifiy outcome of interest. (Required)}
+\item{outcome}{Character. Specify outcome of interest. (Required)}
 
 \item{...}{Pass arguments to \code{\link[dagitty:adjustmentSets]{dagitty::adjustmentSets()}}.}
 }
