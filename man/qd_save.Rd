@@ -13,7 +13,7 @@ qd_save(graph, file_name, ..., embed = getOption("quickdag.embed"), kg = NULL)
 File type will be determined by the extension provided (pdf, svg, png, ps). See
 \code{\link[DiagrammeR:export_graph]{DiagrammeR::export_graph()}} for details.}
 
-\item{...}{Pass other arguments to \code{\link[DiagrammeR:render_graph]{DiagrammeR::render_graph()}}.}
+\item{...}{Pass other arguments to \code{\link[DiagrammeR:export_graph]{DiagrammeR::export_graph()}}.}
 
 \item{embed}{Defaults to \code{FALSE}.}
 

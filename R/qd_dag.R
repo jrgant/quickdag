@@ -13,7 +13,7 @@
 #' @param format_special Render numeric elements in an alphanumeric `alpha_id` as
 #'   subcripts. Defaults to `FALSE`.
 #' @param verbose Indicate whether to print node and edge dataframes to the console.
-#'   See Details below. Defaults to `TRUE`.
+#'   See Details below. Defaults to `FALSE`.
 #' @param check_dag Logical. Check whether the graph conforms to the rules of DAGs.
 #'   Defaults to `TRUE`.
 #' @param theme Choose theme for plot output. Defaults to `"base"`. Setting theme to

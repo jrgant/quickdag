@@ -32,7 +32,7 @@ to \code{NULL}.}
 subcripts. Defaults to \code{FALSE}.}
 
 \item{verbose}{Indicate whether to print node and edge dataframes to the console.
-See Details below. Defaults to \code{TRUE}.}
+See Details below. Defaults to \code{FALSE}.}
 
 \item{check_dag}{Logical. Check whether the graph conforms to the rules of DAGs.
 Defaults to \code{TRUE}.}

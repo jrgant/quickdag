@@ -4,7 +4,6 @@
 #' @param alpha_ids A vector of alphanumeric node IDs upon which to operate.
 #' @param ... Passed to [DiagrammeR::set_node_attrs()] or [DiagrammeR::set_edge_attrs()]
 #'   argument `node_attr` or `edge_attr`, respectively.
-#'   [DiagrammeR::set_edge_attrs()] argument of the same name.
 #' @param from_alpha A vector of alphanumeric source node IDs.
 #' @param to_alpha A vector of alphanumeric destination node IDs.
 #' @param set_op Passed to the `set_op` argument of [DiagrammeR::select_nodes_by_id()]

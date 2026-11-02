@@ -13,19 +13,19 @@
 #'   used by [quickdag]. Other options provided by [DiagrammeR] may or may not work
 #'   well.
 #' @param shape Standard node shape for a given graph. Defaults for each theme:
-#'   "base" = plaintex, "circles" = circle, "pearl" = point.
+#'   "base" = plaintext, "circles" = circle, "pearl" = point.
 #'   See [Graphviz documentation](https://graphviz.org/doc/info/shapes.html) for other
 #'   options.
 #' @param arrowhead Shape of the arrowhead. See [DiagrammeR::edge_aes()].
 #' @param arrowsize Size of the arrowhead. See [DiagrammeR::edge_aes()].
 #' @param nodepen Size (in points) of node outlines. By default, controlled
-#'   by package options specific to each theme, each of which defaults to 0.2.
+#'   by package options specific to each theme, each of which defaults to 0.5.
 #' @param nodewidth Width (in inches) of nodes. By default, controlled by package options
 #'   specific to each theme. Defaults to 0.
 #' @param nodeheight Height (in inches) of nodes. By default, controlled by package
 #'   options specific to each theme. Defaults to 0.
 #' @param edgepen Size (in points) of edges. By default, controlled
-#'   by package options specific to each theme, each of which defaults to 0.2.
+#'   by package options specific to each theme, each of which defaults to 0.5.
 #' @param fontname Font name for text elements of the graph. By default, controlled by
 #'   package options specific to each theme, each of which defaults to "Helvetica". This
 #'   is the default in `DiagrammeR`.

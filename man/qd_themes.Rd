@@ -72,12 +72,12 @@ used by \link{quickdag}. Other options provided by \link[DiagrammeR:DiagrammeR]{
 well.}
 
 \item{shape}{Standard node shape for a given graph. Defaults for each theme:
-"base" = plaintex, "circles" = circle, "pearl" = point.
+"base" = plaintext, "circles" = circle, "pearl" = point.
 See \href{https://graphviz.org/doc/info/shapes.html}{Graphviz documentation} for other
 options.}
 
 \item{nodepen}{Size (in points) of node outlines. By default, controlled
-by package options specific to each theme, each of which defaults to 0.2.}
+by package options specific to each theme, each of which defaults to 0.5.}
 
 \item{nodewidth}{Width (in inches) of nodes. By default, controlled by package options
 specific to each theme. Defaults to 0.}
@@ -86,7 +86,7 @@ specific to each theme. Defaults to 0.}
 options specific to each theme. Defaults to 0.}
 
 \item{edgepen}{Size (in points) of edges. By default, controlled
-by package options specific to each theme, each of which defaults to 0.2.}
+by package options specific to each theme, each of which defaults to 0.5.}
 
 \item{arrowhead}{Shape of the arrowhead. See \code{\link[DiagrammeR:edge_aes]{DiagrammeR::edge_aes()}}.}
 
