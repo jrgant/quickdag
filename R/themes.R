@@ -5,7 +5,6 @@
 #'
 #' @param graph_obj A DAG object created by [qd_dag()].
 #' @param theme A character string indicating the theme to use. Defaults to "base".
-#'   Set to `NULL` to use GraphViz defaults.
 #' @param conditioned A character vector indicating which nodes are conditioned upon.
 #'   The shape for these nodes will be set to "rectangle".
 #' @param rankdir Direction of node layout. Defaults to "LR", for left-to-right.
@@ -43,7 +42,7 @@
 #' @rdname qd_themes
 #' @export
 # wrapper for theme selection
-qd_themes <- function(graph_obj, theme, conditioned = NULL) {
+qd_themes <- function(graph_obj, theme = "base", conditioned = NULL) {
 
   select_theme <- c(
     "base"    = "theme_qd_base",

@@ -9,7 +9,7 @@
 \alias{cleanup_existing_theme}
 \title{Diagram themes}
 \usage{
-qd_themes(graph_obj, theme, conditioned = NULL)
+qd_themes(graph_obj, theme = "base", conditioned = NULL)
 
 theme_qd_base(
   graph_obj,
@@ -59,8 +59,7 @@ cleanup_existing_theme(graph_obj)
 \arguments{
 \item{graph_obj}{A DAG object created by \code{\link[=qd_dag]{qd_dag()}}.}
 
-\item{theme}{A character string indicating the theme to use. Defaults to "base".
-Set to \code{NULL} to use GraphViz defaults.}
+\item{theme}{A character string indicating the theme to use. Defaults to "base".}
 
 \item{conditioned}{A character vector indicating which nodes are conditioned upon.
 The shape for these nodes will be set to "rectangle".}
