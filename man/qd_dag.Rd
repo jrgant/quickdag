@@ -47,9 +47,7 @@ Provide simple syntax specifying paths between nodes to generate a graph object.
 }
 \details{
 Leaving the \code{verbose} set to \code{TRUE} may be advisable to ensure labels and IDs have
-not been mismatched. By default, \code{\link[=qd_dag]{qd_dag()}} alphabetizes nodes included in \code{edgelist}
-and does the same for \code{node_labs} under a first assumption that labels will begin with
-the same letter as their corresponding \code{alpha_id}, which may not always be the case.
+not been mismatched.
 }
 \examples{
 # Provide a list of edges, with nodes specified as letters or single words.

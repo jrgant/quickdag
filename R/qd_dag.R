@@ -22,9 +22,7 @@
 #'
 #' @details
 #' Leaving the `verbose` set to `TRUE` may be advisable to ensure labels and IDs have
-#' not been mismatched. By default, [qd_dag()] alphabetizes nodes included in `edgelist`
-#' and does the same for `node_labs` under a first assumption that labels will begin with
-#' the same letter as their corresponding `alpha_id`, which may not always be the case.
+#' not been mismatched. 
 #' @export
 #' @examples
 #' # Provide a list of edges, with nodes specified as letters or single words.
