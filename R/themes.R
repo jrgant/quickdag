@@ -90,6 +90,7 @@ theme_qd_base <- function(graph_obj,
     DiagrammeR::set_node_attrs("shape",     shape)      |>
     DiagrammeR::set_node_attrs("penwidth",  nodepen)    |>
     DiagrammeR::set_node_attrs("fontname",  fontname)   |>
+    DiagrammeR::set_node_attrs("fontsize",  fontsize)   |>
     DiagrammeR::set_node_attrs("width",     nodewidth)  |>
     DiagrammeR::set_node_attrs("height",    nodeheight) |>
     DiagrammeR::set_node_attrs("headport",  "_")        |>
