@@ -136,8 +136,8 @@ qd_dag <- function(edgelist, node_labs = NULL,
   if (check_dag == TRUE) {
     if (!DiagrammeR::is_graph_dag(graph)) {
       warning("Your graph appears to break some of the rules of ",
-              "directed acylic graphs. ",
-              "To turn off this warning, set 'check.dag' option to FALSE. \n\n")
+              "directed acyclic graphs. ",
+              "To turn off this warning, set 'check_dag' option to FALSE. \n\n")
     } else {
       message("\n\nCHECKED: The diagram is a DAG. \n")
     }
