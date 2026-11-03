@@ -22,7 +22,7 @@ qd_set_node_attrs <- function(graph_obj, ..., alpha_ids) {
 
 #' @rdname graph_operations
 #' @export
-qd_set_edge_attrs <- function(graph_obj, ...,
+qd_set_edge_attrs <- function(graph_obj, ..., values,
                               from_alpha = NULL, to_alpha = NULL) {
   from_numids <- NULL
   to_numids <- NULL

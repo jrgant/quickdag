@@ -11,7 +11,7 @@
 \usage{
 qd_set_node_attrs(graph_obj, ..., alpha_ids)
 
-qd_set_edge_attrs(graph_obj, ..., from_alpha = NULL, to_alpha = NULL)
+qd_set_edge_attrs(graph_obj, ..., values, from_alpha = NULL, to_alpha = NULL)
 
 select_nodes_by_alpha_id(graph_obj, alpha_ids, set_op = "union")
 
