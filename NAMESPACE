@@ -22,5 +22,7 @@ export(sep_opts)
 export(theme_qd_base)
 export(theme_qd_circles)
 export(theme_qd_pearl)
-importFrom(DiagrammeR,export_graph)
-importFrom(DiagrammeR,render_graph)
+importFrom(DiagrammeR,
+  export_graph,
+  render_graph
+)

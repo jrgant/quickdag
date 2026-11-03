@@ -67,7 +67,7 @@ The shape for these nodes will be set to "rectangle".}
 \item{rankdir}{Direction of node layout. Defaults to "LR", for left-to-right.}
 
 \item{layout}{Layout engine. Defaults to "dot", which is the only engine explicitly
-used by \link{quickdag}. Other options provided by \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} may or may not work
+used by \link{quickdag}. Other options provided by \link[DiagrammeR:DiagrammeR]{DiagrammeR} may or may not work
 well.}
 
 \item{shape}{Standard node shape for a given graph. Defaults for each theme:

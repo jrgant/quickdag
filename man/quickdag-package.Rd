@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Jason Gantenberg \email{jason.gantenberg@gmail.com} (\href{https://orcid.org/0000-0002-8144-4273}{ORCID})
 
+Authors:
+\itemize{
+  \item Jason Gantenberg \email{jason.gantenberg@gmail.com} (\href{https://orcid.org/0000-0002-8144-4273}{ORCID})
+}
+
 }
 \keyword{internal}
